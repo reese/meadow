@@ -7,7 +7,7 @@
 `meadow` is still in early development, so building from source is the only supported installation method.
 
 ```sh
-git clone https://github.com/reesew/meadow
+git clone https://github.com/reese/meadow
 cd meadow
 cargo install --path crates/meadow-cli
 ```
