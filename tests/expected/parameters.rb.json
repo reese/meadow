@@ -1,0 +1,429 @@
+{
+  "path": "tests/fixtures/parameters.rb",
+  "events": [
+    {
+      "type": "class_open",
+      "data": {
+        "name": "Parameters",
+        "superclass": null,
+        "docstring": null,
+        "location": {
+          "start": 0,
+          "end": 436,
+          "start_line": 1,
+          "end_line": 29
+        }
+      }
+    },
+    {
+      "type": "method_def",
+      "data": {
+        "name": "required",
+        "scope": "instance",
+        "receiver": null,
+        "parameters": [
+          {
+            "name": "a",
+            "kind": "required",
+            "default": null
+          },
+          {
+            "name": "b",
+            "kind": "required",
+            "default": null
+          }
+        ],
+        "signature": "required(a, b)",
+        "source": "def required(a, b); end",
+        "docstring": null,
+        "location": {
+          "start": 19,
+          "end": 42,
+          "start_line": 2,
+          "end_line": 2
+        }
+      }
+    },
+    {
+      "type": "method_def",
+      "data": {
+        "name": "optional",
+        "scope": "instance",
+        "receiver": null,
+        "parameters": [
+          {
+            "name": "a",
+            "kind": "required",
+            "default": null
+          },
+          {
+            "name": "b",
+            "kind": "optional",
+            "default": "2"
+          }
+        ],
+        "signature": "optional(a, b = 2)",
+        "source": "def optional(a, b = 2); end",
+        "docstring": null,
+        "location": {
+          "start": 46,
+          "end": 73,
+          "start_line": 4,
+          "end_line": 4
+        }
+      }
+    },
+    {
+      "type": "method_def",
+      "data": {
+        "name": "with_rest",
+        "scope": "instance",
+        "receiver": null,
+        "parameters": [
+          {
+            "name": "a",
+            "kind": "required",
+            "default": null
+          },
+          {
+            "name": "rest",
+            "kind": "rest",
+            "default": null
+          },
+          {
+            "name": "z",
+            "kind": "post",
+            "default": null
+          }
+        ],
+        "signature": "with_rest(a, *rest, z)",
+        "source": "def with_rest(a, *rest, z); end",
+        "docstring": null,
+        "location": {
+          "start": 77,
+          "end": 108,
+          "start_line": 6,
+          "end_line": 6
+        }
+      }
+    },
+    {
+      "type": "method_def",
+      "data": {
+        "name": "with_keywords",
+        "scope": "instance",
+        "receiver": null,
+        "parameters": [
+          {
+            "name": "a",
+            "kind": "keyword",
+            "default": null
+          },
+          {
+            "name": "b",
+            "kind": "keyword_optional",
+            "default": "2"
+          },
+          {
+            "name": "opts",
+            "kind": "keyword_rest",
+            "default": null
+          }
+        ],
+        "signature": "with_keywords(a:, b: 2, **opts)",
+        "source": "def with_keywords(a:, b: 2, **opts); end",
+        "docstring": null,
+        "location": {
+          "start": 112,
+          "end": 152,
+          "start_line": 8,
+          "end_line": 8
+        }
+      }
+    },
+    {
+      "type": "method_def",
+      "data": {
+        "name": "with_block",
+        "scope": "instance",
+        "receiver": null,
+        "parameters": [
+          {
+            "name": "blk",
+            "kind": "block",
+            "default": null
+          }
+        ],
+        "signature": "with_block(&blk)",
+        "source": "def with_block(&blk); end",
+        "docstring": null,
+        "location": {
+          "start": 156,
+          "end": 181,
+          "start_line": 10,
+          "end_line": 10
+        }
+      }
+    },
+    {
+      "type": "method_def",
+      "data": {
+        "name": "forwarding",
+        "scope": "instance",
+        "receiver": null,
+        "parameters": [
+          {
+            "name": "",
+            "kind": "forwarding",
+            "default": null
+          }
+        ],
+        "signature": "forwarding(...)",
+        "source": "def forwarding(...); end",
+        "docstring": null,
+        "location": {
+          "start": 185,
+          "end": 209,
+          "start_line": 12,
+          "end_line": 12
+        }
+      }
+    },
+    {
+      "type": "method_def",
+      "data": {
+        "name": "anonymous",
+        "scope": "instance",
+        "receiver": null,
+        "parameters": [
+          {
+            "name": "",
+            "kind": "rest",
+            "default": null
+          },
+          {
+            "name": "",
+            "kind": "keyword_rest",
+            "default": null
+          },
+          {
+            "name": "",
+            "kind": "block",
+            "default": null
+          }
+        ],
+        "signature": "anonymous(*, **, &)",
+        "source": "def anonymous(*, **, &); end",
+        "docstring": null,
+        "location": {
+          "start": 213,
+          "end": 241,
+          "start_line": 14,
+          "end_line": 14
+        }
+      }
+    },
+    {
+      "type": "method_def",
+      "data": {
+        "name": "no_keywords",
+        "scope": "instance",
+        "receiver": null,
+        "parameters": [
+          {
+            "name": "nil",
+            "kind": "keyword_rest",
+            "default": null
+          }
+        ],
+        "signature": "no_keywords(**nil)",
+        "source": "def no_keywords(**nil); end",
+        "docstring": null,
+        "location": {
+          "start": 245,
+          "end": 272,
+          "start_line": 16,
+          "end_line": 16
+        }
+      }
+    },
+    {
+      "type": "method_def",
+      "data": {
+        "name": "endless",
+        "scope": "instance",
+        "receiver": null,
+        "parameters": [
+          {
+            "name": "x",
+            "kind": "required",
+            "default": null
+          }
+        ],
+        "signature": "endless(x)",
+        "source": "def endless(x) = x * 2",
+        "docstring": null,
+        "location": {
+          "start": 276,
+          "end": 298,
+          "start_line": 18,
+          "end_line": 18
+        }
+      }
+    },
+    {
+      "type": "call",
+      "data": {
+        "source": "x * 2",
+        "receiver": "x",
+        "name": "*",
+        "arguments": [
+          {
+            "source": "2",
+            "literal": null
+          }
+        ],
+        "block": null,
+        "docstring": null,
+        "location": {
+          "start": 293,
+          "end": 298,
+          "start_line": 18,
+          "end_line": 18
+        }
+      }
+    },
+    {
+      "type": "method_def",
+      "data": {
+        "name": "[]",
+        "scope": "instance",
+        "receiver": null,
+        "parameters": [
+          {
+            "name": "key",
+            "kind": "required",
+            "default": null
+          }
+        ],
+        "signature": "[](key)",
+        "source": "def [](key); end",
+        "docstring": null,
+        "location": {
+          "start": 302,
+          "end": 318,
+          "start_line": 20,
+          "end_line": 20
+        }
+      }
+    },
+    {
+      "type": "method_def",
+      "data": {
+        "name": "[]=",
+        "scope": "instance",
+        "receiver": null,
+        "parameters": [
+          {
+            "name": "key",
+            "kind": "required",
+            "default": null
+          },
+          {
+            "name": "value",
+            "kind": "required",
+            "default": null
+          }
+        ],
+        "signature": "[]=(key, value)",
+        "source": "def []=(key, value); end",
+        "docstring": null,
+        "location": {
+          "start": 322,
+          "end": 346,
+          "start_line": 22,
+          "end_line": 22
+        }
+      }
+    },
+    {
+      "type": "method_def",
+      "data": {
+        "name": "build",
+        "scope": "class",
+        "receiver": "self",
+        "parameters": [
+          {
+            "name": "name",
+            "kind": "keyword",
+            "default": null
+          }
+        ],
+        "signature": "self.build(name:)",
+        "source": "def self.build(name:); end",
+        "docstring": null,
+        "location": {
+          "start": 350,
+          "end": 376,
+          "start_line": 24,
+          "end_line": 24
+        }
+      }
+    },
+    {
+      "type": "method_def",
+      "data": {
+        "name": "shout",
+        "scope": "class",
+        "receiver": "self",
+        "parameters": [],
+        "signature": "self.shout()",
+        "source": "def self.shout; end",
+        "docstring": null,
+        "location": {
+          "start": 380,
+          "end": 399,
+          "start_line": 26,
+          "end_line": 26
+        }
+      }
+    },
+    {
+      "type": "method_def",
+      "data": {
+        "name": "method",
+        "scope": "class",
+        "receiver": "object",
+        "parameters": [
+          {
+            "name": "value",
+            "kind": "required",
+            "default": null
+          }
+        ],
+        "signature": "object.method(value)",
+        "source": "def object.method(value); end",
+        "docstring": null,
+        "location": {
+          "start": 403,
+          "end": 432,
+          "start_line": 28,
+          "end_line": 28
+        }
+      }
+    },
+    {
+      "type": "class_close",
+      "data": {
+        "name": "Parameters",
+        "location": {
+          "start": 433,
+          "end": 436,
+          "start_line": 29,
+          "end_line": 29
+        }
+      }
+    }
+  ],
+  "diagnostics": []
+}

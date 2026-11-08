@@ -1,0 +1,23 @@
+[package]
+name = "meadow-parser"
+description = "Ruby (Prism) and RBS to owned event stream parser for meadow"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+
+[dependencies]
+meadow-model.workspace = true
+rayon.workspace = true
+ruby-prism.workspace = true
+serde.workspace = true
+ruby-rbs.workspace = true
+
+[dev-dependencies]
+proptest.workspace = true
+serde_json.workspace = true
+
+[lints]
+workspace = true

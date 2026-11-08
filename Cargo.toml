@@ -1,0 +1,57 @@
+[workspace]
+resolver = "3"
+members = [
+    "crates/meadow-cli",
+    "crates/meadow-docstring",
+    "crates/meadow-handlers",
+    "crates/meadow-html",
+    "crates/meadow-markup",
+    "crates/meadow-model",
+    "crates/meadow-parser",
+    "crates/meadow-plugins",
+    "crates/meadow-resolve",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.99"
+license = "MIT"
+authors = ["Reese Williams <reese@reesew.com>"]
+repository = "https://github.com/reesew/meadow"
+
+[workspace.dependencies]
+ruby-prism = "=2.1.0"
+ruby-rbs = "0.3"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+rayon = "1"
+thiserror = "2"
+bincode = "1.3"
+comrak = "0.59"
+glob = "0.3"
+include_dir = "0.7"
+minijinja = { version = "3.1", features = ["json", "serde"] }
+proptest = "1.12"
+toml = "0.8"
+
+meadow-docstring = { path = "crates/meadow-docstring" }
+meadow-handlers = { path = "crates/meadow-handlers" }
+meadow-html = { path = "crates/meadow-html" }
+meadow-markup = { path = "crates/meadow-markup" }
+meadow-model = { path = "crates/meadow-model" }
+meadow-parser = { path = "crates/meadow-parser" }
+meadow-plugins = { path = "crates/meadow-plugins" }
+meadow-resolve = { path = "crates/meadow-resolve" }
+
+[workspace.lints.rust]
+unsafe_code = "forbid"
+
+[workspace.lints.clippy]
+all = "deny"
+pedantic = "deny"
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+strip = "symbols"

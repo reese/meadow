@@ -1,0 +1,7 @@
+/target
+/TODO.md
+/.meadow/
+/doc/
+
+/.corpus/
+__pycache__

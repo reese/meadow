@@ -1,0 +1,38 @@
+# A person.
+class Person < Object
+  # The person's name.
+  attr_reader name: String
+  attr_accessor age: Integer
+
+  # Create a person.
+  def initialize: (String name, ?Integer age) -> void
+
+  # Greet someone.
+  def greet: (String name, ?greeting: String) -> String
+           | (Integer count) -> Array[String]
+
+  def self.create: (String) -> Person
+
+  # Private helper.
+  private
+
+  def secret: () -> bool
+
+  include Comparable
+  extend Forwardable
+  prepend Enumerable
+
+  alias nickname name
+
+  VERSION: String
+  @cache: Hash[Symbol, untyped]
+  @@count: Integer
+end
+
+module Greeter
+  def self.hello: () -> String
+end
+
+interface _Greetable
+  def greet: (String) -> String
+end

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Undocumented objects</h1>
+{% if objects %}
+<ul class="object-list">
+{% for item in objects %}<li><a href="{{ item.url }}">{{ item.path }}</a> <span class="kind">{{ item.kind }}</span></li>{% endfor %}
+</ul>
+{% else %}
+<p>Everything is documented.</p>
+{% endif %}
+{% endblock %}

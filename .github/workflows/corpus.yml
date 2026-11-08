@@ -1,0 +1,38 @@
+name: Corpus
+
+on:
+  workflow_dispatch:
+    inputs:
+      full:
+        description: Run the full pinned corpus
+        type: boolean
+        default: false
+  pull_request:
+    paths:
+      - "crates/**"
+      - "corpus/**"
+      - "scripts/corpus.py"
+  push:
+    branches: [master, main]
+    paths:
+      - "crates/**"
+      - "corpus/**"
+
+jobs:
+  corpus:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install libclang
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y clang libclang-dev
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - name: Run pinned corpus
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.full }}" = "true" ]; then
+            python3 scripts/corpus.py
+          else
+            python3 scripts/corpus.py --limit 10
+          fi

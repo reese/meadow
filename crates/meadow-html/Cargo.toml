@@ -1,0 +1,27 @@
+[package]
+name = "meadow-html"
+description = "HTML templates, search index, and site writer for meadow"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+
+[dependencies]
+include_dir.workspace = true
+meadow-markup.workspace = true
+meadow-model.workspace = true
+meadow-resolve.workspace = true
+minijinja.workspace = true
+rayon.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+
+[dev-dependencies]
+meadow-handlers.workspace = true
+meadow-parser.workspace = true
+serde_json.workspace = true
+
+[lints]
+workspace = true

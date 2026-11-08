@@ -1,0 +1,2432 @@
+{
+  "format_version": 1,
+  "meadow_version": "0.1.0",
+  "objects": [
+    {
+      "id": 0,
+      "kind": "root",
+      "name": "",
+      "path": "",
+      "namespace": null,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "namespace": {
+          "superclass": null,
+          "includes": [],
+          "extends": [],
+          "prepends": [],
+          "mixin_order": [],
+          "ancestors": [],
+          "children": [
+            1,
+            2
+          ],
+          "constants_private": []
+        }
+      }
+    },
+    {
+      "id": 1,
+      "kind": "class",
+      "name": "ApplicationRecord",
+      "path": "ApplicationRecord",
+      "namespace": 0,
+      "docstring": {
+        "text": "A base record class.",
+        "summary": "A base record class.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 23,
+          "end": 51,
+          "start_line": 2,
+          "end_line": 2
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "namespace": {
+          "superclass": null,
+          "includes": [],
+          "extends": [],
+          "prepends": [],
+          "mixin_order": [],
+          "ancestors": [],
+          "children": [],
+          "constants_private": []
+        }
+      }
+    },
+    {
+      "id": 2,
+      "kind": "class",
+      "name": "User",
+      "path": "User",
+      "namespace": 0,
+      "docstring": {
+        "text": "A user model.",
+        "summary": "A user model.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 69,
+          "end": 413,
+          "start_line": 5,
+          "end_line": 14
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "namespace": {
+          "superclass": {
+            "resolved": 1
+          },
+          "includes": [],
+          "extends": [],
+          "prepends": [],
+          "mixin_order": [],
+          "ancestors": [
+            1
+          ],
+          "children": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46
+          ],
+          "constants_private": []
+        }
+      }
+    },
+    {
+      "id": 3,
+      "kind": "method",
+      "name": "posts",
+      "path": "User#posts",
+      "namespace": 2,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "name": "Post"
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "",
+          "signature": "posts()",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 4,
+      "kind": "method",
+      "name": "posts=",
+      "path": "User#posts=",
+      "namespace": 2,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "name": "Post"
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [
+            {
+              "name": "value",
+              "kind": "required",
+              "default": null
+            }
+          ],
+          "source": "",
+          "signature": "posts=(value)",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 5,
+      "kind": "method",
+      "name": "posts_ids",
+      "path": "User#posts_ids",
+      "namespace": 2,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "name": "Post"
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "",
+          "signature": "posts_ids()",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 6,
+      "kind": "method",
+      "name": "posts_ids=",
+      "path": "User#posts_ids=",
+      "namespace": 2,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "name": "Post"
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [
+            {
+              "name": "ids",
+              "kind": "required",
+              "default": null
+            }
+          ],
+          "source": "",
+          "signature": "posts_ids=(ids)",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 7,
+      "kind": "method",
+      "name": "account",
+      "path": "User#account",
+      "namespace": 2,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "name": "Account"
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "",
+          "signature": "account()",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 8,
+      "kind": "method",
+      "name": "account=",
+      "path": "User#account=",
+      "namespace": 2,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "name": "Account"
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [
+            {
+              "name": "value",
+              "kind": "required",
+              "default": null
+            }
+          ],
+          "source": "",
+          "signature": "account=(value)",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 9,
+      "kind": "method",
+      "name": "account_id",
+      "path": "User#account_id",
+      "namespace": 2,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "name": "Account"
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "",
+          "signature": "account_id()",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 10,
+      "kind": "method",
+      "name": "build_account",
+      "path": "User#build_account",
+      "namespace": 2,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "name": "Account"
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [
+            {
+              "name": "attributes",
+              "kind": "keyword_rest",
+              "default": null
+            }
+          ],
+          "source": "",
+          "signature": "build_account(**attributes)",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 11,
+      "kind": "method",
+      "name": "create_account",
+      "path": "User#create_account",
+      "namespace": 2,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "name": "Account"
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [
+            {
+              "name": "attributes",
+              "kind": "keyword_rest",
+              "default": null
+            }
+          ],
+          "source": "",
+          "signature": "create_account(**attributes)",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 12,
+      "kind": "method",
+      "name": "reload_account",
+      "path": "User#reload_account",
+      "namespace": 2,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "name": "Account"
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "",
+          "signature": "reload_account()",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 13,
+      "kind": "method",
+      "name": "profile",
+      "path": "User#profile",
+      "namespace": 2,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "name": "Profile"
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "",
+          "signature": "profile()",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 14,
+      "kind": "method",
+      "name": "profile=",
+      "path": "User#profile=",
+      "namespace": 2,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "name": "Profile"
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [
+            {
+              "name": "value",
+              "kind": "required",
+              "default": null
+            }
+          ],
+          "source": "",
+          "signature": "profile=(value)",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 15,
+      "kind": "method",
+      "name": "build_profile",
+      "path": "User#build_profile",
+      "namespace": 2,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "name": "Profile"
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [
+            {
+              "name": "attributes",
+              "kind": "keyword_rest",
+              "default": null
+            }
+          ],
+          "source": "",
+          "signature": "build_profile(**attributes)",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 16,
+      "kind": "method",
+      "name": "create_profile",
+      "path": "User#create_profile",
+      "namespace": 2,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "name": "Profile"
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [
+            {
+              "name": "attributes",
+              "kind": "keyword_rest",
+              "default": null
+            }
+          ],
+          "source": "",
+          "signature": "create_profile(**attributes)",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 17,
+      "kind": "method",
+      "name": "active",
+      "path": "User.active",
+      "namespace": 2,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "name": "ActiveRecord::Relation"
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "class",
+          "params": [
+            {
+              "name": "since",
+              "kind": "required",
+              "default": null
+            }
+          ],
+          "source": "",
+          "signature": "active(since)",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 18,
+      "kind": "method",
+      "name": "active?",
+      "path": "User#active?",
+      "namespace": 2,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "union": [
+                {
+                  "literal": "true"
+                },
+                {
+                  "literal": "false"
+                }
+              ]
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "",
+          "signature": "active?()",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 19,
+      "kind": "method",
+      "name": "active!",
+      "path": "User#active!",
+      "namespace": 2,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "union": [
+                {
+                  "literal": "true"
+                },
+                {
+                  "literal": "false"
+                }
+              ]
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "",
+          "signature": "active!()",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 20,
+      "kind": "method",
+      "name": "archived?",
+      "path": "User#archived?",
+      "namespace": 2,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "union": [
+                {
+                  "literal": "true"
+                },
+                {
+                  "literal": "false"
+                }
+              ]
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "",
+          "signature": "archived?()",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 21,
+      "kind": "method",
+      "name": "archived!",
+      "path": "User#archived!",
+      "namespace": 2,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "union": [
+                {
+                  "literal": "true"
+                },
+                {
+                  "literal": "false"
+                }
+              ]
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "",
+          "signature": "archived!()",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 22,
+      "kind": "method",
+      "name": "archived",
+      "path": "User.archived",
+      "namespace": 2,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "name": "ActiveRecord::Relation"
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "class",
+          "params": [],
+          "source": "",
+          "signature": "archived()",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 23,
+      "kind": "method",
+      "name": "statuses",
+      "path": "User.statuses",
+      "namespace": 2,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "hash": {
+                "key": {
+                  "name": "Symbol"
+                },
+                "value": {
+                  "name": "Integer"
+                },
+                "style": "braces"
+              }
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "class",
+          "params": [],
+          "source": "",
+          "signature": "statuses()",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 24,
+      "kind": "method",
+      "name": "status",
+      "path": "User#status",
+      "namespace": 2,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "name": "String"
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "",
+          "signature": "status()",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 25,
+      "kind": "method",
+      "name": "role_admin?",
+      "path": "User#role_admin?",
+      "namespace": 2,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "union": [
+                {
+                  "literal": "true"
+                },
+                {
+                  "literal": "false"
+                }
+              ]
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "",
+          "signature": "role_admin?()",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 26,
+      "kind": "method",
+      "name": "role_admin!",
+      "path": "User#role_admin!",
+      "namespace": 2,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "union": [
+                {
+                  "literal": "true"
+                },
+                {
+                  "literal": "false"
+                }
+              ]
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "",
+          "signature": "role_admin!()",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 27,
+      "kind": "method",
+      "name": "role_admin",
+      "path": "User.role_admin",
+      "namespace": 2,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "name": "ActiveRecord::Relation"
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "class",
+          "params": [],
+          "source": "",
+          "signature": "role_admin()",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 28,
+      "kind": "method",
+      "name": "role_member?",
+      "path": "User#role_member?",
+      "namespace": 2,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "union": [
+                {
+                  "literal": "true"
+                },
+                {
+                  "literal": "false"
+                }
+              ]
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "",
+          "signature": "role_member?()",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 29,
+      "kind": "method",
+      "name": "role_member!",
+      "path": "User#role_member!",
+      "namespace": 2,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "union": [
+                {
+                  "literal": "true"
+                },
+                {
+                  "literal": "false"
+                }
+              ]
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "",
+          "signature": "role_member!()",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 30,
+      "kind": "method",
+      "name": "role_member",
+      "path": "User.role_member",
+      "namespace": 2,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "name": "ActiveRecord::Relation"
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "class",
+          "params": [],
+          "source": "",
+          "signature": "role_member()",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 31,
+      "kind": "method",
+      "name": "role",
+      "path": "User#role",
+      "namespace": 2,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "name": "String"
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "",
+          "signature": "role()",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 32,
+      "kind": "method",
+      "name": "fast?",
+      "path": "User#fast?",
+      "namespace": 2,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "union": [
+                {
+                  "literal": "true"
+                },
+                {
+                  "literal": "false"
+                }
+              ]
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "",
+          "signature": "fast?()",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 33,
+      "kind": "method",
+      "name": "fast!",
+      "path": "User#fast!",
+      "namespace": 2,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "union": [
+                {
+                  "literal": "true"
+                },
+                {
+                  "literal": "false"
+                }
+              ]
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "",
+          "signature": "fast!()",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 34,
+      "kind": "method",
+      "name": "fast",
+      "path": "User.fast",
+      "namespace": 2,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "name": "ActiveRecord::Relation"
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "class",
+          "params": [],
+          "source": "",
+          "signature": "fast()",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 35,
+      "kind": "method",
+      "name": "slow?",
+      "path": "User#slow?",
+      "namespace": 2,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "union": [
+                {
+                  "literal": "true"
+                },
+                {
+                  "literal": "false"
+                }
+              ]
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "",
+          "signature": "slow?()",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 36,
+      "kind": "method",
+      "name": "slow!",
+      "path": "User#slow!",
+      "namespace": 2,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "union": [
+                {
+                  "literal": "true"
+                },
+                {
+                  "literal": "false"
+                }
+              ]
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "",
+          "signature": "slow!()",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 37,
+      "kind": "method",
+      "name": "slow",
+      "path": "User.slow",
+      "namespace": 2,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "name": "ActiveRecord::Relation"
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "class",
+          "params": [],
+          "source": "",
+          "signature": "slow()",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 38,
+      "kind": "method",
+      "name": "mode",
+      "path": "User#mode",
+      "namespace": 2,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "name": "String"
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "",
+          "signature": "mode()",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 39,
+      "kind": "method",
+      "name": "name",
+      "path": "User#name",
+      "namespace": 2,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "union": [
+                {
+                  "name": "String"
+                },
+                {
+                  "name": "nil"
+                }
+              ]
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "",
+          "signature": "name()",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": {
+            "name": "name",
+            "reader": true,
+            "writer": true
+          }
+        }
+      }
+    },
+    {
+      "id": 40,
+      "kind": "method",
+      "name": "name=",
+      "path": "User#name=",
+      "namespace": 2,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "union": [
+                {
+                  "name": "String"
+                },
+                {
+                  "name": "nil"
+                }
+              ]
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [
+            {
+              "name": "value",
+              "kind": "required",
+              "default": null
+            }
+          ],
+          "source": "",
+          "signature": "name=(value)",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": {
+            "name": "name",
+            "reader": true,
+            "writer": true
+          }
+        }
+      }
+    },
+    {
+      "id": 41,
+      "kind": "method",
+      "name": "age",
+      "path": "User#age",
+      "namespace": 2,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "name": "Integer"
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "",
+          "signature": "age()",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": {
+            "name": "age",
+            "reader": true,
+            "writer": true
+          }
+        }
+      }
+    },
+    {
+      "id": 42,
+      "kind": "method",
+      "name": "age=",
+      "path": "User#age=",
+      "namespace": 2,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "name": "Integer"
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [
+            {
+              "name": "value",
+              "kind": "required",
+              "default": null
+            }
+          ],
+          "source": "",
+          "signature": "age=(value)",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": {
+            "name": "age",
+            "reader": true,
+            "writer": true
+          }
+        }
+      }
+    },
+    {
+      "id": 43,
+      "kind": "method",
+      "name": "admin",
+      "path": "User#admin",
+      "namespace": 2,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "union": [
+                {
+                  "union": [
+                    {
+                      "literal": "true"
+                    },
+                    {
+                      "literal": "false"
+                    }
+                  ]
+                },
+                {
+                  "name": "nil"
+                }
+              ]
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "",
+          "signature": "admin()",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": {
+            "name": "admin",
+            "reader": true,
+            "writer": true
+          }
+        }
+      }
+    },
+    {
+      "id": 44,
+      "kind": "method",
+      "name": "admin=",
+      "path": "User#admin=",
+      "namespace": 2,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "union": [
+                {
+                  "union": [
+                    {
+                      "literal": "true"
+                    },
+                    {
+                      "literal": "false"
+                    }
+                  ]
+                },
+                {
+                  "name": "nil"
+                }
+              ]
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [
+            {
+              "name": "value",
+              "kind": "required",
+              "default": null
+            }
+          ],
+          "source": "",
+          "signature": "admin=(value)",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": {
+            "name": "admin",
+            "reader": true,
+            "writer": true
+          }
+        }
+      }
+    },
+    {
+      "id": 45,
+      "kind": "method",
+      "name": "settings",
+      "path": "User#settings",
+      "namespace": 2,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "union": [
+                {
+                  "union": [
+                    {
+                      "name": "Hash"
+                    },
+                    {
+                      "name": "Array"
+                    }
+                  ]
+                },
+                {
+                  "name": "nil"
+                }
+              ]
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "",
+          "signature": "settings()",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": {
+            "name": "settings",
+            "reader": true,
+            "writer": true
+          }
+        }
+      }
+    },
+    {
+      "id": 46,
+      "kind": "method",
+      "name": "settings=",
+      "path": "User#settings=",
+      "namespace": 2,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "union": [
+                {
+                  "union": [
+                    {
+                      "name": "Hash"
+                    },
+                    {
+                      "name": "Array"
+                    }
+                  ]
+                },
+                {
+                  "name": "nil"
+                }
+              ]
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [
+            {
+              "name": "value",
+              "kind": "required",
+              "default": null
+            }
+          ],
+          "source": "",
+          "signature": "settings=(value)",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": {
+            "name": "settings",
+            "reader": true,
+            "writer": true
+          }
+        }
+      }
+    }
+  ],
+  "by_path": [
+    [
+      "",
+      0
+    ],
+    [
+      "ApplicationRecord",
+      1
+    ],
+    [
+      "User",
+      2
+    ],
+    [
+      "User#account",
+      7
+    ],
+    [
+      "User#account=",
+      8
+    ],
+    [
+      "User#account_id",
+      9
+    ],
+    [
+      "User#active!",
+      19
+    ],
+    [
+      "User#active?",
+      18
+    ],
+    [
+      "User#admin",
+      43
+    ],
+    [
+      "User#admin=",
+      44
+    ],
+    [
+      "User#age",
+      41
+    ],
+    [
+      "User#age=",
+      42
+    ],
+    [
+      "User#archived!",
+      21
+    ],
+    [
+      "User#archived?",
+      20
+    ],
+    [
+      "User#build_account",
+      10
+    ],
+    [
+      "User#build_profile",
+      15
+    ],
+    [
+      "User#create_account",
+      11
+    ],
+    [
+      "User#create_profile",
+      16
+    ],
+    [
+      "User#fast!",
+      33
+    ],
+    [
+      "User#fast?",
+      32
+    ],
+    [
+      "User#mode",
+      38
+    ],
+    [
+      "User#name",
+      39
+    ],
+    [
+      "User#name=",
+      40
+    ],
+    [
+      "User#posts",
+      3
+    ],
+    [
+      "User#posts=",
+      4
+    ],
+    [
+      "User#posts_ids",
+      5
+    ],
+    [
+      "User#posts_ids=",
+      6
+    ],
+    [
+      "User#profile",
+      13
+    ],
+    [
+      "User#profile=",
+      14
+    ],
+    [
+      "User#reload_account",
+      12
+    ],
+    [
+      "User#role",
+      31
+    ],
+    [
+      "User#role_admin!",
+      26
+    ],
+    [
+      "User#role_admin?",
+      25
+    ],
+    [
+      "User#role_member!",
+      29
+    ],
+    [
+      "User#role_member?",
+      28
+    ],
+    [
+      "User#settings",
+      45
+    ],
+    [
+      "User#settings=",
+      46
+    ],
+    [
+      "User#slow!",
+      36
+    ],
+    [
+      "User#slow?",
+      35
+    ],
+    [
+      "User#status",
+      24
+    ],
+    [
+      "User.active",
+      17
+    ],
+    [
+      "User.archived",
+      22
+    ],
+    [
+      "User.fast",
+      34
+    ],
+    [
+      "User.role_admin",
+      27
+    ],
+    [
+      "User.role_member",
+      30
+    ],
+    [
+      "User.slow",
+      37
+    ],
+    [
+      "User.statuses",
+      23
+    ]
+  ],
+  "files": [
+    [
+      "tests/fixtures/activerecord.rb",
+      [
+        1,
+        2
+      ]
+    ]
+  ],
+  "requires": []
+}

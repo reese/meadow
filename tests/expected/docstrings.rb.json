@@ -1,0 +1,134 @@
+{
+  "path": "tests/fixtures/docstrings.rb",
+  "events": [
+    {
+      "type": "comment",
+      "data": {
+        "text": "A free-standing directive block.\n\n@!macro [new] my_macro",
+        "location": {
+          "start": 51,
+          "end": 112,
+          "start_line": 4,
+          "end_line": 6
+        }
+      }
+    },
+    {
+      "type": "class_open",
+      "data": {
+        "name": "Documented",
+        "superclass": null,
+        "docstring": {
+          "text": "A documented class.\n@note Attached comments keep their second line.",
+          "location": {
+            "start": 114,
+            "end": 185,
+            "start_line": 8,
+            "end_line": 9
+          }
+        },
+        "location": {
+          "start": 186,
+          "end": 412,
+          "start_line": 10,
+          "end_line": 22
+        }
+      }
+    },
+    {
+      "type": "method_def",
+      "data": {
+        "name": "from_embdoc",
+        "scope": "instance",
+        "receiver": null,
+        "parameters": [],
+        "signature": "from_embdoc()",
+        "source": "def from_embdoc; end",
+        "docstring": {
+          "text": "A method documented with an embdoc block.",
+          "location": {
+            "start": 203,
+            "end": 257,
+            "start_line": 11,
+            "end_line": 14
+          }
+        },
+        "location": {
+          "start": 259,
+          "end": 279,
+          "start_line": 14,
+          "end_line": 14
+        }
+      }
+    },
+    {
+      "type": "method_def",
+      "data": {
+        "name": "indented",
+        "scope": "instance",
+        "receiver": null,
+        "parameters": [],
+        "signature": "indented()",
+        "source": "def indented\n  end",
+        "docstring": {
+          "text": "  indented code example\n    puts \"hi\"",
+          "location": {
+            "start": 283,
+            "end": 326,
+            "start_line": 16,
+            "end_line": 17
+          }
+        },
+        "location": {
+          "start": 329,
+          "end": 347,
+          "start_line": 18,
+          "end_line": 19
+        }
+      }
+    },
+    {
+      "type": "call",
+      "data": {
+        "source": "attr_accessor :value",
+        "receiver": null,
+        "name": "attr_accessor",
+        "arguments": [
+          {
+            "source": ":value",
+            "literal": "value"
+          }
+        ],
+        "block": null,
+        "docstring": {
+          "text": "Trailing comment for an attribute.",
+          "location": {
+            "start": 372,
+            "end": 408,
+            "start_line": 21,
+            "end_line": 21
+          }
+        },
+        "location": {
+          "start": 351,
+          "end": 371,
+          "start_line": 21,
+          "end_line": 21
+        }
+      }
+    },
+    {
+      "type": "class_close",
+      "data": {
+        "name": "Documented",
+        "location": {
+          "start": 409,
+          "end": 412,
+          "start_line": 22,
+          "end_line": 22
+        }
+      }
+    }
+  ],
+  "diagnostics": []
+}

@@ -1,0 +1,5265 @@
+{
+  "format_version": 1,
+  "meadow_version": "0.1.0",
+  "objects": [
+    {
+      "id": 0,
+      "kind": "root",
+      "name": "",
+      "path": "",
+      "namespace": null,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "namespace": {
+          "superclass": null,
+          "includes": [],
+          "extends": [],
+          "prepends": [],
+          "mixin_order": [],
+          "ancestors": [],
+          "children": [
+            1,
+            10,
+            12,
+            19,
+            23,
+            32,
+            37,
+            45,
+            62,
+            65,
+            68,
+            70,
+            73,
+            75,
+            90,
+            92,
+            95
+          ],
+          "constants_private": []
+        }
+      }
+    },
+    {
+      "id": 1,
+      "kind": "module",
+      "name": "Calls",
+      "path": "Calls",
+      "namespace": 0,
+      "docstring": {
+        "text": "A module for call events.",
+        "summary": "A module for call events.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 28,
+          "end": 473,
+          "start_line": 2,
+          "end_line": 33
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "namespace": {
+          "superclass": null,
+          "includes": [
+            {
+              "proxy": {
+                "name": "Enumerable",
+                "namespace_hint": 1
+              }
+            }
+          ],
+          "extends": [],
+          "prepends": [],
+          "mixin_order": [
+            {
+              "kind": "include",
+              "target": {
+                "proxy": {
+                  "name": "Enumerable",
+                  "namespace_hint": 1
+                }
+              }
+            }
+          ],
+          "ancestors": [],
+          "children": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "constants_private": []
+        }
+      }
+    },
+    {
+      "id": 2,
+      "kind": "method",
+      "name": "first",
+      "path": "Calls#first",
+      "namespace": 1,
+      "docstring": {
+        "text": "Defines readers.",
+        "summary": "Defines readers.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 114,
+          "end": 141,
+          "start_line": 7,
+          "end_line": 7
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "",
+          "signature": "first()",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": {
+            "name": "first",
+            "reader": true,
+            "writer": false
+          }
+        }
+      }
+    },
+    {
+      "id": 3,
+      "kind": "method",
+      "name": "second",
+      "path": "Calls#second",
+      "namespace": 1,
+      "docstring": {
+        "text": "Defines readers.",
+        "summary": "Defines readers.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 114,
+          "end": 141,
+          "start_line": 7,
+          "end_line": 7
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "",
+          "signature": "second()",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": {
+            "name": "second",
+            "reader": true,
+            "writer": false
+          }
+        }
+      }
+    },
+    {
+      "id": 4,
+      "kind": "method",
+      "name": "third=",
+      "path": "Calls#third=",
+      "namespace": 1,
+      "docstring": {
+        "text": "Defines a writer.",
+        "summary": "Defines a writer.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 167,
+          "end": 185,
+          "start_line": 10,
+          "end_line": 10
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [
+            {
+              "name": "value",
+              "kind": "required",
+              "default": null
+            }
+          ],
+          "source": "",
+          "signature": "third=(value)",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": {
+            "name": "third",
+            "reader": false,
+            "writer": true
+          }
+        }
+      }
+    },
+    {
+      "id": 5,
+      "kind": "method",
+      "name": "fourth",
+      "path": "Calls#fourth",
+      "namespace": 1,
+      "docstring": {
+        "text": "Defines an accessor.",
+        "summary": "Defines an accessor.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 214,
+          "end": 235,
+          "start_line": 13,
+          "end_line": 13
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "",
+          "signature": "fourth()",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": {
+            "name": "fourth",
+            "reader": true,
+            "writer": true
+          }
+        }
+      }
+    },
+    {
+      "id": 6,
+      "kind": "method",
+      "name": "fourth=",
+      "path": "Calls#fourth=",
+      "namespace": 1,
+      "docstring": {
+        "text": "Defines an accessor.",
+        "summary": "Defines an accessor.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 214,
+          "end": 235,
+          "start_line": 13,
+          "end_line": 13
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [
+            {
+              "name": "value",
+              "kind": "required",
+              "default": null
+            }
+          ],
+          "source": "",
+          "signature": "fourth=(value)",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": {
+            "name": "fourth",
+            "reader": true,
+            "writer": true
+          }
+        }
+      }
+    },
+    {
+      "id": 7,
+      "kind": "method",
+      "name": "hidden",
+      "path": "Calls#hidden",
+      "namespace": 1,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 250,
+          "end": 265,
+          "start_line": 17,
+          "end_line": 17
+        }
+      ],
+      "visibility": "private",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "def hidden; end",
+          "signature": "hidden()",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 8,
+      "kind": "method",
+      "name": "dynamic",
+      "path": "Calls#dynamic",
+      "namespace": 1,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 373,
+          "end": 415,
+          "start_line": 26,
+          "end_line": 28
+        }
+      ],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [
+            {
+              "name": "x",
+              "kind": "required",
+              "default": null
+            }
+          ],
+          "source": "do |x|\n    x\n  end",
+          "signature": "dynamic(x)",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 9,
+      "kind": "method",
+      "name": "conditional_method",
+      "path": "Calls#conditional_method",
+      "namespace": 1,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 436,
+          "end": 463,
+          "start_line": 31,
+          "end_line": 31
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "def conditional_method; end",
+          "signature": "conditional_method()",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 10,
+      "kind": "module",
+      "name": "Greeter",
+      "path": "Greeter",
+      "namespace": 0,
+      "docstring": {
+        "text": "A top-level module.",
+        "summary": "A top-level module.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 22,
+          "end": 111,
+          "start_line": 2,
+          "end_line": 7
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "namespace": {
+          "superclass": null,
+          "includes": [],
+          "extends": [],
+          "prepends": [],
+          "mixin_order": [],
+          "ancestors": [],
+          "children": [
+            11
+          ],
+          "constants_private": []
+        }
+      }
+    },
+    {
+      "id": 11,
+      "kind": "method",
+      "name": "hello",
+      "path": "Greeter#hello",
+      "namespace": 10,
+      "docstring": {
+        "text": "Says hello to +name+.",
+        "summary": "Says hello to +name+.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 65,
+          "end": 107,
+          "start_line": 4,
+          "end_line": 6
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [
+            {
+              "name": "name",
+              "kind": "required",
+              "default": null
+            }
+          ],
+          "source": "def hello(name)\n    \"Hello, #{name}\"\n  end",
+          "signature": "hello(name)",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 12,
+      "kind": "class",
+      "name": "Person",
+      "path": "Person",
+      "namespace": 0,
+      "docstring": {
+        "text": "A class with a superclass.",
+        "summary": "A class with a superclass.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 142,
+          "end": 516,
+          "start_line": 10,
+          "end_line": 31
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "namespace": {
+          "superclass": {
+            "proxy": {
+              "name": "Object",
+              "namespace_hint": 12
+            }
+          },
+          "includes": [
+            {
+              "resolved": 10
+            }
+          ],
+          "extends": [],
+          "prepends": [],
+          "mixin_order": [
+            {
+              "kind": "include",
+              "target": {
+                "resolved": 10
+              }
+            }
+          ],
+          "ancestors": [
+            10
+          ],
+          "children": [
+            13,
+            14,
+            15,
+            16,
+            17,
+            18
+          ],
+          "constants_private": []
+        }
+      }
+    },
+    {
+      "id": 13,
+      "kind": "method",
+      "name": "name",
+      "path": "Person#name",
+      "namespace": 12,
+      "docstring": {
+        "text": "The person's name.",
+        "summary": "The person's name.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 208,
+          "end": 225,
+          "start_line": 14,
+          "end_line": 14
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "",
+          "signature": "name()",
+          "explicit": false,
+          "aliases": [
+            16
+          ],
+          "alias_of": null,
+          "attr": {
+            "name": "name",
+            "reader": true,
+            "writer": false
+          }
+        }
+      }
+    },
+    {
+      "id": 14,
+      "kind": "method",
+      "name": "initialize",
+      "path": "Person#initialize",
+      "namespace": 12,
+      "docstring": {
+        "text": "Builds a person.",
+        "summary": "Builds a person.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 250,
+          "end": 342,
+          "start_line": 17,
+          "end_line": 19
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [
+            {
+              "name": "name",
+              "kind": "required",
+              "default": null
+            },
+            {
+              "name": "age",
+              "kind": "optional",
+              "default": "0"
+            },
+            {
+              "name": "rest",
+              "kind": "rest",
+              "default": null
+            },
+            {
+              "name": "active",
+              "kind": "keyword_optional",
+              "default": "true"
+            },
+            {
+              "name": "options",
+              "kind": "keyword_rest",
+              "default": null
+            },
+            {
+              "name": "block",
+              "kind": "block",
+              "default": null
+            }
+          ],
+          "source": "def initialize(name, age = 0, *rest, active: true, **options, &block)\n    @name = name\n  end",
+          "signature": "initialize(name, age = 0, *rest, active: true, **options, &block)",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 15,
+      "kind": "method",
+      "name": "create",
+      "path": "Person.create",
+      "namespace": 12,
+      "docstring": {
+        "text": "Creates a person without calling +new+ directly.",
+        "summary": "Creates a person without calling +new+ directly.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 399,
+          "end": 440,
+          "start_line": 22,
+          "end_line": 24
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "class",
+          "params": [
+            {
+              "name": "name",
+              "kind": "required",
+              "default": null
+            }
+          ],
+          "source": "def self.create(name)\n    new(name)\n  end",
+          "signature": "self.create(name)",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 16,
+      "kind": "method",
+      "name": "nickname",
+      "path": "Person#nickname",
+      "namespace": 12,
+      "docstring": {
+        "text": "A nickname.",
+        "summary": "A nickname.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 460,
+          "end": 479,
+          "start_line": 27,
+          "end_line": 27
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "",
+          "signature": "nickname()",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": 13,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 17,
+      "kind": "constant",
+      "name": "VERSION",
+      "path": "Person::VERSION",
+      "namespace": 12,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 483,
+          "end": 498,
+          "start_line": 29,
+          "end_line": 29
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "constant": {
+          "value_source": "\"1.0\"",
+          "alias_of": null
+        }
+      }
+    },
+    {
+      "id": 18,
+      "kind": "class_variable",
+      "name": "@@count",
+      "path": "Person#@@count",
+      "namespace": 12,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 501,
+          "end": 512,
+          "start_line": 30,
+          "end_line": 30
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "class_var": {
+          "value_source": "0"
+        }
+      }
+    },
+    {
+      "id": 19,
+      "kind": "module",
+      "name": "Outer",
+      "path": "Outer",
+      "namespace": 0,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 518,
+          "end": 584,
+          "start_line": 33,
+          "end_line": 39
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "namespace": {
+          "superclass": null,
+          "includes": [],
+          "extends": [],
+          "prepends": [],
+          "mixin_order": [],
+          "ancestors": [],
+          "children": [
+            20,
+            21
+          ],
+          "constants_private": []
+        }
+      }
+    },
+    {
+      "id": 20,
+      "kind": "module",
+      "name": "Inner",
+      "path": "Outer::Inner",
+      "namespace": 19,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 533,
+          "end": 551,
+          "start_line": 34,
+          "end_line": 35
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "namespace": {
+          "superclass": null,
+          "includes": [],
+          "extends": [],
+          "prepends": [],
+          "mixin_order": [],
+          "ancestors": [],
+          "children": [],
+          "constants_private": []
+        }
+      }
+    },
+    {
+      "id": 21,
+      "kind": "module",
+      "name": "Nested",
+      "path": "Outer::Nested",
+      "namespace": 19,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "namespace": {
+          "superclass": null,
+          "includes": [],
+          "extends": [],
+          "prepends": [],
+          "mixin_order": [],
+          "ancestors": [],
+          "children": [
+            22
+          ],
+          "constants_private": []
+        }
+      }
+    },
+    {
+      "id": 22,
+      "kind": "class",
+      "name": "Thing",
+      "path": "Outer::Nested::Thing",
+      "namespace": 21,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 555,
+          "end": 580,
+          "start_line": 37,
+          "end_line": 38
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "namespace": {
+          "superclass": null,
+          "includes": [],
+          "extends": [],
+          "prepends": [],
+          "mixin_order": [],
+          "ancestors": [],
+          "children": [],
+          "constants_private": []
+        }
+      }
+    },
+    {
+      "id": 23,
+      "kind": "class",
+      "name": "Directives",
+      "path": "Directives",
+      "namespace": 0,
+      "docstring": {
+        "text": "Directives demonstration.",
+        "summary": "Directives demonstration.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 94,
+          "end": 728,
+          "start_line": 5,
+          "end_line": 37
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "namespace": {
+          "superclass": null,
+          "includes": [],
+          "extends": [],
+          "prepends": [],
+          "mixin_order": [],
+          "ancestors": [],
+          "children": [
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            97
+          ],
+          "constants_private": []
+        }
+      }
+    },
+    {
+      "id": 24,
+      "kind": "method",
+      "name": "documented_method",
+      "path": "Directives#documented_method",
+      "namespace": 23,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "!method",
+            "name": null,
+            "types": null,
+            "types_source": null,
+            "text": "generated(a, b = 1)\n  @param [Integer] a first\n  @return [Integer] result\n",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "!attribute",
+            "name": null,
+            "types": null,
+            "types_source": null,
+            "text": "[rw] exposed\n  The exposed attribute.\n",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "!scope",
+            "name": null,
+            "types": null,
+            "types_source": null,
+            "text": "class",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "!method",
+            "name": null,
+            "types": null,
+            "types_source": null,
+            "text": "self.class_generated(x)\n  @param [String] x input",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "!scope",
+            "name": null,
+            "types": null,
+            "types_source": null,
+            "text": "instance\n",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "!visibility",
+            "name": null,
+            "types": null,
+            "types_source": null,
+            "text": "private",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "!method",
+            "name": null,
+            "types": null,
+            "types_source": null,
+            "text": "hidden_generated",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "!visibility",
+            "name": null,
+            "types": null,
+            "types_source": null,
+            "text": "public\n",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "!group",
+            "name": null,
+            "types": null,
+            "types_source": null,
+            "text": "Utilities",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "!method",
+            "name": null,
+            "types": null,
+            "types_source": null,
+            "text": "grouped",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "!endgroup",
+            "name": null,
+            "types": null,
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [
+        {
+          "start": 529,
+          "end": 558,
+          "start_line": 26,
+          "end_line": 26
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [
+            {
+              "name": "a",
+              "kind": "required",
+              "default": null
+            }
+          ],
+          "source": "def documented_method(a); end",
+          "signature": "documented_method(a)",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 25,
+      "kind": "method",
+      "name": "generated",
+      "path": "Directives#generated",
+      "namespace": 23,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "param",
+            "name": "a",
+            "types": {
+              "name": "Integer"
+            },
+            "types_source": "Integer",
+            "text": "first",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "name": "Integer"
+            },
+            "types_source": "Integer",
+            "text": "result",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [
+        {
+          "start": 529,
+          "end": 558,
+          "start_line": 26,
+          "end_line": 26
+        }
+      ],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [
+            {
+              "name": "a",
+              "kind": "required",
+              "default": null
+            },
+            {
+              "name": "b",
+              "kind": "optional",
+              "default": "1"
+            }
+          ],
+          "source": "def generated(a, b = 1)\nend",
+          "signature": "generated(a, b = 1)",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 26,
+      "kind": "method",
+      "name": "exposed",
+      "path": "Directives#exposed",
+      "namespace": 23,
+      "docstring": {
+        "text": "The exposed attribute.",
+        "summary": "The exposed attribute.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 529,
+          "end": 558,
+          "start_line": 26,
+          "end_line": 26
+        }
+      ],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "",
+          "signature": "exposed()",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": {
+            "name": "exposed",
+            "reader": true,
+            "writer": true
+          }
+        }
+      }
+    },
+    {
+      "id": 27,
+      "kind": "method",
+      "name": "exposed=",
+      "path": "Directives#exposed=",
+      "namespace": 23,
+      "docstring": {
+        "text": "The exposed attribute.",
+        "summary": "The exposed attribute.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 529,
+          "end": 558,
+          "start_line": 26,
+          "end_line": 26
+        }
+      ],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [
+            {
+              "name": "value",
+              "kind": "required",
+              "default": null
+            }
+          ],
+          "source": "",
+          "signature": "exposed=(value)",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": {
+            "name": "exposed",
+            "reader": true,
+            "writer": true
+          }
+        }
+      }
+    },
+    {
+      "id": 28,
+      "kind": "method",
+      "name": "class_generated",
+      "path": "Directives.class_generated",
+      "namespace": 23,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "param",
+            "name": "x",
+            "types": {
+              "name": "String"
+            },
+            "types_source": "String",
+            "text": "input",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [
+        {
+          "start": 529,
+          "end": 558,
+          "start_line": 26,
+          "end_line": 26
+        }
+      ],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "class",
+          "params": [
+            {
+              "name": "x",
+              "kind": "required",
+              "default": null
+            }
+          ],
+          "source": "def self.class_generated(x)\nend",
+          "signature": "self.class_generated(x)",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 29,
+      "kind": "method",
+      "name": "hidden_generated",
+      "path": "Directives#hidden_generated",
+      "namespace": 23,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 529,
+          "end": 558,
+          "start_line": 26,
+          "end_line": 26
+        }
+      ],
+      "visibility": "private",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "def hidden_generated\nend",
+          "signature": "hidden_generated()",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 30,
+      "kind": "method",
+      "name": "grouped",
+      "path": "Directives#grouped",
+      "namespace": 23,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 529,
+          "end": 558,
+          "start_line": 26,
+          "end_line": 26
+        }
+      ],
+      "visibility": "public",
+      "dynamic": true,
+      "group": "Utilities",
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "def grouped\nend",
+          "signature": "grouped()",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 31,
+      "kind": "method",
+      "name": "from_parse",
+      "path": "Directives#from_parse",
+      "namespace": 23,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 0,
+          "end": 19,
+          "start_line": 1,
+          "end_line": 1
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "def from_parse; end",
+          "signature": "from_parse()",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 32,
+      "kind": "class",
+      "name": "Documented",
+      "path": "Documented",
+      "namespace": 0,
+      "docstring": {
+        "text": "A documented class.",
+        "summary": "A documented class.",
+        "tags": [
+          {
+            "tag": "note",
+            "name": null,
+            "types": null,
+            "types_source": null,
+            "text": "Attached comments keep their second line.",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [
+        {
+          "start": 186,
+          "end": 412,
+          "start_line": 10,
+          "end_line": 22
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "namespace": {
+          "superclass": null,
+          "includes": [],
+          "extends": [],
+          "prepends": [],
+          "mixin_order": [],
+          "ancestors": [],
+          "children": [
+            33,
+            34,
+            35,
+            36
+          ],
+          "constants_private": []
+        }
+      }
+    },
+    {
+      "id": 33,
+      "kind": "method",
+      "name": "from_embdoc",
+      "path": "Documented#from_embdoc",
+      "namespace": 32,
+      "docstring": {
+        "text": "A method documented with an embdoc block.",
+        "summary": "A method documented with an embdoc block.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 259,
+          "end": 279,
+          "start_line": 14,
+          "end_line": 14
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "def from_embdoc; end",
+          "signature": "from_embdoc()",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 34,
+      "kind": "method",
+      "name": "indented",
+      "path": "Documented#indented",
+      "namespace": 32,
+      "docstring": {
+        "text": "  indented code example\n    puts \"hi\"",
+        "summary": "indented code example\n    puts \"hi\"",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 329,
+          "end": 347,
+          "start_line": 18,
+          "end_line": 19
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "def indented\n  end",
+          "signature": "indented()",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 35,
+      "kind": "method",
+      "name": "value",
+      "path": "Documented#value",
+      "namespace": 32,
+      "docstring": {
+        "text": "Trailing comment for an attribute.",
+        "summary": "Trailing comment for an attribute.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 351,
+          "end": 371,
+          "start_line": 21,
+          "end_line": 21
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "",
+          "signature": "value()",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": {
+            "name": "value",
+            "reader": true,
+            "writer": true
+          }
+        }
+      }
+    },
+    {
+      "id": 36,
+      "kind": "method",
+      "name": "value=",
+      "path": "Documented#value=",
+      "namespace": 32,
+      "docstring": {
+        "text": "Trailing comment for an attribute.",
+        "summary": "Trailing comment for an attribute.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 351,
+          "end": 371,
+          "start_line": 21,
+          "end_line": 21
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [
+            {
+              "name": "value",
+              "kind": "required",
+              "default": null
+            }
+          ],
+          "source": "",
+          "signature": "value=(value)",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": {
+            "name": "value",
+            "reader": true,
+            "writer": true
+          }
+        }
+      }
+    },
+    {
+      "id": 37,
+      "kind": "module",
+      "name": "Utilities",
+      "path": "Utilities",
+      "namespace": 0,
+      "docstring": {
+        "text": "A module with mixins, constants, and module functions.",
+        "summary": "A module with mixins, constants, and module functions.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 57,
+          "end": 428,
+          "start_line": 2,
+          "end_line": 31
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "namespace": {
+          "superclass": null,
+          "includes": [
+            {
+              "resolved": 38
+            }
+          ],
+          "extends": [
+            {
+              "resolved": 39
+            }
+          ],
+          "prepends": [
+            {
+              "resolved": 40
+            }
+          ],
+          "mixin_order": [
+            {
+              "kind": "include",
+              "target": {
+                "resolved": 38
+              }
+            },
+            {
+              "kind": "extend",
+              "target": {
+                "resolved": 39
+              }
+            },
+            {
+              "kind": "prepend",
+              "target": {
+                "resolved": 40
+              }
+            }
+          ],
+          "ancestors": [
+            40,
+            38
+          ],
+          "children": [
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44
+          ],
+          "constants_private": []
+        }
+      }
+    },
+    {
+      "id": 38,
+      "kind": "module",
+      "name": "Helpers",
+      "path": "Utilities::Helpers",
+      "namespace": 37,
+      "docstring": {
+        "text": "Included helper.",
+        "summary": "Included helper.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 97,
+          "end": 117,
+          "start_line": 4,
+          "end_line": 5
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "namespace": {
+          "superclass": null,
+          "includes": [],
+          "extends": [],
+          "prepends": [],
+          "mixin_order": [],
+          "ancestors": [],
+          "children": [],
+          "constants_private": []
+        }
+      }
+    },
+    {
+      "id": 39,
+      "kind": "module",
+      "name": "ClassHelpers",
+      "path": "Utilities::ClassHelpers",
+      "namespace": 37,
+      "docstring": {
+        "text": "Extended helper.",
+        "summary": "Extended helper.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 142,
+          "end": 167,
+          "start_line": 8,
+          "end_line": 9
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "namespace": {
+          "superclass": null,
+          "includes": [],
+          "extends": [],
+          "prepends": [],
+          "mixin_order": [],
+          "ancestors": [],
+          "children": [],
+          "constants_private": []
+        }
+      }
+    },
+    {
+      "id": 40,
+      "kind": "module",
+      "name": "Before",
+      "path": "Utilities::Before",
+      "namespace": 37,
+      "docstring": {
+        "text": "Prepended helper.",
+        "summary": "Prepended helper.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 193,
+          "end": 212,
+          "start_line": 12,
+          "end_line": 13
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "namespace": {
+          "superclass": null,
+          "includes": [],
+          "extends": [],
+          "prepends": [],
+          "mixin_order": [],
+          "ancestors": [],
+          "children": [],
+          "constants_private": []
+        }
+      }
+    },
+    {
+      "id": 41,
+      "kind": "constant",
+      "name": "LIMIT",
+      "path": "Utilities::LIMIT",
+      "namespace": 37,
+      "docstring": {
+        "text": "A module constant.",
+        "summary": "A module constant.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 297,
+          "end": 307,
+          "start_line": 20,
+          "end_line": 20
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "constant": {
+          "value_source": "10",
+          "alias_of": null
+        }
+      }
+    },
+    {
+      "id": 42,
+      "kind": "class_variable",
+      "name": "@@registry",
+      "path": "Utilities#@@registry",
+      "namespace": 37,
+      "docstring": {
+        "text": "A module variable.",
+        "summary": "A module variable.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 334,
+          "end": 349,
+          "start_line": 23,
+          "end_line": 23
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "class_var": {
+          "value_source": "{}"
+        }
+      }
+    },
+    {
+      "id": 43,
+      "kind": "method",
+      "name": "util",
+      "path": "Utilities#util",
+      "namespace": 37,
+      "docstring": {
+        "text": "A module function.",
+        "summary": "A module function.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 376,
+          "end": 399,
+          "start_line": 26,
+          "end_line": 28
+        }
+      ],
+      "visibility": "private",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [
+            {
+              "name": "x",
+              "kind": "required",
+              "default": null
+            }
+          ],
+          "source": "def util(x)\n    x\n  end",
+          "signature": "util(x)",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 44,
+      "kind": "method",
+      "name": "util",
+      "path": "Utilities.util",
+      "namespace": 37,
+      "docstring": {
+        "text": "A module function.",
+        "summary": "A module function.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 403,
+          "end": 424,
+          "start_line": 30,
+          "end_line": 30
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "class",
+          "params": [
+            {
+              "name": "x",
+              "kind": "required",
+              "default": null
+            }
+          ],
+          "source": "def util(x)\n    x\n  end",
+          "signature": "util(x)",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 45,
+      "kind": "class",
+      "name": "Widget",
+      "path": "Widget",
+      "namespace": 0,
+      "docstring": {
+        "text": "A reopened class.",
+        "summary": "A reopened class.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 450,
+          "end": 974,
+          "start_line": 34,
+          "end_line": 68
+        },
+        {
+          "start": 993,
+          "end": 1026,
+          "start_line": 71,
+          "end_line": 73
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "namespace": {
+          "superclass": null,
+          "includes": [],
+          "extends": [],
+          "prepends": [],
+          "mixin_order": [],
+          "ancestors": [],
+          "children": [
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60
+          ],
+          "constants_private": []
+        }
+      }
+    },
+    {
+      "id": 46,
+      "kind": "method",
+      "name": "name",
+      "path": "Widget#name",
+      "namespace": 45,
+      "docstring": {
+        "text": "The widget name.",
+        "summary": "The widget name.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 486,
+          "end": 505,
+          "start_line": 36,
+          "end_line": 36
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "",
+          "signature": "name()",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": {
+            "name": "name",
+            "reader": true,
+            "writer": true
+          }
+        }
+      }
+    },
+    {
+      "id": 47,
+      "kind": "method",
+      "name": "name=",
+      "path": "Widget#name=",
+      "namespace": 45,
+      "docstring": {
+        "text": "The widget name.",
+        "summary": "The widget name.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 486,
+          "end": 505,
+          "start_line": 36,
+          "end_line": 36
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [
+            {
+              "name": "value",
+              "kind": "required",
+              "default": null
+            }
+          ],
+          "source": "",
+          "signature": "name=(value)",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": {
+            "name": "name",
+            "reader": true,
+            "writer": true
+          }
+        }
+      }
+    },
+    {
+      "id": 48,
+      "kind": "method",
+      "name": "id",
+      "path": "Widget#id",
+      "namespace": 45,
+      "docstring": {
+        "text": "Read-only id.",
+        "summary": "Read-only id.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 527,
+          "end": 542,
+          "start_line": 39,
+          "end_line": 39
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "",
+          "signature": "id()",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": {
+            "name": "id",
+            "reader": true,
+            "writer": false
+          }
+        }
+      }
+    },
+    {
+      "id": 49,
+      "kind": "method",
+      "name": "secret=",
+      "path": "Widget#secret=",
+      "namespace": 45,
+      "docstring": {
+        "text": "Write-only secret.",
+        "summary": "Write-only secret.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 569,
+          "end": 588,
+          "start_line": 42,
+          "end_line": 42
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [
+            {
+              "name": "value",
+              "kind": "required",
+              "default": null
+            }
+          ],
+          "source": "",
+          "signature": "secret=(value)",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": {
+            "name": "secret",
+            "reader": false,
+            "writer": true
+          }
+        }
+      }
+    },
+    {
+      "id": 50,
+      "kind": "method",
+      "name": "public_method",
+      "path": "Widget#public_method",
+      "namespace": 45,
+      "docstring": {
+        "text": "A public method.",
+        "summary": "A public method.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 613,
+          "end": 635,
+          "start_line": 45,
+          "end_line": 45
+        }
+      ],
+      "visibility": "private",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "def public_method; end",
+          "signature": "public_method()",
+          "explicit": true,
+          "aliases": [
+            55,
+            56
+          ],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 51,
+      "kind": "method",
+      "name": "protected_method",
+      "path": "Widget#protected_method",
+      "namespace": 45,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 652,
+          "end": 677,
+          "start_line": 49,
+          "end_line": 49
+        }
+      ],
+      "visibility": "protected",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "def protected_method; end",
+          "signature": "protected_method()",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 52,
+      "kind": "method",
+      "name": "private_method",
+      "path": "Widget#private_method",
+      "namespace": 45,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 692,
+          "end": 715,
+          "start_line": 53,
+          "end_line": 53
+        }
+      ],
+      "visibility": "private",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "def private_method; end",
+          "signature": "private_method()",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 53,
+      "kind": "method",
+      "name": "inline_private",
+      "path": "Widget#inline_private",
+      "namespace": 45,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 793,
+          "end": 819,
+          "start_line": 60,
+          "end_line": 60
+        }
+      ],
+      "visibility": "private",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [
+            {
+              "name": "x",
+              "kind": "required",
+              "default": null
+            }
+          ],
+          "source": "def inline_private(x); end",
+          "signature": "inline_private(x)",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 54,
+      "kind": "method",
+      "name": "inline_protected",
+      "path": "Widget#inline_protected",
+      "namespace": 45,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 832,
+          "end": 857,
+          "start_line": 61,
+          "end_line": 61
+        }
+      ],
+      "visibility": "protected",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "def inline_protected; end",
+          "signature": "inline_protected()",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 55,
+      "kind": "method",
+      "name": "alias_method",
+      "path": "Widget#alias_method",
+      "namespace": 45,
+      "docstring": {
+        "text": "A public method.",
+        "summary": "A public method.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 861,
+          "end": 893,
+          "start_line": 63,
+          "end_line": 63
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "def public_method; end",
+          "signature": "alias_method()",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": 50,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 56,
+      "kind": "method",
+      "name": "alias_by_call",
+      "path": "Widget#alias_by_call",
+      "namespace": 45,
+      "docstring": {
+        "text": "A public method.",
+        "summary": "A public method.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 896,
+          "end": 939,
+          "start_line": 64,
+          "end_line": 64
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "def public_method; end",
+          "signature": "alias_by_call()",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": 50,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 57,
+      "kind": "constant",
+      "name": "COLOR",
+      "path": "Widget::COLOR",
+      "namespace": 45,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 943,
+          "end": 956,
+          "start_line": 66,
+          "end_line": 66
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "constant": {
+          "value_source": "\"red\"",
+          "alias_of": null
+        }
+      }
+    },
+    {
+      "id": 58,
+      "kind": "class_variable",
+      "name": "@@count",
+      "path": "Widget#@@count",
+      "namespace": 45,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 959,
+          "end": 970,
+          "start_line": 67,
+          "end_line": 67
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "class_var": {
+          "value_source": "0"
+        }
+      }
+    },
+    {
+      "id": 59,
+      "kind": "method",
+      "name": "extra",
+      "path": "Widget#extra",
+      "namespace": 45,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 1008,
+          "end": 1022,
+          "start_line": 72,
+          "end_line": 72
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "def extra; end",
+          "signature": "extra()",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 60,
+      "kind": "class",
+      "name": "Part",
+      "path": "Widget::Part",
+      "namespace": 45,
+      "docstring": {
+        "text": "Compact namespace.",
+        "summary": "Compact namespace.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 1049,
+          "end": 1093,
+          "start_line": 76,
+          "end_line": 78
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "namespace": {
+          "superclass": null,
+          "includes": [],
+          "extends": [],
+          "prepends": [],
+          "mixin_order": [],
+          "ancestors": [],
+          "children": [
+            61
+          ],
+          "constants_private": []
+        }
+      }
+    },
+    {
+      "id": 61,
+      "kind": "method",
+      "name": "initialize",
+      "path": "Widget::Part#initialize",
+      "namespace": 60,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 1070,
+          "end": 1089,
+          "start_line": 77,
+          "end_line": 77
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "def initialize; end",
+          "signature": "initialize()",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 62,
+      "kind": "class",
+      "name": "Factory",
+      "path": "Factory",
+      "namespace": 0,
+      "docstring": {
+        "text": "A class with class methods and a singleton body.",
+        "summary": "A class with class methods and a singleton body.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 1146,
+          "end": 1231,
+          "start_line": 81,
+          "end_line": 87
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "namespace": {
+          "superclass": null,
+          "includes": [],
+          "extends": [],
+          "prepends": [],
+          "mixin_order": [],
+          "ancestors": [],
+          "children": [
+            63,
+            64
+          ],
+          "constants_private": []
+        }
+      }
+    },
+    {
+      "id": 63,
+      "kind": "method",
+      "name": "build",
+      "path": "Factory.build",
+      "namespace": 62,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 1162,
+          "end": 1181,
+          "start_line": 82,
+          "end_line": 82
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "class",
+          "params": [],
+          "source": "def self.build; end",
+          "signature": "self.build()",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 64,
+      "kind": "method",
+      "name": "configure",
+      "path": "Factory.configure",
+      "namespace": 62,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 1203,
+          "end": 1221,
+          "start_line": 85,
+          "end_line": 85
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "class",
+          "params": [],
+          "source": "def configure; end",
+          "signature": "configure()",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 65,
+      "kind": "module",
+      "name": "MathHelpers",
+      "path": "MathHelpers",
+      "namespace": 0,
+      "docstring": {
+        "text": "Module function no-arg form.",
+        "summary": "Module function no-arg form.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 1264,
+          "end": 1337,
+          "start_line": 90,
+          "end_line": 96
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "namespace": {
+          "superclass": null,
+          "includes": [],
+          "extends": [],
+          "prepends": [],
+          "mixin_order": [],
+          "ancestors": [],
+          "children": [
+            66,
+            67
+          ],
+          "constants_private": []
+        }
+      }
+    },
+    {
+      "id": 66,
+      "kind": "method",
+      "name": "double",
+      "path": "MathHelpers#double",
+      "namespace": 65,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 1304,
+          "end": 1333,
+          "start_line": 93,
+          "end_line": 95
+        }
+      ],
+      "visibility": "private",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [
+            {
+              "name": "x",
+              "kind": "required",
+              "default": null
+            }
+          ],
+          "source": "def double(x)\n    x * 2\n  end",
+          "signature": "double(x)",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 67,
+      "kind": "method",
+      "name": "double",
+      "path": "MathHelpers.double",
+      "namespace": 65,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 1304,
+          "end": 1333,
+          "start_line": 93,
+          "end_line": 95
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "class",
+          "params": [
+            {
+              "name": "x",
+              "kind": "required",
+              "default": null
+            }
+          ],
+          "source": "def double(x)\n    x * 2\n  end",
+          "signature": "double(x)",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 68,
+      "kind": "class",
+      "name": "Base",
+      "path": "Base",
+      "namespace": 0,
+      "docstring": {
+        "text": "Base docs.",
+        "summary": "Base docs.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 13,
+          "end": 100,
+          "start_line": 2,
+          "end_line": 6
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "namespace": {
+          "superclass": null,
+          "includes": [],
+          "extends": [],
+          "prepends": [],
+          "mixin_order": [],
+          "ancestors": [],
+          "children": [
+            69
+          ],
+          "constants_private": []
+        }
+      }
+    },
+    {
+      "id": 69,
+      "kind": "method",
+      "name": "base_method",
+      "path": "Base#base_method",
+      "namespace": 68,
+      "docstring": {
+        "text": "Base method docs.",
+        "summary": "Base method docs.",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "name": "String"
+            },
+            "types_source": "String",
+            "text": "result",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [
+        {
+          "start": 76,
+          "end": 96,
+          "start_line": 5,
+          "end_line": 5
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "def base_method; end",
+          "signature": "base_method()",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 70,
+      "kind": "class",
+      "name": "Derived",
+      "path": "Derived",
+      "namespace": 0,
+      "docstring": {
+        "text": "See style.",
+        "summary": "See style.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 115,
+          "end": 414,
+          "start_line": 9,
+          "end_line": 19
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "namespace": {
+          "superclass": {
+            "resolved": 68
+          },
+          "includes": [],
+          "extends": [],
+          "prepends": [],
+          "mixin_order": [],
+          "ancestors": [
+            68
+          ],
+          "children": [
+            71,
+            72
+          ],
+          "constants_private": []
+        }
+      }
+    },
+    {
+      "id": 71,
+      "kind": "method",
+      "name": "inherited_docs",
+      "path": "Derived#inherited_docs",
+      "namespace": 70,
+      "docstring": {
+        "text": "Base method docs.",
+        "summary": "Base method docs.",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "name": "String"
+            },
+            "types_source": "String",
+            "text": "result",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [
+        {
+          "start": 165,
+          "end": 188,
+          "start_line": 11,
+          "end_line": 11
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "def inherited_docs; end",
+          "signature": "inherited_docs()",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 72,
+      "kind": "method",
+      "name": "linked",
+      "path": "Derived#linked",
+      "namespace": 70,
+      "docstring": {
+        "text": "Has {Base#base_method links} and {Base#base_method}.\nAlso {https://example.com Example} and {file:README.md#intro File}.\nInline `{Base#base_method}` stays.\n\n{include:Base#base_method}",
+        "summary": "Has {Base#base_method links} and {Base#base_method}.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 395,
+          "end": 410,
+          "start_line": 18,
+          "end_line": 18
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "def linked; end",
+          "signature": "linked()",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 73,
+      "kind": "class",
+      "name": "Missing",
+      "path": "Missing",
+      "namespace": 0,
+      "docstring": {
+        "text": "Unresolved link.",
+        "summary": "Unresolved link.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 435,
+          "end": 503,
+          "start_line": 22,
+          "end_line": 25
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "namespace": {
+          "superclass": null,
+          "includes": [],
+          "extends": [],
+          "prepends": [],
+          "mixin_order": [],
+          "ancestors": [],
+          "children": [
+            74
+          ],
+          "constants_private": []
+        }
+      }
+    },
+    {
+      "id": 74,
+      "kind": "method",
+      "name": "broken",
+      "path": "Missing#broken",
+      "namespace": 73,
+      "docstring": {
+        "text": "See {NoSuchThing#nope here}.",
+        "summary": "See {NoSuchThing#nope here}.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 484,
+          "end": 499,
+          "start_line": 24,
+          "end_line": 24
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "def broken; end",
+          "signature": "broken()",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 75,
+      "kind": "class",
+      "name": "Parameters",
+      "path": "Parameters",
+      "namespace": 0,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 0,
+          "end": 436,
+          "start_line": 1,
+          "end_line": 29
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "namespace": {
+          "superclass": null,
+          "includes": [],
+          "extends": [],
+          "prepends": [],
+          "mixin_order": [],
+          "ancestors": [],
+          "children": [
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89
+          ],
+          "constants_private": []
+        }
+      }
+    },
+    {
+      "id": 76,
+      "kind": "method",
+      "name": "required",
+      "path": "Parameters#required",
+      "namespace": 75,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 19,
+          "end": 42,
+          "start_line": 2,
+          "end_line": 2
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [
+            {
+              "name": "a",
+              "kind": "required",
+              "default": null
+            },
+            {
+              "name": "b",
+              "kind": "required",
+              "default": null
+            }
+          ],
+          "source": "def required(a, b); end",
+          "signature": "required(a, b)",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 77,
+      "kind": "method",
+      "name": "optional",
+      "path": "Parameters#optional",
+      "namespace": 75,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 46,
+          "end": 73,
+          "start_line": 4,
+          "end_line": 4
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [
+            {
+              "name": "a",
+              "kind": "required",
+              "default": null
+            },
+            {
+              "name": "b",
+              "kind": "optional",
+              "default": "2"
+            }
+          ],
+          "source": "def optional(a, b = 2); end",
+          "signature": "optional(a, b = 2)",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 78,
+      "kind": "method",
+      "name": "with_rest",
+      "path": "Parameters#with_rest",
+      "namespace": 75,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 77,
+          "end": 108,
+          "start_line": 6,
+          "end_line": 6
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [
+            {
+              "name": "a",
+              "kind": "required",
+              "default": null
+            },
+            {
+              "name": "rest",
+              "kind": "rest",
+              "default": null
+            },
+            {
+              "name": "z",
+              "kind": "post",
+              "default": null
+            }
+          ],
+          "source": "def with_rest(a, *rest, z); end",
+          "signature": "with_rest(a, *rest, z)",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 79,
+      "kind": "method",
+      "name": "with_keywords",
+      "path": "Parameters#with_keywords",
+      "namespace": 75,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 112,
+          "end": 152,
+          "start_line": 8,
+          "end_line": 8
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [
+            {
+              "name": "a",
+              "kind": "keyword",
+              "default": null
+            },
+            {
+              "name": "b",
+              "kind": "keyword_optional",
+              "default": "2"
+            },
+            {
+              "name": "opts",
+              "kind": "keyword_rest",
+              "default": null
+            }
+          ],
+          "source": "def with_keywords(a:, b: 2, **opts); end",
+          "signature": "with_keywords(a:, b: 2, **opts)",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 80,
+      "kind": "method",
+      "name": "with_block",
+      "path": "Parameters#with_block",
+      "namespace": 75,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 156,
+          "end": 181,
+          "start_line": 10,
+          "end_line": 10
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [
+            {
+              "name": "blk",
+              "kind": "block",
+              "default": null
+            }
+          ],
+          "source": "def with_block(&blk); end",
+          "signature": "with_block(&blk)",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 81,
+      "kind": "method",
+      "name": "forwarding",
+      "path": "Parameters#forwarding",
+      "namespace": 75,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 185,
+          "end": 209,
+          "start_line": 12,
+          "end_line": 12
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [
+            {
+              "name": "",
+              "kind": "forwarding",
+              "default": null
+            }
+          ],
+          "source": "def forwarding(...); end",
+          "signature": "forwarding(...)",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 82,
+      "kind": "method",
+      "name": "anonymous",
+      "path": "Parameters#anonymous",
+      "namespace": 75,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 213,
+          "end": 241,
+          "start_line": 14,
+          "end_line": 14
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [
+            {
+              "name": "",
+              "kind": "rest",
+              "default": null
+            },
+            {
+              "name": "",
+              "kind": "keyword_rest",
+              "default": null
+            },
+            {
+              "name": "",
+              "kind": "block",
+              "default": null
+            }
+          ],
+          "source": "def anonymous(*, **, &); end",
+          "signature": "anonymous(*, **, &)",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 83,
+      "kind": "method",
+      "name": "no_keywords",
+      "path": "Parameters#no_keywords",
+      "namespace": 75,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 245,
+          "end": 272,
+          "start_line": 16,
+          "end_line": 16
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [
+            {
+              "name": "nil",
+              "kind": "keyword_rest",
+              "default": null
+            }
+          ],
+          "source": "def no_keywords(**nil); end",
+          "signature": "no_keywords(**nil)",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 84,
+      "kind": "method",
+      "name": "endless",
+      "path": "Parameters#endless",
+      "namespace": 75,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 276,
+          "end": 298,
+          "start_line": 18,
+          "end_line": 18
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [
+            {
+              "name": "x",
+              "kind": "required",
+              "default": null
+            }
+          ],
+          "source": "def endless(x) = x * 2",
+          "signature": "endless(x)",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 85,
+      "kind": "method",
+      "name": "[]",
+      "path": "Parameters#[]",
+      "namespace": 75,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 302,
+          "end": 318,
+          "start_line": 20,
+          "end_line": 20
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [
+            {
+              "name": "key",
+              "kind": "required",
+              "default": null
+            }
+          ],
+          "source": "def [](key); end",
+          "signature": "[](key)",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 86,
+      "kind": "method",
+      "name": "[]=",
+      "path": "Parameters#[]=",
+      "namespace": 75,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 322,
+          "end": 346,
+          "start_line": 22,
+          "end_line": 22
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [
+            {
+              "name": "key",
+              "kind": "required",
+              "default": null
+            },
+            {
+              "name": "value",
+              "kind": "required",
+              "default": null
+            }
+          ],
+          "source": "def []=(key, value); end",
+          "signature": "[]=(key, value)",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 87,
+      "kind": "method",
+      "name": "build",
+      "path": "Parameters.build",
+      "namespace": 75,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 350,
+          "end": 376,
+          "start_line": 24,
+          "end_line": 24
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "class",
+          "params": [
+            {
+              "name": "name",
+              "kind": "keyword",
+              "default": null
+            }
+          ],
+          "source": "def self.build(name:); end",
+          "signature": "self.build(name:)",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 88,
+      "kind": "method",
+      "name": "shout",
+      "path": "Parameters.shout",
+      "namespace": 75,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 380,
+          "end": 399,
+          "start_line": 26,
+          "end_line": 26
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "class",
+          "params": [],
+          "source": "def self.shout; end",
+          "signature": "self.shout()",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 89,
+      "kind": "method",
+      "name": "method",
+      "path": "Parameters.method",
+      "namespace": 75,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 403,
+          "end": 432,
+          "start_line": 28,
+          "end_line": 28
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "class",
+          "params": [
+            {
+              "name": "value",
+              "kind": "required",
+              "default": null
+            }
+          ],
+          "source": "def object.method(value); end",
+          "signature": "object.method(value)",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 90,
+      "kind": "class",
+      "name": "Broken",
+      "path": "Broken",
+      "namespace": 0,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 0,
+          "end": 29,
+          "start_line": 1,
+          "end_line": 4
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "namespace": {
+          "superclass": null,
+          "includes": [],
+          "extends": [],
+          "prepends": [],
+          "mixin_order": [],
+          "ancestors": [],
+          "children": [
+            91
+          ],
+          "constants_private": []
+        }
+      }
+    },
+    {
+      "id": 91,
+      "kind": "method",
+      "name": "oops",
+      "path": "Broken#oops",
+      "namespace": 90,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 15,
+          "end": 28,
+          "start_line": 2,
+          "end_line": 3
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "def oops(\nend",
+          "signature": "oops()",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 92,
+      "kind": "class",
+      "name": "Tagged",
+      "path": "Tagged",
+      "namespace": 0,
+      "docstring": {
+        "text": "Parses tagged input.",
+        "summary": "Parses tagged input.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 23,
+          "end": 921,
+          "start_line": 2,
+          "end_line": 38
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "namespace": {
+          "superclass": null,
+          "includes": [],
+          "extends": [],
+          "prepends": [],
+          "mixin_order": [],
+          "ancestors": [],
+          "children": [
+            93,
+            94
+          ],
+          "constants_private": []
+        }
+      }
+    },
+    {
+      "id": 93,
+      "kind": "method",
+      "name": "parse",
+      "path": "Tagged#parse",
+      "namespace": 92,
+      "docstring": {
+        "text": "Parses things.\n\nLonger description.",
+        "summary": "Parses things.",
+        "tags": [
+          {
+            "tag": "param",
+            "name": "name",
+            "types": {
+              "union": [
+                {
+                  "name": "String"
+                },
+                {
+                  "literal": "nil"
+                }
+              ]
+            },
+            "types_source": "String, nil",
+            "text": "the name",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "param",
+            "name": "count",
+            "types": {
+              "name": "Integer"
+            },
+            "types_source": "Integer",
+            "text": "the count",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "option",
+            "name": "options",
+            "types": {
+              "name": "String"
+            },
+            "types_source": "String",
+            "text": "output format",
+            "docstring": null,
+            "key": ":format",
+            "default": "\"json\""
+          },
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "generic": {
+                "base": {
+                  "name": "Array"
+                },
+                "params": [
+                  {
+                    "name": "String"
+                  }
+                ]
+              }
+            },
+            "types_source": "Array<String>",
+            "text": "the results",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "raise",
+            "name": null,
+            "types": {
+              "name": "ArgumentError"
+            },
+            "types_source": "ArgumentError",
+            "text": "when invalid",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "yield",
+            "name": null,
+            "types": {
+              "name": "item"
+            },
+            "types_source": "item",
+            "text": "each item",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "yieldparam",
+            "name": "item",
+            "types": {
+              "name": "String"
+            },
+            "types_source": "String",
+            "text": "item name",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "yieldreturn",
+            "name": null,
+            "types": {
+              "literal": "void"
+            },
+            "types_source": "void",
+            "text": "nothing",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "example",
+            "name": null,
+            "types": null,
+            "types_source": null,
+            "text": "Basic usage\n  Tagged.new.parse(\"x\")",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "see",
+            "name": null,
+            "types": null,
+            "types_source": null,
+            "text": "Other",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "note",
+            "name": null,
+            "types": null,
+            "types_source": null,
+            "text": "A note",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "api",
+            "name": null,
+            "types": null,
+            "types_source": null,
+            "text": "private",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "deprecated",
+            "name": null,
+            "types": null,
+            "types_source": null,
+            "text": "Use something else",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "since",
+            "name": null,
+            "types": null,
+            "types_source": null,
+            "text": "1.0",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "todo",
+            "name": null,
+            "types": null,
+            "types_source": null,
+            "text": "Later",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "author",
+            "name": null,
+            "types": null,
+            "types_source": null,
+            "text": "Someone",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "version",
+            "name": null,
+            "types": null,
+            "types_source": null,
+            "text": "2.0",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "abstract",
+            "name": null,
+            "types": null,
+            "types_source": null,
+            "text": "Override me",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "private",
+            "name": null,
+            "types": null,
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "unknown",
+            "name": null,
+            "types": null,
+            "types_source": null,
+            "text": "something",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "overload",
+            "name": null,
+            "types": null,
+            "types_source": null,
+            "text": "parse(input)",
+            "docstring": {
+              "text": "",
+              "summary": "",
+              "tags": [
+                {
+                  "tag": "param",
+                  "name": "input",
+                  "types": {
+                    "name": "String"
+                  },
+                  "types_source": "String",
+                  "text": "the input",
+                  "docstring": null,
+                  "key": null,
+                  "default": null
+                },
+                {
+                  "tag": "return",
+                  "name": null,
+                  "types": {
+                    "generic": {
+                      "base": {
+                        "name": "Array"
+                      },
+                      "params": [
+                        {
+                          "name": "String"
+                        }
+                      ]
+                    }
+                  },
+                  "types_source": "Array<String>",
+                  "text": "parsed",
+                  "docstring": null,
+                  "key": null,
+                  "default": null
+                }
+              ]
+            },
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [
+        {
+          "start": 774,
+          "end": 820,
+          "start_line": 31,
+          "end_line": 32
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [
+            {
+              "name": "name",
+              "kind": "required",
+              "default": null
+            },
+            {
+              "name": "count",
+              "kind": "optional",
+              "default": "1"
+            },
+            {
+              "name": "options",
+              "kind": "optional",
+              "default": "{}"
+            }
+          ],
+          "source": "def parse(name, count = 1, options = {})\n  end",
+          "signature": "parse(name, count = 1, options = {})",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 94,
+      "kind": "method",
+      "name": "warnings",
+      "path": "Tagged#warnings",
+      "namespace": 92,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "param",
+            "name": "missing",
+            "types": {
+              "name": "Nope"
+            },
+            "types_source": "Nope",
+            "text": "not a parameter",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "return",
+            "name": null,
+            "types": null,
+            "types_source": "Array<",
+            "text": "broken type",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [
+        {
+          "start": 899,
+          "end": 917,
+          "start_line": 36,
+          "end_line": 37
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "def warnings\n  end",
+          "signature": "warnings()",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 95,
+      "kind": "class",
+      "name": "Child",
+      "path": "Child",
+      "namespace": 0,
+      "docstring": {
+        "text": "Inherits method docs.",
+        "summary": "Inherits method docs.",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 947,
+          "end": 1020,
+          "start_line": 41,
+          "end_line": 44
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "namespace": {
+          "superclass": {
+            "resolved": 92
+          },
+          "includes": [],
+          "extends": [],
+          "prepends": [],
+          "mixin_order": [],
+          "ancestors": [
+            92
+          ],
+          "children": [
+            96
+          ],
+          "constants_private": []
+        }
+      }
+    },
+    {
+      "id": 96,
+      "kind": "method",
+      "name": "parse",
+      "path": "Child#parse",
+      "namespace": 95,
+      "docstring": {
+        "text": "Parses things.\n\nLonger description.",
+        "summary": "Parses things.",
+        "tags": [
+          {
+            "tag": "param",
+            "name": "name",
+            "types": {
+              "union": [
+                {
+                  "name": "String"
+                },
+                {
+                  "literal": "nil"
+                }
+              ]
+            },
+            "types_source": "String, nil",
+            "text": "the name",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "param",
+            "name": "count",
+            "types": {
+              "name": "Integer"
+            },
+            "types_source": "Integer",
+            "text": "the count",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "option",
+            "name": "options",
+            "types": {
+              "name": "String"
+            },
+            "types_source": "String",
+            "text": "output format",
+            "docstring": null,
+            "key": ":format",
+            "default": "\"json\""
+          },
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "generic": {
+                "base": {
+                  "name": "Array"
+                },
+                "params": [
+                  {
+                    "name": "String"
+                  }
+                ]
+              }
+            },
+            "types_source": "Array<String>",
+            "text": "the results",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "raise",
+            "name": null,
+            "types": {
+              "name": "ArgumentError"
+            },
+            "types_source": "ArgumentError",
+            "text": "when invalid",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "yield",
+            "name": null,
+            "types": {
+              "name": "item"
+            },
+            "types_source": "item",
+            "text": "each item",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "yieldparam",
+            "name": "item",
+            "types": {
+              "name": "String"
+            },
+            "types_source": "String",
+            "text": "item name",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "yieldreturn",
+            "name": null,
+            "types": {
+              "literal": "void"
+            },
+            "types_source": "void",
+            "text": "nothing",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "example",
+            "name": null,
+            "types": null,
+            "types_source": null,
+            "text": "Basic usage\n  Tagged.new.parse(\"x\")",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "see",
+            "name": null,
+            "types": null,
+            "types_source": null,
+            "text": "Other",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "note",
+            "name": null,
+            "types": null,
+            "types_source": null,
+            "text": "A note",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "api",
+            "name": null,
+            "types": null,
+            "types_source": null,
+            "text": "private",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "deprecated",
+            "name": null,
+            "types": null,
+            "types_source": null,
+            "text": "Use something else",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "since",
+            "name": null,
+            "types": null,
+            "types_source": null,
+            "text": "1.0",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "todo",
+            "name": null,
+            "types": null,
+            "types_source": null,
+            "text": "Later",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "author",
+            "name": null,
+            "types": null,
+            "types_source": null,
+            "text": "Someone",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "version",
+            "name": null,
+            "types": null,
+            "types_source": null,
+            "text": "2.0",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "abstract",
+            "name": null,
+            "types": null,
+            "types_source": null,
+            "text": "Override me",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "private",
+            "name": null,
+            "types": null,
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "unknown",
+            "name": null,
+            "types": null,
+            "types_source": null,
+            "text": "something",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "overload",
+            "name": null,
+            "types": null,
+            "types_source": null,
+            "text": "parse(input)",
+            "docstring": {
+              "text": "",
+              "summary": "",
+              "tags": [
+                {
+                  "tag": "param",
+                  "name": "input",
+                  "types": {
+                    "name": "String"
+                  },
+                  "types_source": "String",
+                  "text": "the input",
+                  "docstring": null,
+                  "key": null,
+                  "default": null
+                },
+                {
+                  "tag": "return",
+                  "name": null,
+                  "types": {
+                    "generic": {
+                      "base": {
+                        "name": "Array"
+                      },
+                      "params": [
+                        {
+                          "name": "String"
+                        }
+                      ]
+                    }
+                  },
+                  "types_source": "Array<String>",
+                  "text": "parsed",
+                  "docstring": null,
+                  "key": null,
+                  "default": null
+                }
+              ]
+            },
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [
+        {
+          "start": 970,
+          "end": 1016,
+          "start_line": 42,
+          "end_line": 43
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [
+            {
+              "name": "name",
+              "kind": "required",
+              "default": null
+            },
+            {
+              "name": "count",
+              "kind": "optional",
+              "default": "1"
+            },
+            {
+              "name": "options",
+              "kind": "optional",
+              "default": "{}"
+            }
+          ],
+          "source": "def parse(name, count = 1, options = {})\n  end",
+          "signature": "parse(name, count = 1, options = {})",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 97,
+      "kind": "method",
+      "name": "property",
+      "path": "Directives#property",
+      "namespace": 23,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "literal": ":widget"
+            },
+            "types_source": ":widget",
+            "text": "the :widget value",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [
+        {
+          "start": 681,
+          "end": 696,
+          "start_line": 34,
+          "end_line": 34
+        },
+        {
+          "start": 700,
+          "end": 724,
+          "start_line": 36,
+          "end_line": 36
+        }
+      ],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "def property\nend",
+          "signature": "property()",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    }
+  ],
+  "by_path": [
+    [
+      "",
+      0
+    ],
+    [
+      "Base",
+      68
+    ],
+    [
+      "Base#base_method",
+      69
+    ],
+    [
+      "Broken",
+      90
+    ],
+    [
+      "Broken#oops",
+      91
+    ],
+    [
+      "Calls",
+      1
+    ],
+    [
+      "Calls#conditional_method",
+      9
+    ],
+    [
+      "Calls#dynamic",
+      8
+    ],
+    [
+      "Calls#first",
+      2
+    ],
+    [
+      "Calls#fourth",
+      5
+    ],
+    [
+      "Calls#fourth=",
+      6
+    ],
+    [
+      "Calls#hidden",
+      7
+    ],
+    [
+      "Calls#second",
+      3
+    ],
+    [
+      "Calls#third=",
+      4
+    ],
+    [
+      "Child",
+      95
+    ],
+    [
+      "Child#parse",
+      96
+    ],
+    [
+      "Derived",
+      70
+    ],
+    [
+      "Derived#inherited_docs",
+      71
+    ],
+    [
+      "Derived#linked",
+      72
+    ],
+    [
+      "Directives",
+      23
+    ],
+    [
+      "Directives#documented_method",
+      24
+    ],
+    [
+      "Directives#exposed",
+      26
+    ],
+    [
+      "Directives#exposed=",
+      27
+    ],
+    [
+      "Directives#from_parse",
+      31
+    ],
+    [
+      "Directives#generated",
+      25
+    ],
+    [
+      "Directives#grouped",
+      30
+    ],
+    [
+      "Directives#hidden_generated",
+      29
+    ],
+    [
+      "Directives#property",
+      97
+    ],
+    [
+      "Directives.class_generated",
+      28
+    ],
+    [
+      "Documented",
+      32
+    ],
+    [
+      "Documented#from_embdoc",
+      33
+    ],
+    [
+      "Documented#indented",
+      34
+    ],
+    [
+      "Documented#value",
+      35
+    ],
+    [
+      "Documented#value=",
+      36
+    ],
+    [
+      "Factory",
+      62
+    ],
+    [
+      "Factory.build",
+      63
+    ],
+    [
+      "Factory.configure",
+      64
+    ],
+    [
+      "Greeter",
+      10
+    ],
+    [
+      "Greeter#hello",
+      11
+    ],
+    [
+      "MathHelpers",
+      65
+    ],
+    [
+      "MathHelpers#double",
+      66
+    ],
+    [
+      "MathHelpers.double",
+      67
+    ],
+    [
+      "Missing",
+      73
+    ],
+    [
+      "Missing#broken",
+      74
+    ],
+    [
+      "Outer",
+      19
+    ],
+    [
+      "Outer::Inner",
+      20
+    ],
+    [
+      "Outer::Nested",
+      21
+    ],
+    [
+      "Outer::Nested::Thing",
+      22
+    ],
+    [
+      "Parameters",
+      75
+    ],
+    [
+      "Parameters#[]",
+      85
+    ],
+    [
+      "Parameters#[]=",
+      86
+    ],
+    [
+      "Parameters#anonymous",
+      82
+    ],
+    [
+      "Parameters#endless",
+      84
+    ],
+    [
+      "Parameters#forwarding",
+      81
+    ],
+    [
+      "Parameters#no_keywords",
+      83
+    ],
+    [
+      "Parameters#optional",
+      77
+    ],
+    [
+      "Parameters#required",
+      76
+    ],
+    [
+      "Parameters#with_block",
+      80
+    ],
+    [
+      "Parameters#with_keywords",
+      79
+    ],
+    [
+      "Parameters#with_rest",
+      78
+    ],
+    [
+      "Parameters.build",
+      87
+    ],
+    [
+      "Parameters.method",
+      89
+    ],
+    [
+      "Parameters.shout",
+      88
+    ],
+    [
+      "Person",
+      12
+    ],
+    [
+      "Person#@@count",
+      18
+    ],
+    [
+      "Person#initialize",
+      14
+    ],
+    [
+      "Person#name",
+      13
+    ],
+    [
+      "Person#nickname",
+      16
+    ],
+    [
+      "Person.create",
+      15
+    ],
+    [
+      "Person::VERSION",
+      17
+    ],
+    [
+      "Tagged",
+      92
+    ],
+    [
+      "Tagged#parse",
+      93
+    ],
+    [
+      "Tagged#warnings",
+      94
+    ],
+    [
+      "Utilities",
+      37
+    ],
+    [
+      "Utilities#@@registry",
+      42
+    ],
+    [
+      "Utilities#util",
+      43
+    ],
+    [
+      "Utilities.util",
+      44
+    ],
+    [
+      "Utilities::Before",
+      40
+    ],
+    [
+      "Utilities::ClassHelpers",
+      39
+    ],
+    [
+      "Utilities::Helpers",
+      38
+    ],
+    [
+      "Utilities::LIMIT",
+      41
+    ],
+    [
+      "Widget",
+      45
+    ],
+    [
+      "Widget#@@count",
+      58
+    ],
+    [
+      "Widget#alias_by_call",
+      56
+    ],
+    [
+      "Widget#alias_method",
+      55
+    ],
+    [
+      "Widget#extra",
+      59
+    ],
+    [
+      "Widget#id",
+      48
+    ],
+    [
+      "Widget#inline_private",
+      53
+    ],
+    [
+      "Widget#inline_protected",
+      54
+    ],
+    [
+      "Widget#name",
+      46
+    ],
+    [
+      "Widget#name=",
+      47
+    ],
+    [
+      "Widget#private_method",
+      52
+    ],
+    [
+      "Widget#protected_method",
+      51
+    ],
+    [
+      "Widget#public_method",
+      50
+    ],
+    [
+      "Widget#secret=",
+      49
+    ],
+    [
+      "Widget::COLOR",
+      57
+    ],
+    [
+      "Widget::Part",
+      60
+    ],
+    [
+      "Widget::Part#initialize",
+      61
+    ]
+  ],
+  "files": [
+    [
+      "tests/fixtures/calls.rb",
+      [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    ],
+    [
+      "tests/fixtures/core.rb",
+      [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        22
+      ]
+    ],
+    [
+      "tests/fixtures/directives.rb",
+      [
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31
+      ]
+    ],
+    [
+      "tests/fixtures/docstrings.rb",
+      [
+        32,
+        33,
+        34,
+        35,
+        36
+      ]
+    ],
+    [
+      "tests/fixtures/handlers.rb",
+      [
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67
+      ]
+    ],
+    [
+      "tests/fixtures/links.rb",
+      [
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74
+      ]
+    ],
+    [
+      "tests/fixtures/parameters.rb",
+      [
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89
+      ]
+    ],
+    [
+      "tests/fixtures/syntax_error.rb",
+      [
+        90,
+        91
+      ]
+    ],
+    [
+      "tests/fixtures/tags.rb",
+      [
+        92,
+        93,
+        94,
+        95,
+        96,
+        97
+      ]
+    ]
+  ],
+  "requires": []
+}

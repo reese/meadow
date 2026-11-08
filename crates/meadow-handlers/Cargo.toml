@@ -1,0 +1,24 @@
+[package]
+name = "meadow-handlers"
+description = "Raw event to code object handlers for meadow"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+
+[dependencies]
+meadow-docstring.workspace = true
+meadow-model.workspace = true
+meadow-parser.workspace = true
+meadow-plugins.workspace = true
+meadow-resolve.workspace = true
+
+[dev-dependencies]
+proptest.workspace = true
+bincode.workspace = true
+serde_json.workspace = true
+
+[lints]
+workspace = true

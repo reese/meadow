@@ -1,0 +1,15 @@
+[package]
+name = "meadow-markup"
+description = "Markup providers for meadow"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+
+[dependencies]
+comrak.workspace = true
+
+[lints]
+workspace = true

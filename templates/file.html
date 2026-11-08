@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ file.name }}</h1>
+<p class="muted">{{ file.path }}</p>
+<section class="doc">{{ file.html|safe }}</section>
+{% endblock %}

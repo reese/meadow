@@ -1,0 +1,19 @@
+= RDoc Example
+
+A paragraph with *bold*, _emphasis_, +code+, and <tt>tt code</tt>.
+
+== Lists
+
+* first
+* second
+
+1. one
+2. two
+
+  verbatim line 1
+    nested
+
+[term] definition text
+other:: second definition
+
+See [Example](https://example.com).

@@ -1,0 +1,306 @@
+# Pinned real-world corpus for meadow.
+# Generated from repository HEADs; refresh with scripts/corpus.py --refresh-manifest.
+
+[[gem]]
+name = "rack"
+repo = "https://github.com/rack/rack"
+sha = "da90464e3fa93e3cb49dc2d4ede798e6c6b70b4f"
+paths = ["lib/**/*.rb", "*/lib/**/*.rb"]
+
+[[gem]]
+name = "sinatra"
+repo = "https://github.com/sinatra/sinatra"
+sha = "cb22afd7902b566b6eaba6c4ea89739494a65d12"
+paths = ["lib/**/*.rb", "*/lib/**/*.rb"]
+
+[[gem]]
+name = "rails"
+repo = "https://github.com/rails/rails"
+sha = "654919a40dc87b34e9e10b851e58d6d4b2fa4af2"
+paths = ["lib/**/*.rb", "*/lib/**/*.rb"]
+
+[[gem]]
+name = "rake"
+repo = "https://github.com/ruby/rake"
+sha = "3f29d39daa688eb51cd975c06b1501320f10b911"
+paths = ["lib/**/*.rb", "*/lib/**/*.rb"]
+
+[[gem]]
+name = "thor"
+repo = "https://github.com/rails/thor"
+sha = "cb11e8e87b3cfe6bc9f6d4b092897f0dfda2476d"
+paths = ["lib/**/*.rb", "*/lib/**/*.rb"]
+
+[[gem]]
+name = "rack-test"
+repo = "https://github.com/rack/rack-test"
+sha = "b3bfdbc79e6e69eb4e63994ec7d1e15130680054"
+paths = ["lib/**/*.rb", "*/lib/**/*.rb"]
+
+[[gem]]
+name = "rspec-core"
+repo = "https://github.com/rspec/rspec-core"
+sha = "aec5f49485d97908183dbe790a7fefb8baaa8091"
+paths = ["lib/**/*.rb", "*/lib/**/*.rb"]
+
+[[gem]]
+name = "rspec-expectations"
+repo = "https://github.com/rspec/rspec-expectations"
+sha = "ba31727e856de42abb5a2e6566855f0831e1a619"
+paths = ["lib/**/*.rb", "*/lib/**/*.rb"]
+
+[[gem]]
+name = "rspec-mocks"
+repo = "https://github.com/rspec/rspec-mocks"
+sha = "3caa9ac841e146d618421f870077c0ad684e6cad"
+paths = ["lib/**/*.rb", "*/lib/**/*.rb"]
+
+[[gem]]
+name = "rspec-rails"
+repo = "https://github.com/rspec/rspec-rails"
+sha = "97b5883696486fe51c49b8910fdfb9308355bc98"
+paths = ["lib/**/*.rb", "*/lib/**/*.rb"]
+
+[[gem]]
+name = "jekyll"
+repo = "https://github.com/jekyll/jekyll"
+sha = "97c3bdc822df9d5bea4c269b29a28de5a5e29d70"
+paths = ["lib/**/*.rb", "*/lib/**/*.rb"]
+
+[[gem]]
+name = "middleman"
+repo = "https://github.com/middleman/middleman"
+sha = "f06b5367bd44470063adb5b1cab4da616509d1e9"
+paths = ["lib/**/*.rb", "*/lib/**/*.rb"]
+
+[[gem]]
+name = "devise"
+repo = "https://github.com/heartcombo/devise"
+sha = "05811fb8366edd08874111d0f6fb44543e1c91ef"
+paths = ["lib/**/*.rb", "*/lib/**/*.rb"]
+
+[[gem]]
+name = "pundit"
+repo = "https://github.com/varvet/pundit"
+sha = "ea9e31a2d7993f038ee52b94ccc9c7411637ba89"
+paths = ["lib/**/*.rb", "*/lib/**/*.rb"]
+
+[[gem]]
+name = "sidekiq"
+repo = "https://github.com/sidekiq/sidekiq"
+sha = "75982898ff6dc984988da8b9ecf5371eba68e120"
+paths = ["lib/**/*.rb", "*/lib/**/*.rb"]
+
+[[gem]]
+name = "faraday"
+repo = "https://github.com/lostisland/faraday"
+sha = "98d96ed5f2e6309196872c6c4bf1be7224baf773"
+paths = ["lib/**/*.rb", "*/lib/**/*.rb"]
+
+[[gem]]
+name = "httparty"
+repo = "https://github.com/jnunemaker/httparty"
+sha = "329f47c3cf5f072f6b8b9972415774bcca3c46d7"
+paths = ["lib/**/*.rb", "*/lib/**/*.rb"]
+
+[[gem]]
+name = "hashie"
+repo = "https://github.com/hashie/hashie"
+sha = "59e021c5839c595188dd88597e64fd5a7ac2bdce"
+paths = ["lib/**/*.rb", "*/lib/**/*.rb"]
+
+[[gem]]
+name = "parser"
+repo = "https://github.com/whitequark/parser"
+sha = "cb1b8139921951dca663908d7d296a3aa36b9be4"
+paths = ["lib/**/*.rb", "*/lib/**/*.rb"]
+
+[[gem]]
+name = "rubocop"
+repo = "https://github.com/rubocop/rubocop"
+sha = "89b5a60b4378a7f3be5462111de281e59c21c62b"
+paths = ["lib/**/*.rb", "*/lib/**/*.rb"]
+
+[[gem]]
+name = "rubocop-ast"
+repo = "https://github.com/rubocop/rubocop-ast"
+sha = "d70b902d8772c478dc91faa451ba42ca3e91ac49"
+paths = ["lib/**/*.rb", "*/lib/**/*.rb"]
+
+[[gem]]
+name = "pry"
+repo = "https://github.com/pry/pry"
+sha = "0c7a4123c8ddc34a7f7b50f602e0c5cba21b9716"
+paths = ["lib/**/*.rb", "*/lib/**/*.rb"]
+
+[[gem]]
+name = "irb"
+repo = "https://github.com/ruby/irb"
+sha = "679236febc6d1a2583513d2041ae6f60684e80b1"
+paths = ["lib/**/*.rb", "*/lib/**/*.rb"]
+
+[[gem]]
+name = "bootsnap"
+repo = "https://github.com/Shopify/bootsnap"
+sha = "681429d8efbed10d85168a83c6b5558b6dd667e5"
+paths = ["lib/**/*.rb", "*/lib/**/*.rb"]
+
+[[gem]]
+name = "concurrent-ruby"
+repo = "https://github.com/ruby-concurrency/concurrent-ruby"
+sha = "cdb9082c494aa597c439c85ded4969cb2150e37c"
+paths = ["lib/**/*.rb", "*/lib/**/*.rb"]
+
+[[gem]]
+name = "dry-validation"
+repo = "https://github.com/dry-rb/dry-validation"
+sha = "50ef11ad633feff54df726ff4c8d6ae6eae6f6a5"
+paths = ["lib/**/*.rb", "*/lib/**/*.rb"]
+
+[[gem]]
+name = "dry-types"
+repo = "https://github.com/dry-rb/dry-types"
+sha = "7b0ab607c41eda6420672ff028f81b2a6f8ba64c"
+paths = ["lib/**/*.rb", "*/lib/**/*.rb"]
+
+[[gem]]
+name = "hanami"
+repo = "https://github.com/hanami/hanami"
+sha = "8b3dedf908606f20fe7636658319e48dc14edfa8"
+paths = ["lib/**/*.rb", "*/lib/**/*.rb"]
+
+[[gem]]
+name = "grape"
+repo = "https://github.com/ruby-grape/grape"
+sha = "d8329a335cb52c283b325603ec018900507b26f0"
+paths = ["lib/**/*.rb", "*/lib/**/*.rb"]
+
+[[gem]]
+name = "graphql-ruby"
+repo = "https://github.com/rmosolgo/graphql-ruby"
+sha = "79eb4f948c5bbf9485c572b761cd171478f80c94"
+paths = ["lib/**/*.rb", "*/lib/**/*.rb"]
+
+[[gem]]
+name = "kaminari"
+repo = "https://github.com/kaminari/kaminari"
+sha = "e3d7834dbafef40ad48935e0623aec2ca93eb7d8"
+paths = ["lib/**/*.rb", "*/lib/**/*.rb"]
+
+[[gem]]
+name = "pagy"
+repo = "https://github.com/ddnexus/pagy"
+sha = "f4ec8bebf879c3d583d7acd2423b5b002cac6060"
+paths = ["lib/**/*.rb", "*/lib/**/*.rb"]
+
+[[gem]]
+name = "cancancan"
+repo = "https://github.com/CanCanCommunity/cancancan"
+sha = "4362b39b04e6840c8edbd2cb4de16b2d77b19c3c"
+paths = ["lib/**/*.rb", "*/lib/**/*.rb"]
+
+[[gem]]
+name = "ruby-jwt"
+repo = "https://github.com/jwt/ruby-jwt"
+sha = "3f6c9adfdc511f4b3f612d1dc2a1db9f6e13b817"
+paths = ["lib/**/*.rb", "*/lib/**/*.rb"]
+
+[[gem]]
+name = "webmock"
+repo = "https://github.com/bblimke/webmock"
+sha = "11392e455b9ee025b72cbebcaaa9e0a9f201bac0"
+paths = ["lib/**/*.rb", "*/lib/**/*.rb"]
+
+[[gem]]
+name = "vcr"
+repo = "https://github.com/vcr/vcr"
+sha = "53da274b6d44a24dcd70e91306e71ac29c2b7b15"
+paths = ["lib/**/*.rb", "*/lib/**/*.rb"]
+
+[[gem]]
+name = "factory_bot"
+repo = "https://github.com/thoughtbot/factory_bot"
+sha = "cf9b56fbdd0d8a54bc5ff54ec701feb9c4559083"
+paths = ["lib/**/*.rb", "*/lib/**/*.rb"]
+
+[[gem]]
+name = "faker"
+repo = "https://github.com/faker-ruby/faker"
+sha = "577447c403c67c92200bca045390c3dfdb6d643b"
+paths = ["lib/**/*.rb", "*/lib/**/*.rb"]
+
+[[gem]]
+name = "money"
+repo = "https://github.com/RubyMoney/money"
+sha = "1d60efeaeea009cfc69374421561b23b851bd36e"
+paths = ["lib/**/*.rb", "*/lib/**/*.rb"]
+
+[[gem]]
+name = "aasm"
+repo = "https://github.com/aasm/aasm"
+sha = "88061ec5104adf50a9b4c590ca58999df23cdb76"
+paths = ["lib/**/*.rb", "*/lib/**/*.rb"]
+
+[[gem]]
+name = "addressable"
+repo = "https://github.com/sporkmonger/addressable"
+sha = "fd25b0e9b8b156ea4364dbc673c2800e9ea9b4a2"
+paths = ["lib/**/*.rb", "*/lib/**/*.rb"]
+
+[[gem]]
+name = "tzinfo"
+repo = "https://github.com/tzinfo/tzinfo"
+sha = "507588f32cf34adbd388b7c1ae45b25a96ab6c16"
+paths = ["lib/**/*.rb", "*/lib/**/*.rb"]
+
+[[gem]]
+name = "i18n"
+repo = "https://github.com/ruby-i18n/i18n"
+sha = "a0a416e570fd4998993bde1b5533d0a038bebaf7"
+paths = ["lib/**/*.rb", "*/lib/**/*.rb"]
+
+[[gem]]
+name = "sorbet"
+repo = "https://github.com/sorbet/sorbet"
+sha = "0af4169d98cf95c9331a0b91c500581f310f648f"
+paths = ["lib/**/*.rb", "*/lib/**/*.rb"]
+
+[[gem]]
+name = "resque"
+repo = "https://github.com/resque/resque"
+sha = "249378589ff04452139a4bd9423df587f837c377"
+paths = ["lib/**/*.rb", "*/lib/**/*.rb"]
+
+[[gem]]
+name = "redis-rb"
+repo = "https://github.com/redis/redis-rb"
+sha = "cadebe5d2c5e2f78bb520f15f1407e8b9eddce30"
+paths = ["lib/**/*.rb", "*/lib/**/*.rb"]
+
+[[gem]]
+name = "discourse"
+repo = "https://github.com/discourse/discourse"
+sha = "444e62cc26e96c7da97f08fa45df219f03f60114"
+kind = "app"
+paths = ["app/**/*.rb", "lib/**/*.rb"]
+
+[[gem]]
+name = "mastodon"
+repo = "https://github.com/mastodon/mastodon"
+sha = "4dff13d48694e302d1a161b3d0795284a512b482"
+kind = "app"
+paths = ["app/**/*.rb", "lib/**/*.rb"]
+
+[[gem]]
+name = "chatwoot"
+repo = "https://github.com/chatwoot/chatwoot"
+sha = "625d5964e3cb3f1d917b43c3b8332219e525a4b8"
+kind = "app"
+paths = ["app/**/*.rb", "lib/**/*.rb"]
+
+[[gem]]
+name = "lobsters"
+repo = "https://github.com/lobsters/lobsters"
+sha = "d86a6018adcdbef54044e51a0e3039024044625a"
+kind = "app"
+paths = ["app/**/*.rb", "lib/**/*.rb"]

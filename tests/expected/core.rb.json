@@ -1,0 +1,408 @@
+{
+  "path": "tests/fixtures/core.rb",
+  "events": [
+    {
+      "type": "module_open",
+      "data": {
+        "name": "Greeter",
+        "docstring": {
+          "text": "A top-level module.",
+          "location": {
+            "start": 0,
+            "end": 21,
+            "start_line": 1,
+            "end_line": 1
+          }
+        },
+        "location": {
+          "start": 22,
+          "end": 111,
+          "start_line": 2,
+          "end_line": 7
+        }
+      }
+    },
+    {
+      "type": "method_def",
+      "data": {
+        "name": "hello",
+        "scope": "instance",
+        "receiver": null,
+        "parameters": [
+          {
+            "name": "name",
+            "kind": "required",
+            "default": null
+          }
+        ],
+        "signature": "hello(name)",
+        "source": "def hello(name)\n    \"Hello, #{name}\"\n  end",
+        "docstring": {
+          "text": "Says hello to +name+.",
+          "location": {
+            "start": 39,
+            "end": 62,
+            "start_line": 3,
+            "end_line": 3
+          }
+        },
+        "location": {
+          "start": 65,
+          "end": 107,
+          "start_line": 4,
+          "end_line": 6
+        }
+      }
+    },
+    {
+      "type": "module_close",
+      "data": {
+        "name": "Greeter",
+        "location": {
+          "start": 108,
+          "end": 111,
+          "start_line": 7,
+          "end_line": 7
+        }
+      }
+    },
+    {
+      "type": "class_open",
+      "data": {
+        "name": "Person",
+        "superclass": "Object",
+        "docstring": {
+          "text": "A class with a superclass.",
+          "location": {
+            "start": 113,
+            "end": 141,
+            "start_line": 9,
+            "end_line": 9
+          }
+        },
+        "location": {
+          "start": 142,
+          "end": 516,
+          "start_line": 10,
+          "end_line": 31
+        }
+      }
+    },
+    {
+      "type": "call",
+      "data": {
+        "source": "include Greeter",
+        "receiver": null,
+        "name": "include",
+        "arguments": [
+          {
+            "source": "Greeter",
+            "literal": null
+          }
+        ],
+        "block": null,
+        "docstring": null,
+        "location": {
+          "start": 166,
+          "end": 181,
+          "start_line": 11,
+          "end_line": 11
+        }
+      }
+    },
+    {
+      "type": "call",
+      "data": {
+        "source": "attr_reader :name",
+        "receiver": null,
+        "name": "attr_reader",
+        "arguments": [
+          {
+            "source": ":name",
+            "literal": "name"
+          }
+        ],
+        "block": null,
+        "docstring": {
+          "text": "The person's name.",
+          "location": {
+            "start": 185,
+            "end": 205,
+            "start_line": 13,
+            "end_line": 13
+          }
+        },
+        "location": {
+          "start": 208,
+          "end": 225,
+          "start_line": 14,
+          "end_line": 14
+        }
+      }
+    },
+    {
+      "type": "method_def",
+      "data": {
+        "name": "initialize",
+        "scope": "instance",
+        "receiver": null,
+        "parameters": [
+          {
+            "name": "name",
+            "kind": "required",
+            "default": null
+          },
+          {
+            "name": "age",
+            "kind": "optional",
+            "default": "0"
+          },
+          {
+            "name": "rest",
+            "kind": "rest",
+            "default": null
+          },
+          {
+            "name": "active",
+            "kind": "keyword_optional",
+            "default": "true"
+          },
+          {
+            "name": "options",
+            "kind": "keyword_rest",
+            "default": null
+          },
+          {
+            "name": "block",
+            "kind": "block",
+            "default": null
+          }
+        ],
+        "signature": "initialize(name, age = 0, *rest, active: true, **options, &block)",
+        "source": "def initialize(name, age = 0, *rest, active: true, **options, &block)\n    @name = name\n  end",
+        "docstring": {
+          "text": "Builds a person.",
+          "location": {
+            "start": 229,
+            "end": 247,
+            "start_line": 16,
+            "end_line": 16
+          }
+        },
+        "location": {
+          "start": 250,
+          "end": 342,
+          "start_line": 17,
+          "end_line": 19
+        }
+      }
+    },
+    {
+      "type": "instance_variable_write",
+      "data": {
+        "name": "@name",
+        "value_source": "name",
+        "docstring": null,
+        "location": {
+          "start": 324,
+          "end": 336,
+          "start_line": 18,
+          "end_line": 18
+        }
+      }
+    },
+    {
+      "type": "method_def",
+      "data": {
+        "name": "create",
+        "scope": "class",
+        "receiver": "self",
+        "parameters": [
+          {
+            "name": "name",
+            "kind": "required",
+            "default": null
+          }
+        ],
+        "signature": "self.create(name)",
+        "source": "def self.create(name)\n    new(name)\n  end",
+        "docstring": {
+          "text": "Creates a person without calling +new+ directly.",
+          "location": {
+            "start": 346,
+            "end": 396,
+            "start_line": 21,
+            "end_line": 21
+          }
+        },
+        "location": {
+          "start": 399,
+          "end": 440,
+          "start_line": 22,
+          "end_line": 24
+        }
+      }
+    },
+    {
+      "type": "call",
+      "data": {
+        "source": "new(name)",
+        "receiver": null,
+        "name": "new",
+        "arguments": [
+          {
+            "source": "name",
+            "literal": null
+          }
+        ],
+        "block": null,
+        "docstring": null,
+        "location": {
+          "start": 425,
+          "end": 434,
+          "start_line": 23,
+          "end_line": 23
+        }
+      }
+    },
+    {
+      "type": "alias",
+      "data": {
+        "new_name": "nickname",
+        "old_name": "name",
+        "docstring": {
+          "text": "A nickname.",
+          "location": {
+            "start": 444,
+            "end": 457,
+            "start_line": 26,
+            "end_line": 26
+          }
+        },
+        "location": {
+          "start": 460,
+          "end": 479,
+          "start_line": 27,
+          "end_line": 27
+        }
+      }
+    },
+    {
+      "type": "constant_write",
+      "data": {
+        "path": "VERSION",
+        "value_source": "\"1.0\"",
+        "docstring": null,
+        "location": {
+          "start": 483,
+          "end": 498,
+          "start_line": 29,
+          "end_line": 29
+        }
+      }
+    },
+    {
+      "type": "class_variable_write",
+      "data": {
+        "name": "@@count",
+        "value_source": "0",
+        "docstring": null,
+        "location": {
+          "start": 501,
+          "end": 512,
+          "start_line": 30,
+          "end_line": 30
+        }
+      }
+    },
+    {
+      "type": "class_close",
+      "data": {
+        "name": "Person",
+        "location": {
+          "start": 513,
+          "end": 516,
+          "start_line": 31,
+          "end_line": 31
+        }
+      }
+    },
+    {
+      "type": "module_open",
+      "data": {
+        "name": "Outer",
+        "docstring": null,
+        "location": {
+          "start": 518,
+          "end": 584,
+          "start_line": 33,
+          "end_line": 39
+        }
+      }
+    },
+    {
+      "type": "module_open",
+      "data": {
+        "name": "Inner",
+        "docstring": null,
+        "location": {
+          "start": 533,
+          "end": 551,
+          "start_line": 34,
+          "end_line": 35
+        }
+      }
+    },
+    {
+      "type": "module_close",
+      "data": {
+        "name": "Inner",
+        "location": {
+          "start": 548,
+          "end": 551,
+          "start_line": 35,
+          "end_line": 35
+        }
+      }
+    },
+    {
+      "type": "class_open",
+      "data": {
+        "name": "Nested::Thing",
+        "superclass": null,
+        "docstring": null,
+        "location": {
+          "start": 555,
+          "end": 580,
+          "start_line": 37,
+          "end_line": 38
+        }
+      }
+    },
+    {
+      "type": "class_close",
+      "data": {
+        "name": "Nested::Thing",
+        "location": {
+          "start": 577,
+          "end": 580,
+          "start_line": 38,
+          "end_line": 38
+        }
+      }
+    },
+    {
+      "type": "module_close",
+      "data": {
+        "name": "Outer",
+        "location": {
+          "start": 581,
+          "end": 584,
+          "start_line": 39,
+          "end_line": 39
+        }
+      }
+    }
+  ],
+  "diagnostics": []
+}

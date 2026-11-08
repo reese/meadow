@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ object.path }} <span class="kind">{{ object.kind }}</span></h1>
+{% if object.summary %}<p class="summary">{{ object.summary }}</p>{% endif %}
+<section class="doc">{{ object.html_doc|safe }}</section>
+
+{% if superclass %}
+<h2>Superclass</h2>
+<p>{% if superclass.url %}<a href="{{ superclass.url }}">{{ superclass.name }}</a>{% else %}{{ superclass.name }}{% endif %}</p>
+{% endif %}
+
+{% if ancestors %}
+<h2>Ancestors</h2>
+<ol class="ancestors">
+{% for item in ancestors %}<li><a href="{{ item.url }}">{{ item.name }}</a></li>{% endfor %}
+</ol>
+{% endif %}
+
+{% if includes or extends or prepends %}
+<h2>Includes, extends, and prepends</h2>
+<ul>
+{% for item in includes %}<li>include {% if item.url %}<a href="{{ item.url }}">{{ item.name }}</a>{% else %}{{ item.name }}{% endif %}</li>{% endfor %}
+{% for item in extends %}<li>extend {% if item.url %}<a href="{{ item.url }}">{{ item.name }}</a>{% else %}{{ item.name }}{% endif %}</li>{% endfor %}
+{% for item in prepends %}<li>prepend {% if item.url %}<a href="{{ item.url }}">{{ item.name }}</a>{% else %}{{ item.name }}{% endif %}</li>{% endfor %}
+</ul>
+{% endif %}
+
+{% if constants %}
+<h2>Constants</h2>
+<ul>
+{% for item in constants %}<li id="constant-{{ item.anchor }}"><a href="{{ item.url }}">{{ item.name }}</a> = <code>{{ item.value }}</code></li>{% endfor %}
+</ul>
+{% endif %}
+
+{% if attributes %}
+<h2>Attributes</h2>
+<ul>
+{% for item in attributes %}<li><a href="{{ item.url }}">{{ item.name }}</a> <span class="kind">{% if item.reader %}reader{% endif %}{% if item.reader and item.writer %}, {% endif %}{% if item.writer %}writer{% endif %}</span></li>{% endfor %}
+</ul>
+{% endif %}
+
+{% for group in groups %}
+<h2>{{ group.name }}</h2>
+{% if group.class_methods %}
+<h3>Class methods</h3>
+<ul class="method-summary">
+{% for item in group.class_methods %}<li><a href="{{ item.url }}">{{ item.name }}</a>{% if item.inherited_from %} <span class="muted">inherited from <a href="{{ item.inherited_from.url }}">{{ item.inherited_from.name }}</a></span>{% endif %}</li>{% endfor %}
+</ul>
+{% endif %}
+{% if group.instance_methods %}
+<h3>Instance methods</h3>
+<ul class="method-summary">
+{% for item in group.instance_methods %}<li><a href="{{ item.url }}">{{ item.name }}</a>{% if item.inherited_from %} <span class="muted">inherited from <a href="{{ item.inherited_from.url }}">{{ item.inherited_from.name }}</a></span>{% endif %}</li>{% endfor %}
+</ul>
+{% endif %}
+{% endfor %}
+
+{% for group in groups %}
+{% for item in group.class_methods + group.instance_methods %}
+<section class="method-detail" id="{{ item.anchor }}">
+  <h4>{{ item.signature }}</h4>
+  <div class="method-meta"><span class="kind">{{ item.scope }}</span> <span class="visibility">{{ item.visibility }}</span>{% if item.inherited_from %} <span class="muted">inherited from <a href="{{ item.inherited_from.url }}">{{ item.inherited_from.name }}</a></span>{% endif %}</div>
+  {% if item.aliases %}
+  <p class="aliases">Also known as: {% for alias in item.aliases %}<a href="{{ alias.url }}">{{ alias.name }}</a>{% if not loop.last %}, {% endif %}{% endfor %}</p>
+  {% endif %}
+  <div class="doc">{{ item.html_doc|safe }}</div>
+  {% if item.tags_html %}<div class="tags">{{ item.tags_html|safe }}</div>{% endif %}
+  {% if item.source %}
+  <details class="source"><summary>Source</summary><pre><code>{{ item.source }}</code></pre></details>
+  {% endif %}
+</section>
+{% endfor %}
+{% endfor %}
+{% endblock %}

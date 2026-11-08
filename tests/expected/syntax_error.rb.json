@@ -1,0 +1,91 @@
+{
+  "path": "tests/fixtures/syntax_error.rb",
+  "events": [
+    {
+      "type": "class_open",
+      "data": {
+        "name": "Broken",
+        "superclass": null,
+        "docstring": null,
+        "location": {
+          "start": 0,
+          "end": 29,
+          "start_line": 1,
+          "end_line": 4
+        }
+      }
+    },
+    {
+      "type": "method_def",
+      "data": {
+        "name": "oops",
+        "scope": "instance",
+        "receiver": null,
+        "parameters": [],
+        "signature": "oops()",
+        "source": "def oops(\nend",
+        "docstring": null,
+        "location": {
+          "start": 15,
+          "end": 28,
+          "start_line": 2,
+          "end_line": 3
+        }
+      }
+    },
+    {
+      "type": "class_close",
+      "data": {
+        "name": "Broken",
+        "location": {
+          "start": 29,
+          "end": 29,
+          "start_line": 4,
+          "end_line": 4
+        }
+      }
+    }
+  ],
+  "diagnostics": [
+    {
+      "level": "error",
+      "message": "unexpected 'end'; expected a `)` to close the parameters",
+      "location": {
+        "start": 25,
+        "end": 28,
+        "start_line": 3,
+        "end_line": 3
+      }
+    },
+    {
+      "level": "error",
+      "message": "unexpected end-of-input, assuming it is closing the parent top level context",
+      "location": {
+        "start": 28,
+        "end": 29,
+        "start_line": 3,
+        "end_line": 4
+      }
+    },
+    {
+      "level": "error",
+      "message": "expected an `end` to close the `class` statement",
+      "location": {
+        "start": 0,
+        "end": 5,
+        "start_line": 1,
+        "end_line": 1
+      }
+    },
+    {
+      "level": "warning",
+      "message": "mismatched indentations at 'end' with 'def' at 2",
+      "location": {
+        "start": 25,
+        "end": 28,
+        "start_line": 3,
+        "end_line": 3
+      }
+    }
+  ]
+}

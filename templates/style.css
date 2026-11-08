@@ -1,0 +1,27 @@
+:root { color-scheme: light dark; --bg:#fff; --fg:#1d1d1f; --muted:#666; --accent:#1457a6; --border:#ddd; }
+@media (prefers-color-scheme: dark) { :root { --bg:#17181a; --fg:#e8e8e8; --muted:#a0a0a0; --accent:#7fb2ff; --border:#3a3c40; } }
+* { box-sizing: border-box; }
+body { margin:0; font:16px/1.55 system-ui, -apple-system, Segoe UI, sans-serif; color:var(--fg); background:var(--bg); }
+a { color:var(--accent); text-decoration:none; } a:hover { text-decoration:underline; }
+.skip-link { position:absolute; left:-9999px; } .skip-link:focus { left:1rem; top:1rem; background:var(--bg); padding:.5rem; z-index:10; }
+.site-header { display:flex; gap:1rem; align-items:center; justify-content:space-between; padding:1rem 1.5rem; border-bottom:1px solid var(--border); flex-wrap:wrap; }
+.site-title { font-weight:700; font-size:1.15rem; }
+.search-box { position:relative; min-width:min(24rem, 80vw); }
+.search-box label { position:absolute; left:-9999px; }
+.search-box input { width:100%; padding:.5rem .75rem; border:1px solid var(--border); border-radius:.4rem; background:var(--bg); color:var(--fg); }
+#search-results { position:absolute; z-index:5; background:var(--bg); border:1px solid var(--border); width:100%; max-height:20rem; overflow:auto; display:none; }
+#search-results a { display:block; padding:.4rem .6rem; color:var(--fg); }
+#search-results a.active, #search-results a:hover { background:color-mix(in srgb, var(--accent) 16%, transparent); }
+.layout { display:grid; grid-template-columns:14rem minmax(0,1fr); }
+.sidebar { padding:1rem 1.5rem; border-right:1px solid var(--border); display:flex; flex-direction:column; gap:.5rem; }
+main { padding:1.5rem 2rem 4rem; max-width:70rem; }
+.kind, .visibility, .muted { color:var(--muted); font-size:.85em; }
+.summary { font-size:1.05rem; color:var(--muted); }
+.object-list { padding-left:1.1rem; } .object-list li { margin:.25rem 0; }
+.tags { border-top:1px solid var(--border); margin-top:1rem; padding-top:.75rem; }
+.tag { margin:.3rem 0; } .tag-name { font-weight:600; }
+pre { overflow:auto; padding:.75rem; border:1px solid var(--border); border-radius:.4rem; background:color-mix(in srgb, var(--fg) 4%, var(--bg)); }
+code { font-family:ui-monospace, SFMono-Regular, Menlo, monospace; }
+.method-detail { border-top:1px solid var(--border); padding-top:1rem; margin-top:1.5rem; }
+.method-detail h4 { font-family:ui-monospace, SFMono-Regular, Menlo, monospace; font-size:1rem; margin:0 0 .25rem; }
+@media (max-width: 48rem) { .layout { grid-template-columns:1fr; } .sidebar { border-right:0; border-bottom:1px solid var(--border); flex-direction:row; flex-wrap:wrap; } main { padding:1rem; } }

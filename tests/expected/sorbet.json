@@ -1,0 +1,1100 @@
+{
+  "format_version": 1,
+  "meadow_version": "0.1.0",
+  "objects": [
+    {
+      "id": 0,
+      "kind": "root",
+      "name": "",
+      "path": "",
+      "namespace": null,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "namespace": {
+          "superclass": null,
+          "includes": [],
+          "extends": [],
+          "prepends": [],
+          "mixin_order": [],
+          "ancestors": [],
+          "children": [
+            1,
+            12,
+            13
+          ],
+          "constants_private": []
+        }
+      }
+    },
+    {
+      "id": 1,
+      "kind": "class",
+      "name": "SorbetExample",
+      "path": "SorbetExample",
+      "namespace": 0,
+      "docstring": {
+        "text": "typed: strict",
+        "summary": "typed: strict",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 16,
+          "end": 824,
+          "start_line": 2,
+          "end_line": 38
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "namespace": {
+          "superclass": null,
+          "includes": [],
+          "extends": [
+            {
+              "proxy": {
+                "name": "T::Sig",
+                "namespace_hint": 1
+              }
+            }
+          ],
+          "prepends": [],
+          "mixin_order": [
+            {
+              "kind": "extend",
+              "target": {
+                "proxy": {
+                  "name": "T::Sig",
+                  "namespace_hint": 1
+                }
+              }
+            }
+          ],
+          "ancestors": [],
+          "children": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "constants_private": []
+        }
+      }
+    },
+    {
+      "id": 2,
+      "kind": "method",
+      "name": "tagged",
+      "path": "SorbetExample#tagged",
+      "namespace": 1,
+      "docstring": {
+        "text": "Has a signature.",
+        "summary": "Has a signature.",
+        "tags": [
+          {
+            "tag": "param",
+            "name": "name",
+            "types": {
+              "name": "String"
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "param",
+            "name": "age",
+            "types": {
+              "union": [
+                {
+                  "name": "Integer"
+                },
+                {
+                  "name": "nil"
+                }
+              ]
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "generic": {
+                "base": {
+                  "name": "Array"
+                },
+                "params": [
+                  {
+                    "name": "String"
+                  }
+                ]
+              }
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [
+        {
+          "start": 158,
+          "end": 191,
+          "start_line": 7,
+          "end_line": 8
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [
+            {
+              "name": "name",
+              "kind": "required",
+              "default": null
+            },
+            {
+              "name": "age",
+              "kind": "optional",
+              "default": "nil"
+            }
+          ],
+          "source": "def tagged(name, age = nil)\n  end",
+          "signature": "tagged(name, age = nil)",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 3,
+      "kind": "method",
+      "name": "no_return",
+      "path": "SorbetExample#no_return",
+      "namespace": 1,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "literal": "void"
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [
+        {
+          "start": 210,
+          "end": 228,
+          "start_line": 11,
+          "end_line": 11
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "def no_return; end",
+          "signature": "no_return()",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 4,
+      "kind": "method",
+      "name": "abstract_method",
+      "path": "SorbetExample#abstract_method",
+      "namespace": 1,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "abstract",
+            "name": null,
+            "types": null,
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [
+        {
+          "start": 251,
+          "end": 275,
+          "start_line": 14,
+          "end_line": 14
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "def abstract_method; end",
+          "signature": "abstract_method()",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 5,
+      "kind": "method",
+      "name": "final_method",
+      "path": "SorbetExample#final_method",
+      "namespace": 1,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "name": "Integer"
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "final",
+            "name": null,
+            "types": null,
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "override",
+            "name": null,
+            "types": null,
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [
+        {
+          "start": 323,
+          "end": 344,
+          "start_line": 17,
+          "end_line": 17
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "def final_method; end",
+          "signature": "final_method()",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 6,
+      "kind": "method",
+      "name": "with_yield",
+      "path": "SorbetExample#with_yield",
+      "namespace": 1,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "yieldparam",
+            "name": "item",
+            "types": {
+              "name": "String"
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "yieldreturn",
+            "name": null,
+            "types": {
+              "name": "Integer"
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [
+        {
+          "start": 412,
+          "end": 431,
+          "start_line": 20,
+          "end_line": 20
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "def with_yield; end",
+          "signature": "with_yield()",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 7,
+      "kind": "method",
+      "name": "booleans",
+      "path": "SorbetExample#booleans",
+      "namespace": 1,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "param",
+            "name": "flag",
+            "types": {
+              "union": [
+                {
+                  "literal": "true"
+                },
+                {
+                  "literal": "false"
+                }
+              ]
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "union": [
+                {
+                  "name": "String"
+                },
+                {
+                  "name": "Symbol"
+                }
+              ]
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [
+        {
+          "start": 501,
+          "end": 524,
+          "start_line": 23,
+          "end_line": 23
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [
+            {
+              "name": "flag",
+              "kind": "required",
+              "default": null
+            }
+          ],
+          "source": "def booleans(flag); end",
+          "signature": "booleans(flag)",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 8,
+      "kind": "method",
+      "name": "explicit",
+      "path": "SorbetExample#explicit",
+      "namespace": 1,
+      "docstring": {
+        "text": "Explicit docs win over signatures.",
+        "summary": "Explicit docs win over signatures.",
+        "tags": [
+          {
+            "tag": "param",
+            "name": "name",
+            "types": {
+              "name": "Symbol"
+            },
+            "types_source": "Symbol",
+            "text": "explicit type",
+            "docstring": null,
+            "key": null,
+            "default": null
+          },
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "name": "String"
+            },
+            "types_source": "String",
+            "text": "explicit result",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [
+        {
+          "start": 692,
+          "end": 716,
+          "start_line": 29,
+          "end_line": 30
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [
+            {
+              "name": "name",
+              "kind": "required",
+              "default": null
+            }
+          ],
+          "source": "def explicit(name)\n  end",
+          "signature": "explicit(name)",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 9,
+      "kind": "method",
+      "name": "initialize",
+      "path": "SorbetExample#initialize",
+      "namespace": 1,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "literal": "void"
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [
+        {
+          "start": 735,
+          "end": 786,
+          "start_line": 33,
+          "end_line": 35
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "def initialize\n    @value = T.let(1, Integer)\n  end",
+          "signature": "initialize()",
+          "explicit": true,
+          "aliases": [],
+          "alias_of": null,
+          "attr": null
+        }
+      }
+    },
+    {
+      "id": 10,
+      "kind": "instance_variable",
+      "name": "@value",
+      "path": "SorbetExample#@value",
+      "namespace": 1,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "name": "Integer"
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [
+        {
+          "start": 754,
+          "end": 780,
+          "start_line": 34,
+          "end_line": 34
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "instance_variable": {
+          "value_source": "T.let(1, Integer)"
+        }
+      }
+    },
+    {
+      "id": 11,
+      "kind": "constant",
+      "name": "CONST",
+      "path": "SorbetExample::CONST",
+      "namespace": 1,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "name": "String"
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [
+        {
+          "start": 790,
+          "end": 820,
+          "start_line": 37,
+          "end_line": 37
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "constant": {
+          "value_source": "T.let(\"value\", String)",
+          "alias_of": null
+        }
+      }
+    },
+    {
+      "id": 12,
+      "kind": "class",
+      "name": "Point",
+      "path": "Point",
+      "namespace": 0,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 826,
+          "end": 906,
+          "start_line": 40,
+          "end_line": 43
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "namespace": {
+          "superclass": {
+            "proxy": {
+              "name": "T::Struct",
+              "namespace_hint": 12
+            }
+          },
+          "includes": [],
+          "extends": [],
+          "prepends": [],
+          "mixin_order": [],
+          "ancestors": [],
+          "children": [
+            16,
+            17,
+            18
+          ],
+          "constants_private": []
+        }
+      }
+    },
+    {
+      "id": 13,
+      "kind": "class",
+      "name": "Color",
+      "path": "Color",
+      "namespace": 0,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 908,
+          "end": 979,
+          "start_line": 45,
+          "end_line": 50
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "namespace": {
+          "superclass": {
+            "proxy": {
+              "name": "T::Enum",
+              "namespace_hint": 13
+            }
+          },
+          "includes": [],
+          "extends": [],
+          "prepends": [],
+          "mixin_order": [],
+          "ancestors": [],
+          "children": [
+            14,
+            15
+          ],
+          "constants_private": []
+        }
+      }
+    },
+    {
+      "id": 14,
+      "kind": "constant",
+      "name": "Red",
+      "path": "Color::Red",
+      "namespace": 13,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 945,
+          "end": 954,
+          "start_line": 47,
+          "end_line": 47
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "constant": {
+          "value_source": "new",
+          "alias_of": null
+        }
+      }
+    },
+    {
+      "id": 15,
+      "kind": "constant",
+      "name": "Blue",
+      "path": "Color::Blue",
+      "namespace": 13,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": []
+      },
+      "sources": [
+        {
+          "start": 959,
+          "end": 969,
+          "start_line": 48,
+          "end_line": 48
+        }
+      ],
+      "visibility": "public",
+      "dynamic": false,
+      "group": null,
+      "extra": {
+        "constant": {
+          "value_source": "new",
+          "alias_of": null
+        }
+      }
+    },
+    {
+      "id": 16,
+      "kind": "method",
+      "name": "x",
+      "path": "Point#x",
+      "namespace": 12,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "name": "Integer"
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "",
+          "signature": "x()",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": {
+            "name": "x",
+            "reader": true,
+            "writer": false
+          }
+        }
+      }
+    },
+    {
+      "id": 17,
+      "kind": "method",
+      "name": "label",
+      "path": "Point#label",
+      "namespace": 12,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "union": [
+                {
+                  "name": "String"
+                },
+                {
+                  "name": "nil"
+                }
+              ]
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [],
+          "source": "",
+          "signature": "label()",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": {
+            "name": "label",
+            "reader": true,
+            "writer": true
+          }
+        }
+      }
+    },
+    {
+      "id": 18,
+      "kind": "method",
+      "name": "label=",
+      "path": "Point#label=",
+      "namespace": 12,
+      "docstring": {
+        "text": "",
+        "summary": "",
+        "tags": [
+          {
+            "tag": "return",
+            "name": null,
+            "types": {
+              "union": [
+                {
+                  "name": "String"
+                },
+                {
+                  "name": "nil"
+                }
+              ]
+            },
+            "types_source": null,
+            "text": "",
+            "docstring": null,
+            "key": null,
+            "default": null
+          }
+        ]
+      },
+      "sources": [],
+      "visibility": "public",
+      "dynamic": true,
+      "group": null,
+      "extra": {
+        "method": {
+          "scope": "instance",
+          "params": [
+            {
+              "name": "value",
+              "kind": "required",
+              "default": null
+            }
+          ],
+          "source": "",
+          "signature": "label=(value)",
+          "explicit": false,
+          "aliases": [],
+          "alias_of": null,
+          "attr": {
+            "name": "label",
+            "reader": true,
+            "writer": true
+          }
+        }
+      }
+    }
+  ],
+  "by_path": [
+    [
+      "",
+      0
+    ],
+    [
+      "Color",
+      13
+    ],
+    [
+      "Color::Blue",
+      15
+    ],
+    [
+      "Color::Red",
+      14
+    ],
+    [
+      "Point",
+      12
+    ],
+    [
+      "Point#label",
+      17
+    ],
+    [
+      "Point#label=",
+      18
+    ],
+    [
+      "Point#x",
+      16
+    ],
+    [
+      "SorbetExample",
+      1
+    ],
+    [
+      "SorbetExample#@value",
+      10
+    ],
+    [
+      "SorbetExample#abstract_method",
+      4
+    ],
+    [
+      "SorbetExample#booleans",
+      7
+    ],
+    [
+      "SorbetExample#explicit",
+      8
+    ],
+    [
+      "SorbetExample#final_method",
+      5
+    ],
+    [
+      "SorbetExample#initialize",
+      9
+    ],
+    [
+      "SorbetExample#no_return",
+      3
+    ],
+    [
+      "SorbetExample#tagged",
+      2
+    ],
+    [
+      "SorbetExample#with_yield",
+      6
+    ],
+    [
+      "SorbetExample::CONST",
+      11
+    ]
+  ],
+  "files": [
+    [
+      "tests/fixtures/sorbet.rb",
+      [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ]
+    ]
+  ],
+  "requires": []
+}
