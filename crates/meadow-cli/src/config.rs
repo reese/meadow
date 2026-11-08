@@ -1,8 +1,10 @@
-//! Configuration and command-line option parsing.
+//! Configuration file loading and option merging.
 
 use std::collections::BTreeMap;
 use std::fs;
 use std::path::{Path, PathBuf};
+
+use crate::cli::RunArgs;
 
 /// A meadow subcommand.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -150,85 +152,18 @@ impl Default for RunOptions {
     }
 }
 
-/// Parses the command and options from process arguments.
-///
-/// # Errors
-///
-/// Returns a message when the command line is invalid.
-pub fn parse(args: &[String]) -> Result<RunOptions, String> {
-    let Some(command_name) = args.first() else {
-        return Err("usage: meadow <doc|stats|list|server> [options] [files...]".to_string());
-    };
-    let command = match command_name.as_str() {
-        "doc" => Command::Doc,
-        "stats" => Command::Stats,
-        "list" => Command::List,
-        "server" => Command::Server,
-        "--help" | "-h" | "help" => {
-            return Err(help_text());
-        }
-        "--version" | "-V" => return Err(version_text()),
-        other => return Err(format!("unknown command '{other}'\n{}", help_text())),
-    };
-
+/// Builds run options by layering config files underneath command-line flags.
+#[must_use]
+pub fn resolve(command: Command, args: RunArgs) -> RunOptions {
     let mut options = RunOptions {
         command,
         ..RunOptions::default()
     };
 
-    let cli = &args[1..];
-    let explicit_config = find_flag_value(cli, "--config").map(PathBuf::from);
-    options.config.clone_from(&explicit_config);
-    load_config_files(&mut options, explicit_config.as_deref());
-
-    parse_tokens(cli, &mut options, true);
-    Ok(options)
-}
-
-/// Returns command help.
-#[must_use]
-pub fn help_text() -> String {
-    [
-        "meadow <doc|stats|list|server> [options] [files...]",
-        "",
-        "Commands:",
-        "  doc      Build HTML documentation",
-        "  stats    Print documentation statistics",
-        "  list     List objects, optionally filtered by --query",
-        "  server   Serve docs and rebuild on changes",
-        "",
-        "Options:",
-        "  --output-dir DIR   --title TITLE   --readme FILE   --main FILE",
-        "  --files PATHS      --asset SRC:DEST   --template-path DIR",
-        "  --exclude GLOBS",
-        "  --private          --protected      --no-private",
-        "  --api TAG          --hide-api       --plugin NAME",
-        "  --markup NAME      --query EXPR     --format json",
-        "  --db DIR           --use-cache      --no-cache       --no-save",
-        "  --json-export FILE --fail-on-warning --config FILE",
-        "  --sanitize --timestamps --ruby-version V --no-inherited",
-        "  --embed-mixins --follow-requires --proxy-cache FILE",
-        "  --list-undoc       --port PORT      -q / -v",
-    ]
-    .join("\n")
-}
-
-fn version_text() -> String {
-    format!("meadow {}", env!("CARGO_PKG_VERSION"))
-}
-
-fn find_flag_value(args: &[String], flag: &str) -> Option<String> {
-    let mut index = 0;
-    while index < args.len() {
-        if args[index] == flag {
-            return args.get(index + 1).cloned();
-        }
-        if let Some(value) = args[index].strip_prefix(&format!("{flag}=")) {
-            return Some(value.to_string());
-        }
-        index += 1;
-    }
-    None
+    options.config.clone_from(&args.config);
+    load_config_files(&mut options, args.config.as_deref());
+    args.apply(&mut options);
+    options
 }
 
 fn load_config_files(options: &mut RunOptions, explicit: Option<&Path>) {
@@ -259,7 +194,7 @@ fn load_config_file(options: &mut RunOptions, path: &Path) {
         apply_toml(options, &contents);
     } else {
         let tokens = tokenize(&contents);
-        parse_tokens(&tokens, options, false);
+        RunArgs::apply_tokens(&tokens, options);
     }
 }
 
@@ -383,181 +318,6 @@ fn set_string_list(value: &toml::Value, target: &mut Vec<String>) {
             .filter_map(|value| value.as_str().map(str::to_string))
             .collect();
     }
-}
-
-fn parse_tokens(tokens: &[String], options: &mut RunOptions, cli: bool) {
-    let mut index = 0;
-    let mut positional = false;
-
-    while index < tokens.len() {
-        let token = &tokens[index];
-        if positional {
-            options.inputs.push(token.clone());
-            index += 1;
-            continue;
-        }
-        if token == "-" || token == "--" {
-            positional = true;
-            index += 1;
-            continue;
-        }
-        if !token.starts_with('-') {
-            options.inputs.push(token.clone());
-            index += 1;
-            continue;
-        }
-
-        let (flag, inline_value) = split_flag(token);
-        let mut next_value = || {
-            if let Some(value) = inline_value {
-                return Some(value.to_string());
-            }
-            index += 1;
-            tokens.get(index).cloned()
-        };
-
-        if !parse_flag(&flag, &mut next_value, options) {
-            options.warnings.push(format!(
-                "unknown option '{}' (ignored)",
-                if flag.is_empty() { token } else { &flag }
-            ));
-        }
-        index += 1;
-    }
-
-    let _ = cli;
-}
-
-fn parse_flag<F: FnMut() -> Option<String>>(
-    flag: &str,
-    next_value: &mut F,
-    options: &mut RunOptions,
-) -> bool {
-    match flag {
-        "--output-dir" => take_path(next_value, &mut options.output_dir),
-        "--title" => take_string(next_value, &mut options.title),
-        "--readme" => take_optional_path(next_value, &mut options.readme),
-        "--main" => take_optional_path(next_value, &mut options.main),
-        "--db" => take_path(next_value, &mut options.db),
-        "--markup" => take_string(next_value, &mut options.markup),
-        "--query" => {
-            if let Some(value) = next_value() {
-                options.query = Some(value);
-            }
-        }
-        "--format" => take_string(next_value, &mut options.format),
-        "--json-export" => take_optional_path(next_value, &mut options.json_export),
-        "--exclude" => {
-            if let Some(value) = next_value() {
-                options.exclude.extend(split_list(&value));
-            }
-        }
-        "--files" => {
-            if let Some(value) = next_value() {
-                options
-                    .files
-                    .extend(split_list(&value).into_iter().map(PathBuf::from));
-            }
-        }
-        "--template-path" => take_optional_path(next_value, &mut options.template_path),
-        "--asset" => {
-            if let Some(value) = next_value() {
-                if let Some((source, destination)) = value.split_once(':') {
-                    options
-                        .assets
-                        .push((PathBuf::from(source), PathBuf::from(destination)));
-                } else {
-                    options
-                        .warnings
-                        .push(format!("invalid --asset value '{value}'"));
-                }
-            }
-        }
-        "--plugin" => {
-            if let Some(value) = next_value() {
-                options.plugins.extend(split_list(&value));
-            }
-        }
-        "--api" => {
-            if let Some(value) = next_value() {
-                options.api.extend(split_list(&value));
-            }
-        }
-        "--port" => {
-            if let Some(value) = next_value() {
-                options.port = value.parse().unwrap_or(options.port);
-            }
-        }
-        "--private" => options.show_private = true,
-        "--no-private" => options.show_private = false,
-        "--protected" => options.show_protected = true,
-        "--no-protected" => options.show_protected = false,
-        "--hide-api" => options.hide_api = true,
-        "--use-cache" => options.use_cache = true,
-        "--no-cache" => options.use_cache = false,
-        "--no-save" => options.save = false,
-        "--fail-on-warning" => options.fail_on_warning = true,
-        "--no-warn-unresolved" => options.no_warn_unresolved = true,
-        "--sanitize" => options.sanitize = true,
-        "--timestamps" => options.timestamps = true,
-        "--no-inherited" => options.show_inherited = false,
-        "--embed-mixins" => options.embed_mixins = true,
-        "--no-embed-mixins" => options.embed_mixins = false,
-        "--follow-requires" => options.follow_requires = true,
-        "--ruby-version" => {
-            if let Some(value) = next_value() {
-                options.ruby_version = Some(value);
-            }
-        }
-        "--proxy-cache" => take_optional_path(next_value, &mut options.proxy_cache),
-        "--list-undoc" => options.list_undoc = true,
-        "--config" => {
-            let _ = next_value();
-        }
-        "--no-output" | "--no-stats" => {}
-        "-q" | "--quiet" => options.quiet = true,
-        "-v" | "--verbose" => options.verbose = options.verbose.saturating_add(1),
-        "--help" | "-h" => {
-            options.warnings.push(help_text());
-        }
-        "--version" | "-V" => options.warnings.push(version_text()),
-        _ => return false,
-    }
-    true
-}
-
-fn split_flag(token: &str) -> (String, Option<&str>) {
-    match token.split_once('=') {
-        Some((flag, value)) => (flag.to_string(), Some(value)),
-        None => (token.to_string(), None),
-    }
-}
-
-fn take_path<F: FnMut() -> Option<String>>(next: &mut F, target: &mut PathBuf) {
-    if let Some(value) = next() {
-        *target = PathBuf::from(value);
-    }
-}
-
-fn take_optional_path<F: FnMut() -> Option<String>>(next: &mut F, target: &mut Option<PathBuf>) {
-    if let Some(value) = next() {
-        *target = Some(PathBuf::from(value));
-    }
-}
-
-fn take_string<F: FnMut() -> Option<String>>(next: &mut F, target: &mut String) {
-    if let Some(value) = next() {
-        *target = value;
-    }
-}
-
-fn split_list(value: &str) -> Vec<String> {
-    value
-        .split(',')
-        .map(str::trim)
-        .filter(|item| !item.is_empty())
-        .map(str::to_string)
-        .collect()
 }
 
 /// Tokenizes `.yardopts` contents using shell-like quoting and comments.

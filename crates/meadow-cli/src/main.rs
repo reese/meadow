@@ -1,6 +1,7 @@
 //! The meadow command line interface.
 
 mod cache;
+mod cli;
 mod config;
 mod discover;
 mod query;
@@ -9,36 +10,18 @@ mod server;
 use std::collections::{BTreeMap, BTreeSet};
 use std::process::ExitCode;
 
+use clap::Parser;
 use meadow_html::{SiteOptions, render_site};
 use meadow_model::{CodeObject, KindData, ObjectKind};
 use meadow_parser::DiagnosticLevel;
 
+use crate::cli::Cli;
 use crate::config::{Command, RunOptions};
 use crate::query::Query;
 
 fn main() -> ExitCode {
-    let args: Vec<String> = std::env::args().skip(1).collect();
-    if args
-        .first()
-        .is_some_and(|argument| matches!(argument.as_str(), "--help" | "-h" | "help"))
-    {
-        println!("{}", config::help_text());
-        return ExitCode::SUCCESS;
-    }
-    if args
-        .first()
-        .is_some_and(|argument| matches!(argument.as_str(), "--version" | "-V"))
-    {
-        println!("meadow {}", env!("CARGO_PKG_VERSION"));
-        return ExitCode::SUCCESS;
-    }
-    let options = match config::parse(&args) {
-        Ok(options) => options,
-        Err(message) => {
-            eprintln!("{message}");
-            return ExitCode::from(2);
-        }
-    };
+    let (command, args) = Cli::parse().into_parts();
+    let options = config::resolve(command, args);
 
     if !options.quiet {
         for warning in &options.warnings {
