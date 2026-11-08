@@ -82,21 +82,7 @@ private = false
 protected = true
 ```
 
-Common flags:
-
-- `--output-dir DIR` — where to write the site (default `doc`).
-- `--title TITLE` — site title.
-- `--readme FILE`, `--main FILE` — landing page overrides.
-- `--exclude GLOBS` — skip files, e.g. `--exclude 'vendor/**,tmp/**'`.
-- `--private` / `--no-private`, `--protected` / `--no-protected` — visibility.
-- `--markup markdown|rdoc` — docstring markup provider.
-- `--plugin NAME` — enable a built-in plugin (repeatable).
-- `--follow-requires` — include files reached via `require_relative`.
-- `--json-export FILE` — export the object registry as JSON.
-- `--template-path DIR` — override bundled HTML templates.
-- `--no-cache` / `--no-save` — rebuild fully / avoid writing cache files.
-- `--fail-on-warning` — exit nonzero when warnings are emitted.
-- `-q` / `-v` — quiet or more verbose output.
+For a full list of flags, see `meadow help doc`.
 
 The registry, parse cache, and manifest live under `.meadow/`; add that directory
 to your `.gitignore`.
