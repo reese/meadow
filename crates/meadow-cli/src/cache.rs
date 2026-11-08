@@ -19,7 +19,7 @@ use serde::{Deserialize, Serialize};
 use crate::config::RunOptions;
 use crate::discover::discover;
 
-const FORMAT_VERSION: u32 = 3;
+const FORMAT_VERSION: u32 = 4;
 const BUILD_BATCH: usize = 128;
 
 /// A cached file state used to detect changes between runs.
@@ -327,7 +327,8 @@ where
 {
     let file = fs::File::create(path)?;
     let mut writer = BufWriter::new(file);
-    bincode::serialize_into(&mut writer, value).map_err(io::Error::other)?;
+    bincode::serde::encode_into_std_write(value, &mut writer, bincode::config::standard())
+        .map_err(io::Error::other)?;
     writer.flush()
 }
 
@@ -336,7 +337,9 @@ where
     T: serde::de::DeserializeOwned,
 {
     let file = fs::File::open(path)?;
-    bincode::deserialize_from(BufReader::new(file)).map_err(io::Error::other)
+    let mut reader = BufReader::new(file);
+    bincode::serde::decode_from_std_read(&mut reader, bincode::config::standard())
+        .map_err(io::Error::other)
 }
 
 struct FactsWriter {
@@ -350,8 +353,12 @@ impl FactsWriter {
         let temp = path.with_extension("bin.tmp");
         let file = fs::File::create(&temp)?;
         let mut writer = BufWriter::new(file);
-        bincode::serialize_into(&mut writer, &u64::try_from(count).unwrap_or(u64::MAX))
-            .map_err(io::Error::other)?;
+        bincode::serde::encode_into_std_write(
+            u64::try_from(count).unwrap_or(u64::MAX),
+            &mut writer,
+            bincode::config::standard(),
+        )
+        .map_err(io::Error::other)?;
         Ok(Self {
             writer,
             temp,
@@ -360,7 +367,9 @@ impl FactsWriter {
     }
 
     fn write(&mut self, facts: &FileFacts) -> io::Result<()> {
-        bincode::serialize_into(&mut self.writer, facts).map_err(io::Error::other)
+        bincode::serde::encode_into_std_write(facts, &mut self.writer, bincode::config::standard())
+            .map(|_| ())
+            .map_err(io::Error::other)
     }
 
     fn finish(self) -> io::Result<()> {
@@ -572,10 +581,13 @@ fn load_manifest(db: &Path) -> io::Result<Manifest> {
 fn load_facts(db: &Path) -> io::Result<BTreeMap<String, FileFacts>> {
     let file = fs::File::open(db.join("facts.bin"))?;
     let mut reader = BufReader::new(file);
-    let count: u64 = bincode::deserialize_from(&mut reader).map_err(io::Error::other)?;
+    let count: u64 = bincode::serde::decode_from_std_read(&mut reader, bincode::config::standard())
+        .map_err(io::Error::other)?;
     let mut facts = BTreeMap::new();
     for _ in 0..count {
-        let value: FileFacts = bincode::deserialize_from(&mut reader).map_err(io::Error::other)?;
+        let value: FileFacts =
+            bincode::serde::decode_from_std_read(&mut reader, bincode::config::standard())
+                .map_err(io::Error::other)?;
         facts.insert(value.path.to_string_lossy().into_owned(), value);
     }
     Ok(facts)

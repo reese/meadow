@@ -342,9 +342,11 @@ fn handles_conditionals_and_recovered_trees() {
 fn registry_round_trips_through_bincode_and_json() {
     let registry = build_registry(&parse_fixtures());
 
-    let encoded = bincode::serialize(&registry).expect("bincode serialize");
-    let decoded: meadow_model::Registry =
-        bincode::deserialize(&encoded).expect("bincode deserialize");
+    let encoded = bincode::serde::encode_to_vec(&registry, bincode::config::standard())
+        .expect("bincode serialize");
+    let (decoded, _): (meadow_model::Registry, usize) =
+        bincode::serde::decode_from_slice(&encoded, bincode::config::standard())
+            .expect("bincode deserialize");
     assert_eq!(registry, decoded);
 
     let encoded = serde_json::to_string(&registry).expect("json serialize");
@@ -371,9 +373,11 @@ fn non_utf8_registry_round_trips() {
     let decoded: meadow_model::Registry = serde_json::from_str(&encoded).expect("json deserialize");
     assert_eq!(registry, decoded);
 
-    let encoded = bincode::serialize(&registry).expect("bincode serialize");
-    let decoded: meadow_model::Registry =
-        bincode::deserialize(&encoded).expect("bincode deserialize");
+    let encoded = bincode::serde::encode_to_vec(&registry, bincode::config::standard())
+        .expect("bincode serialize");
+    let (decoded, _): (meadow_model::Registry, usize) =
+        bincode::serde::decode_from_slice(&encoded, bincode::config::standard())
+            .expect("bincode deserialize");
     assert_eq!(registry, decoded);
 }
 
