@@ -21,7 +21,6 @@ serde_json.workspace = true
 [dev-dependencies]
 meadow-handlers.workspace = true
 meadow-parser.workspace = true
-serde_json.workspace = true
 
 [lints]
 workspace = true
