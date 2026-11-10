@@ -92,7 +92,7 @@ pub fn build(paths: &[PathBuf]) -> io::Result<Build> {
 pub fn build_with(paths: &[PathBuf], options: &BuildOptions) -> io::Result<Build> {
     let mut files = Vec::new();
     for path in paths {
-        collect_files(path, &mut files)?;
+        collect_files(&input_path(path, &options.project_root), &mut files)?;
     }
     files.sort_by(|left, right| {
         is_rbs(left)
@@ -103,7 +103,7 @@ pub fn build_with(paths: &[PathBuf], options: &BuildOptions) -> io::Result<Build
 
     let sources: Vec<(PathBuf, Vec<u8>)> = files
         .iter()
-        .map(|path| Ok((path.clone(), fs::read(path)?)))
+        .map(|path| Ok((registry_path(path, &options.project_root), fs::read(path)?)))
         .collect::<io::Result<_>>()?;
     let config = ParseConfig {
         ruby_version: options.ruby_version,
@@ -150,6 +150,23 @@ pub fn build_with(paths: &[PathBuf], options: &BuildOptions) -> io::Result<Build
     })
 }
 
+fn input_path(path: &Path, project_root: &Path) -> PathBuf {
+    if path.is_absolute() || project_root.as_os_str().is_empty() {
+        path.to_path_buf()
+    } else {
+        project_root.join(path)
+    }
+}
+
+fn registry_path(path: &Path, project_root: &Path) -> PathBuf {
+    if project_root.as_os_str().is_empty() {
+        return path.to_path_buf();
+    }
+    path.strip_prefix(project_root)
+        .unwrap_or(path)
+        .to_path_buf()
+}
+
 fn collect_files(path: &Path, files: &mut Vec<PathBuf>) -> io::Result<()> {
     if path.is_dir() {
         let mut entries: Vec<PathBuf> = fs::read_dir(path)?
@@ -181,6 +198,35 @@ fn is_rbs(path: &Path) -> bool {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn registry_paths_are_relative_to_project_root() {
+        let root = tempfile::tempdir().expect("tempdir");
+        let lib = root.path().join("lib");
+        fs::create_dir(&lib).expect("create lib");
+        fs::write(
+            lib.join("example.rb"),
+            "class Example\n  def hello; end\nend\n",
+        )
+        .expect("write source");
+
+        let build = build_with(
+            &[lib],
+            &BuildOptions {
+                project_root: root.path().to_path_buf(),
+                ..BuildOptions::default()
+            },
+        )
+        .expect("build registry");
+
+        assert!(
+            build
+                .registry
+                .files()
+                .keys()
+                .any(|path| path.to_string_lossy() == "lib/example.rb")
+        );
+    }
 
     #[test]
     fn builds_a_registry_from_a_source_directory() {
