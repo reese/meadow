@@ -679,7 +679,8 @@ impl Handler {
         docstring: &Docstring,
         location: SourceLocation,
     ) {
-        let visibility = self.current_frame().visibility;
+        let visibility =
+            directive_visibility(docstring).unwrap_or_else(|| self.current_frame().visibility);
         let mut docstring = docstring.clone();
         self.expand_nested_macros(namespace, &mut docstring, location, 0);
         docstring
@@ -869,6 +870,8 @@ impl Handler {
         let parameter_names: Vec<SourceText> =
             params.iter().map(|param| param.name.clone()).collect();
         let mut docstring = self.docstring(event.docstring.as_ref(), Some(&parameter_names));
+        let visibility =
+            directive_visibility(&docstring).unwrap_or_else(|| self.current_frame().visibility);
         self.expand_nested_macros(namespace, &mut docstring, event.location, 0);
         docstring
             .tags
@@ -882,7 +885,7 @@ impl Handler {
             source,
             signature,
             docstring,
-            visibility: self.current_frame().visibility,
+            visibility,
             explicit: false,
             attr: None,
             alias_of: None,
@@ -1068,8 +1071,9 @@ impl Handler {
     fn attr_call(&mut self, event: &CallEvent) {
         let namespace = self.current_namespace();
         let scope = self.default_scope();
-        let visibility = self.current_frame().visibility;
         let mut docstring = self.docstring(event.docstring.as_ref(), None);
+        let visibility =
+            directive_visibility(&docstring).unwrap_or_else(|| self.current_frame().visibility);
         self.expand_nested_macros(namespace, &mut docstring, event.location, 0);
         docstring
             .tags
@@ -1583,6 +1587,12 @@ impl Handler {
         }
 
         if let Some(target) = target {
+            if let Some(visibility) = visibility {
+                self.registry.get_mut(target).visibility = visibility;
+            }
+            if let Some(group) = group {
+                self.registry.get_mut(target).group = Some(group);
+            }
             let mut docstring = self.registry.get(target).docstring.clone();
             self.expand_nested_tag_docstrings(namespace, &mut docstring, location, 0);
             docstring
@@ -2307,6 +2317,18 @@ fn dedent_bytes(raw: &[u8]) -> Vec<u8> {
     result
 }
 
+fn directive_visibility(docstring: &Docstring) -> Option<Visibility> {
+    docstring
+        .tags
+        .iter()
+        .find(|tag| tag.tag.as_bytes() == b"!visibility")
+        .map(|tag| match first_token(&tag.text) {
+            b"private" => Visibility::Private,
+            b"protected" => Visibility::Protected,
+            _ => Visibility::Public,
+        })
+}
+
 fn macro_parts(tag: &meadow_model::Tag) -> (SourceText, SourceText, bool) {
     let mut name = trim_bytes(tag.name.as_ref().map_or(&[][..], |name| name.as_bytes()));
     let mut attach = false;
@@ -2622,6 +2644,33 @@ end
         assert!(text.contains("Shared prose."), "{text}");
         assert_eq!(value.docstring.tags.len(), 1);
         assert_eq!(value.docstring.tags[0].tag, "return");
+    }
+
+    #[test]
+    fn applies_visibility_directives_to_objects_and_attributes() {
+        let source = r"
+# @!visibility private
+class Hidden
+  # @!visibility private
+  CONST = 1
+
+  # @!visibility protected
+  attr_reader :value
+end
+";
+        let registry = build_registry(&[parse_source("visibility.rb", source)]);
+        assert_eq!(
+            registry.find("Hidden").expect("class").visibility,
+            meadow_model::Visibility::Private
+        );
+        assert_eq!(
+            registry.find("Hidden::CONST").expect("constant").visibility,
+            meadow_model::Visibility::Private
+        );
+        assert_eq!(
+            registry.find("Hidden#value").expect("attribute").visibility,
+            meadow_model::Visibility::Protected
+        );
     }
 
     #[test]
