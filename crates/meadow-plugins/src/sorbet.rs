@@ -1,22 +1,23 @@
 //! Sorbet `sig` and `T::Struct` support.
 
-use std::collections::BTreeMap;
 use std::sync::Mutex;
 
 use meadow_docstring::{DocstringOptions, parse_docstring, parse_type_list_bytes};
 use meadow_model::{
     AttrInfo, Docstring, ObjectId, Param, ParamKind, Registry, Scope, SourceText, Tag, TypeExpr,
 };
-use meadow_parser::Event;
+use meadow_parser::{Event, MethodDefEvent, MethodScope};
 
 use crate::util::{
-    MethodDetails, add_method, add_tag, has_tag, simple_tag, superclass_name, typed_tag,
+    MethodDetails, add_method, add_tag, has_tag, join_method_path, simple_tag, superclass_name,
+    typed_tag,
 };
 use crate::{Handled, Plugin, PluginContext};
 
 #[derive(Default)]
 struct SorbetState {
     sigs: Vec<SigRecord>,
+    pending_sig: Option<usize>,
     struct_fields: Vec<StructField>,
     const_types: Vec<ConstType>,
     ivar_types: Vec<IvarType>,
@@ -24,7 +25,7 @@ struct SorbetState {
 
 struct SigRecord {
     file: SourceText,
-    end: u32,
+    path: Option<SourceText>,
     info: SigInfo,
     docstring: Docstring,
 }
@@ -96,19 +97,22 @@ impl Plugin for Sorbet {
                             call.docstring
                                 .as_ref()
                                 .map_or_else(Docstring::default, |raw| {
-                                    parse_docstring(
-                                        &raw.text,
-                                        raw.location,
-                                        &DocstringOptions::default(),
+                                    crate::sanitize_generated_docstring(
+                                        parse_docstring(
+                                            &raw.text,
+                                            raw.location,
+                                            &DocstringOptions::default(),
+                                        )
+                                        .docstring,
                                     )
-                                    .docstring
                                 });
                         state.sigs.push(SigRecord {
                             file: context.file.clone(),
-                            end: event.location().end,
+                            path: None,
                             info,
                             docstring,
                         });
+                        state.pending_sig = Some(state.sigs.len() - 1);
                     }
                 }
                 b"const" | b"prop" => {
@@ -118,6 +122,13 @@ impl Plugin for Sorbet {
                 }
                 _ => {}
             },
+            Event::MethodDef(event) => {
+                if let Some(index) = state.pending_sig.take()
+                    && state.sigs[index].file == *context.file
+                {
+                    state.sigs[index].path = Some(method_path(context, event));
+                }
+            }
             Event::ConstantWrite(event) => {
                 if let Some(types) = parse_tlet(&event.value_source) {
                     state.const_types.push(ConstType {
@@ -136,56 +147,23 @@ impl Plugin for Sorbet {
                     });
                 }
             }
-            _ => {}
+            Event::Comment(_) => {}
+            _ => state.pending_sig = None,
         }
         Handled::No
     }
 
     fn after_handle(&self, registry: &mut Registry) {
         let state = self.state.lock().expect("sorbet state lock");
-        let mut used = vec![false; state.sigs.len()];
-        let mut id_files: BTreeMap<ObjectId, SourceText> = BTreeMap::new();
-        for (file, ids) in registry.files() {
-            for id in ids {
-                id_files.insert(*id, file.clone());
-            }
-        }
 
-        let methods: Vec<ObjectId> = registry
-            .objects()
-            .iter()
-            .filter(|object| object.kind == meadow_model::ObjectKind::Method)
-            .map(|object| object.id)
-            .collect();
-
-        for id in methods {
-            let Some(file) = id_files.get(&id) else {
+        for sig in &state.sigs {
+            let Some(path) = &sig.path else {
                 continue;
             };
-            let start = registry
-                .get(id)
-                .sources
-                .first()
-                .map_or(0, |location| location.start);
-            let mut best: Option<usize> = None;
-            for (index, sig) in state.sigs.iter().enumerate() {
-                if used[index] || &sig.file != file || sig.end > start {
-                    continue;
-                }
-                best = match best {
-                    Some(current) if state.sigs[current].end >= sig.end => Some(current),
-                    _ => Some(index),
-                };
-            }
-            if let Some(index) = best {
-                used[index] = true;
-                apply_sig(
-                    registry,
-                    id,
-                    &state.sigs[index].info,
-                    &state.sigs[index].docstring,
-                );
-            }
+            let Some(id) = registry.id_for_path_bytes(path.as_bytes()) else {
+                continue;
+            };
+            apply_sig(registry, id, &sig.info, &sig.docstring);
         }
 
         for field in &state.struct_fields {
@@ -232,20 +210,26 @@ impl Plugin for Sorbet {
     }
 }
 
+fn method_path(context: &PluginContext<'_>, event: &MethodDefEvent) -> SourceText {
+    let scope = if context.singleton {
+        Scope::Class
+    } else {
+        match event.scope {
+            MethodScope::Instance => Scope::Instance,
+            MethodScope::Class => Scope::Class,
+        }
+    };
+    join_method_path(context.namespace_path, scope.separator(), &event.name)
+}
+
 fn apply_sig(registry: &mut Registry, id: ObjectId, info: &SigInfo, docstring: &Docstring) {
     let mut object = registry.get(id).clone();
-    if !docstring.text.is_empty() || !docstring.tags.is_empty() {
-        let mut merged = docstring.clone();
-        for tag in &object.docstring.tags {
-            let duplicate = merged
-                .tags
-                .iter()
-                .any(|existing| existing.tag == tag.tag && existing.name == tag.name);
-            if !duplicate {
-                merged.tags.push(tag.clone());
-            }
-        }
-        object.docstring = merged;
+    if object.docstring.text.is_empty() && !docstring.text.is_empty() {
+        object.docstring.text = docstring.text.clone();
+        object.docstring.summary = docstring.summary.clone();
+    }
+    for tag in &docstring.tags {
+        add_tag(&mut object, tag.clone());
     }
     for (name, types) in &info.params {
         if !has_tag(&object, "param", Some(name)) {

@@ -13,7 +13,7 @@ use meadow_model::{
     CodeObject, KindData, ObjectId, ObjectKind, Registry, Scope, SourceText, Tag, TypeExpr,
     Visibility,
 };
-use meadow_resolve::{LinkTargetResolver, expand_links, resolve_name};
+use meadow_resolve::{LinkTargetResolver, expand_links, proxy_url_for, resolve_name};
 use minijinja::Environment;
 use rayon::prelude::*;
 use serde::{Deserialize, Serialize};
@@ -1030,7 +1030,7 @@ fn render_type(
         TypeExpr::Name(name) => resolve_name(registry, name, Some(namespace)).map_or_else(
             || {
                 let text = name.to_string_lossy();
-                resolver.proxy_url(&text).map_or_else(
+                proxy_url_for(resolver, &text).map_or_else(
                     || escape_html(&text),
                     |url| {
                         format!(
@@ -1094,7 +1094,8 @@ fn ref_view(registry: &Registry, resolver: &SiteResolver, reference: meadow_mode
     match reference {
         meadow_model::Ref::Resolved(id) => view_for_id(registry, id),
         meadow_model::Ref::Proxy { name, .. } => {
-            let url = resolver.proxy_url(&name.to_string_lossy());
+            let name = name.to_string_lossy();
+            let url = proxy_url_for(resolver, &name);
             json!({"name": name, "url": url})
         }
     }

@@ -1,0 +1,10 @@
+# Copy to <meadow-checkout>/.dockerignore before building the local builder image.
+# This keeps the Docker build context to source only.
+/target
+/doc
+/.corpus
+/.meadow
+/.git
+/.github
+/rust-toolchain.toml
+__pycache__

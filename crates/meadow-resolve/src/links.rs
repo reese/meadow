@@ -32,6 +32,61 @@ pub struct ExpandedDocstring {
 
 const MAX_INCLUDE_DEPTH: usize = 8;
 
+/// Resolves an external proxy URL for an unresolved name.
+///
+/// Exact proxy entries always win. When no exact entry exists, a constant name
+/// such as `File::SEPARATOR` is linked through its parent namespace entry
+/// (`File.html#SEPARATOR`). Top-level constants such as `STDOUT` are linked
+/// through an `Object` entry (`Object.html#STDOUT`).
+#[must_use]
+pub fn proxy_url_for(resolver: &dyn LinkTargetResolver, name: &str) -> Option<String> {
+    if let Some(url) = resolver.proxy_url(name) {
+        return Some(url);
+    }
+
+    let name = name.strip_prefix("::").unwrap_or(name);
+    if name.is_empty() {
+        return None;
+    }
+    if let Some(url) = resolver.proxy_url(name) {
+        return Some(url);
+    }
+
+    if let Some((parent, constant)) = name.rsplit_once("::") {
+        if is_constant_name(constant) {
+            let parent_url = resolver.proxy_url(parent)?;
+            return anchored_url(&parent_url, constant);
+        }
+        return None;
+    }
+
+    if is_constant_name(name) {
+        let object_url = resolver.proxy_url("Object")?;
+        return anchored_url(&object_url, name);
+    }
+
+    None
+}
+
+fn is_constant_name(name: &str) -> bool {
+    let mut characters = name.chars();
+    let Some(first) = characters.next() else {
+        return false;
+    };
+    first.is_ascii_uppercase()
+        && characters.all(|character| {
+            character.is_ascii_uppercase() || character.is_ascii_digit() || character == '_'
+        })
+}
+
+fn anchored_url(base: &str, anchor: &str) -> Option<String> {
+    if base.contains('#') {
+        None
+    } else {
+        Some(format!("{base}#{anchor}"))
+    }
+}
+
 /// Expands YARD link syntax outside code spans and fenced code blocks.
 #[must_use]
 pub fn expand_links(
@@ -172,7 +227,7 @@ fn expand_link(
         let url = resolver.object_url(registry, id);
         let label = if label.is_empty() { target } else { label };
         write_markdown_link(output, label, url.as_bytes());
-    } else if let Some(url) = resolver.proxy_url(&target_text) {
+    } else if let Some(url) = proxy_url_for(resolver, &target_text) {
         let label = if label.is_empty() { target } else { label };
         write_markdown_link(output, label, url.as_bytes());
     } else {

@@ -10,7 +10,7 @@ use meadow_model::{
     Docstring, KindData, MixinEntry, ObjectId, ObjectKind, Ref, Registry, SourceText,
 };
 
-pub use links::{ExpandedDocstring, LinkTargetResolver, expand_links};
+pub use links::{ExpandedDocstring, LinkTargetResolver, expand_links, proxy_url_for};
 
 /// A warning produced while resolving names or docstrings.
 #[derive(Debug, Clone, PartialEq, Eq)]

@@ -72,8 +72,9 @@ pub struct Build {
 
 /// Builds a registry from files and directories using default options.
 ///
-/// Directories are searched recursively for `.rb` and `.rbs` files. Ruby files
-/// are handled before RBS files so signatures can augment discovered code.
+/// Directories are searched recursively for `.rb`, `.rbi`, and `.rbs` files.
+/// Ruby files are handled first, then RBIs, then RBS files so signatures can
+/// augment discovered code.
 ///
 /// # Errors
 ///
@@ -95,8 +96,8 @@ pub fn build_with(paths: &[PathBuf], options: &BuildOptions) -> io::Result<Build
         collect_files(&input_path(path, &options.project_root), &mut files)?;
     }
     files.sort_by(|left, right| {
-        is_rbs(left)
-            .cmp(&is_rbs(right))
+        file_rank(left)
+            .cmp(&file_rank(right))
             .then_with(|| left.cmp(right))
     });
     files.dedup();
@@ -187,12 +188,16 @@ fn collect_files(path: &Path, files: &mut Vec<PathBuf>) -> io::Result<()> {
 fn is_source(path: &Path) -> bool {
     matches!(
         path.extension().and_then(std::ffi::OsStr::to_str),
-        Some("rb" | "rbs")
+        Some("rb" | "rbi" | "rbs")
     )
 }
 
-fn is_rbs(path: &Path) -> bool {
-    path.extension().and_then(std::ffi::OsStr::to_str) == Some("rbs")
+fn file_rank(path: &Path) -> u8 {
+    match path.extension().and_then(std::ffi::OsStr::to_str) {
+        Some("rbi") => 1,
+        Some("rbs") => 2,
+        _ => 0,
+    }
 }
 
 #[cfg(test)]
@@ -244,5 +249,48 @@ mod tests {
         assert_eq!(build.files, 1);
         let hello = build.registry.find("Example#hello").expect("hello method");
         assert!(hello.docstring.text.contains("Says hello."));
+    }
+
+    #[test]
+    fn builds_sorbet_rbis_from_a_directory() {
+        let root = tempfile::tempdir().expect("tempdir");
+        let lib = root.path().join("lib");
+        let shims = root.path().join("sorbet/rbi/shims");
+        fs::create_dir_all(&lib).expect("create lib");
+        fs::create_dir_all(&shims).expect("create shims");
+        fs::write(
+            lib.join("example.rb"),
+            "class Example\n  def hello; end\nend\n",
+        )
+        .expect("write source");
+        fs::write(
+            shims.join("example.rbi"),
+            "class Example\n  sig { returns(String) }\n  def hello; end\nend\n",
+        )
+        .expect("write rbi");
+
+        let build = build_with(
+            &[root.path().to_path_buf()],
+            &BuildOptions {
+                project_root: root.path().to_path_buf(),
+                plugins: vec!["sorbet".to_string()],
+                ..BuildOptions::default()
+            },
+        )
+        .expect("build registry");
+
+        assert_eq!(build.files, 2);
+        let hello = build.registry.find("Example#hello").expect("hello method");
+        assert!(
+            hello.docstring.tags.iter().any(|tag| {
+                tag.tag == "return"
+                    && tag
+                        .types
+                        .as_ref()
+                        .is_some_and(|types| types.to_string() == "String")
+            }),
+            "{:?}",
+            hello.docstring.tags
+        );
     }
 }

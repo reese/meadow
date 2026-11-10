@@ -312,3 +312,107 @@ fn top_level_constants_link_to_the_top_level_page() {
     let top_level = fs::read_to_string(directory.join("top_level.html")).expect("read top level");
     assert!(top_level.contains("id=\"constant-top\""), "{top_level}");
 }
+
+fn constant_type_registry(source: &str) -> meadow_model::Registry {
+    let facts = vec![parse_source("stdlib.rb", source)];
+    build_registry(&facts)
+}
+
+#[test]
+fn stdlib_constants_use_parent_proxy_urls_in_types() {
+    let registry = constant_type_registry(
+        "class Stdlib\n  # @return [File::SEPARATOR] the separator\n  def separator; end\nend\n",
+    );
+    let directory = output_dir("stdlib-parent-constant");
+    let mut options = options(directory.clone());
+    options.proxy_urls.insert(
+        "File".to_string(),
+        "https://docs.example/file.html".to_string(),
+    );
+    render_site(&registry, &options).expect("render site");
+
+    let page = fs::read_to_string(directory.join("class-stdlib.html")).expect("read Stdlib page");
+    assert!(
+        page.contains("<a href=\"https://docs.example/file.html#SEPARATOR\">File::SEPARATOR</a>"),
+        "{page}"
+    );
+}
+
+#[test]
+fn exact_constant_proxy_urls_take_precedence_in_types() {
+    let registry = constant_type_registry(
+        "class Stdlib\n  # @return [IO::SEEK_SET] the position\n  def seek; end\nend\n",
+    );
+    let directory = output_dir("stdlib-exact-constant");
+    let mut options = options(directory.clone());
+    options
+        .proxy_urls
+        .insert("IO".to_string(), "https://docs.example/io.html".to_string());
+    options.proxy_urls.insert(
+        "IO::SEEK_SET".to_string(),
+        "https://docs.example/io.html#SEEK_SET-constant".to_string(),
+    );
+    render_site(&registry, &options).expect("render site");
+
+    let page = fs::read_to_string(directory.join("class-stdlib.html")).expect("read Stdlib page");
+    assert!(
+        page.contains(
+            "<a href=\"https://docs.example/io.html#SEEK_SET-constant\">IO::SEEK_SET</a>"
+        ),
+        "{page}"
+    );
+}
+
+#[test]
+fn top_level_constants_use_object_proxy_urls_in_types() {
+    let registry = constant_type_registry(
+        "class Stdlib\n  # @return [STDOUT] the output stream\n  def output; end\nend\n",
+    );
+    let directory = output_dir("stdlib-object-constant");
+    let mut options = options(directory.clone());
+    options.proxy_urls.insert(
+        "Object".to_string(),
+        "https://docs.example/object.html".to_string(),
+    );
+    render_site(&registry, &options).expect("render site");
+
+    let page = fs::read_to_string(directory.join("class-stdlib.html")).expect("read Stdlib page");
+    assert!(
+        page.contains("<a href=\"https://docs.example/object.html#STDOUT\">STDOUT</a>"),
+        "{page}"
+    );
+}
+
+#[test]
+fn unresolved_stdlib_constants_render_without_links() {
+    let registry = constant_type_registry(
+        "class Stdlib\n  # @return [File::SEPARATOR] the separator\n  def separator; end\nend\n",
+    );
+    let directory = output_dir("stdlib-unresolved-constant");
+    render_site(&registry, &options(directory.clone())).expect("render site");
+
+    let page = fs::read_to_string(directory.join("class-stdlib.html")).expect("read Stdlib page");
+    assert!(page.contains("File::SEPARATOR"), "{page}");
+    assert!(!page.contains("href=\"File::SEPARATOR\""), "{page}");
+    assert!(!page.contains("href=\"None\""), "{page}");
+}
+
+#[test]
+fn stdlib_constant_superclasses_use_object_proxy_urls() {
+    let facts = vec![parse_source(
+        "stdlib-superclass.rb",
+        "class Rooted < TOP\nend\n",
+    )];
+    let registry = build_registry(&facts);
+    let directory = output_dir("stdlib-superclass-constant");
+    let mut options = options(directory.clone());
+    options.proxy_urls.insert(
+        "Object".to_string(),
+        "https://docs.example/object.html".to_string(),
+    );
+    render_site(&registry, &options).expect("render site");
+
+    let page = fs::read_to_string(directory.join("class-rooted.html")).expect("read Rooted page");
+    assert!(page.contains("#TOP\">TOP</a>"), "{page}");
+    assert!(page.contains("object.html"), "{page}");
+}

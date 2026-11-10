@@ -158,3 +158,103 @@ fn expands_file_includes_and_warns_on_unresolved_links() {
     assert_eq!(missing.warnings.len(), 1);
     assert!(missing.warnings[0].contains("Cannot resolve link"));
 }
+
+fn constant_registry() -> Registry {
+    let facts = vec![parse_source(
+        "constants.rb",
+        "class ConstantsExample\n  # See {File::SEPARATOR} and {STDOUT}.\n  def links; end\nend\n",
+    )];
+    build_registry(&facts)
+}
+
+fn expand_constant_links(resolver: &FakeResolver) -> meadow_resolve::ExpandedDocstring {
+    let registry = constant_registry();
+    let method = registry.find("ConstantsExample#links").expect("links");
+    expand_links(
+        &method.docstring.text,
+        method.namespace.expect("namespace"),
+        &registry,
+        resolver,
+    )
+}
+
+#[test]
+fn derives_constant_proxy_urls_from_parent_namespaces() {
+    let mut resolver = resolver();
+    resolver.proxies.insert(
+        "File".to_string(),
+        "https://docs.example/file.html".to_string(),
+    );
+    resolver.proxies.insert(
+        "Object".to_string(),
+        "https://docs.example/object.html".to_string(),
+    );
+
+    let expanded = expand_constant_links(&resolver);
+    assert_eq!(
+        expanded.text.to_string_lossy(),
+        "See [File::SEPARATOR](https://docs.example/file.html#SEPARATOR) and \
+         [STDOUT](https://docs.example/object.html#STDOUT)."
+    );
+    assert!(expanded.warnings.is_empty(), "{:?}", expanded.warnings);
+}
+
+#[test]
+fn prefers_exact_proxy_urls_for_constants() {
+    let mut resolver = resolver();
+    resolver.proxies.insert(
+        "File".to_string(),
+        "https://docs.example/file.html".to_string(),
+    );
+    resolver.proxies.insert(
+        "File::SEPARATOR".to_string(),
+        "https://docs.example/file.html#SEPARATOR-constant".to_string(),
+    );
+
+    let expanded = expand_constant_links(&resolver);
+    assert!(
+        expanded
+            .text
+            .to_string_lossy()
+            .contains("[File::SEPARATOR](https://docs.example/file.html#SEPARATOR-constant)")
+    );
+}
+
+#[test]
+fn unresolved_constants_without_proxies_render_as_plain_text() {
+    let expanded = expand_constant_links(&resolver());
+    assert_eq!(
+        expanded.text.to_string_lossy(),
+        "See File::SEPARATOR and STDOUT."
+    );
+    assert_eq!(expanded.warnings.len(), 2);
+}
+
+#[test]
+fn normalizes_leading_colons_for_constant_proxy_urls() {
+    let registry = {
+        let facts = vec![parse_source(
+            "absolute.rb",
+            "class Absolute\n  # See {::File::SEPARATOR}.\n  def links; end\nend\n",
+        )];
+        build_registry(&facts)
+    };
+    let method = registry.find("Absolute#links").expect("links");
+    let mut resolver = resolver();
+    resolver.proxies.insert(
+        "File".to_string(),
+        "https://docs.example/file.html".to_string(),
+    );
+
+    let expanded = expand_links(
+        &method.docstring.text,
+        method.namespace.expect("namespace"),
+        &registry,
+        &resolver,
+    );
+    assert_eq!(
+        expanded.text.to_string_lossy(),
+        "See [::File::SEPARATOR](https://docs.example/file.html#SEPARATOR)."
+    );
+    assert!(expanded.warnings.is_empty(), "{:?}", expanded.warnings);
+}

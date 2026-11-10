@@ -13,8 +13,18 @@ reports differences for triage; they are not treated as failures.
   - `Struct.new`/`Class.new` constants are handled without executing Ruby.
   - ActiveRecord table/model inference uses names and `db/schema.rb`, not a
     live database or Rails initialization.
-- Unresolved constants and class names remain proxies and render without links.
-- Sorbet: RBI files and `T::Props` beyond `prop`/`const` basics are out of scope.
+- Unresolved constants and class names remain proxies. They render without links
+  unless an external proxy URL is available. Exact proxy entries win; otherwise
+  constants are linked through their parent namespace (`File::SEPARATOR` uses
+  the `File` URL plus a `#SEPARATOR` anchor, and top-level constants use an
+  `Object` URL).
+- Sorbet: `.rbi` files are supported as type-signature overlays. Declarations
+  merge into matching source objects, so RBI `sig` blocks supply parameter and
+  return types without replacing source documentation. RBI-only declarations
+  are also included. By default, generated third-party RBIs under
+  `sorbet/rbi/gems/` are not discovered; pass them explicitly if you want to
+  document them too. `T::Props` beyond `prop`/`const` basics remain out of
+  scope.
 - RBS support is declaration-level: classes, modules, methods, attributes,
   mixins, aliases, constants, instance variables, and class variables are
   merged into the registry. Interfaces, type aliases, class/module aliases, and

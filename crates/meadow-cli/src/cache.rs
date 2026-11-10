@@ -19,7 +19,7 @@ use serde::{Deserialize, Serialize};
 use crate::config::RunOptions;
 use crate::discover::discover;
 
-const FORMAT_VERSION: u32 = 4;
+const FORMAT_VERSION: u32 = 5;
 const BUILD_BATCH: usize = 128;
 
 /// A cached file state used to detect changes between runs.
@@ -186,8 +186,8 @@ fn build_streaming(
 ) -> io::Result<Built> {
     let mut ordered: Vec<&PathBuf> = paths.iter().collect();
     ordered.sort_by(|left, right| {
-        is_rbs_path(left)
-            .cmp(&is_rbs_path(right))
+        file_rank(left)
+            .cmp(&file_rank(right))
             .then_with(|| left.cmp(right))
     });
 
@@ -381,8 +381,12 @@ impl FactsWriter {
     }
 }
 
-fn is_rbs_path(path: &Path) -> bool {
-    path.extension().and_then(std::ffi::OsStr::to_str) == Some("rbs")
+fn file_rank(path: &Path) -> u8 {
+    match path.extension().and_then(std::ffi::OsStr::to_str) {
+        Some("rbi") => 1,
+        Some("rbs") => 2,
+        _ => 0,
+    }
 }
 
 fn try_surgical_update(
@@ -396,10 +400,12 @@ fn try_surgical_update(
     let Some(manifest) = manifest else {
         return Ok(None);
     };
-    if paths
-        .iter()
-        .any(|path| path.extension().and_then(std::ffi::OsStr::to_str) == Some("rbs"))
-    {
+    if paths.iter().any(|path| {
+        matches!(
+            path.extension().and_then(std::ffi::OsStr::to_str),
+            Some("rbi" | "rbs")
+        )
+    }) {
         return Ok(None);
     }
     let Ok(mut registry) = read_bincode::<Registry>(&db.join("registry.bin")) else {

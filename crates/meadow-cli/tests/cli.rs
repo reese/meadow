@@ -120,6 +120,67 @@ fn discovers_app_and_sig_rbs_by_default() {
 }
 
 #[test]
+fn discovers_sorbet_rbis_by_default() {
+    let directory = temp_directory("rbi");
+    fs::create_dir_all(directory.join("lib")).expect("create lib");
+    fs::create_dir_all(directory.join("sorbet/rbi/shims")).expect("create shims");
+    fs::create_dir_all(directory.join("sorbet/rbi/annotations")).expect("create annotations");
+    fs::create_dir_all(directory.join("sorbet/rbi/gems")).expect("create gems");
+    fs::create_dir_all(directory.join("rbi")).expect("create rbi");
+    fs::write(
+        directory.join("lib/demo.rb"),
+        "class Demo\n  def greet; end\nend\n",
+    )
+    .expect("write demo");
+    fs::write(
+        directory.join("sorbet/rbi/shims/demo.rbi"),
+        "class Demo\n  sig { returns(String) }\n  def shimmed; end\nend\n",
+    )
+    .expect("write shim");
+    fs::write(
+        directory.join("sorbet/rbi/annotations/annotated.rbi"),
+        "class AnnotatedGem\n  sig { returns(Integer) }\n  def typed; end\nend\n",
+    )
+    .expect("write annotation rbi");
+    fs::write(
+        directory.join("sorbet/rbi/gems/external.rbi"),
+        "class ExternalGem\n  def hidden; end\nend\n",
+    )
+    .expect("write gem rbi");
+    fs::write(
+        directory.join("rbi/extra.rbi"),
+        "class ExtraRbi\n  def visible; end\nend\n",
+    )
+    .expect("write extra rbi");
+
+    let output = run(&directory, &["list", "--format", "json"]);
+    assert!(
+        output.status.success(),
+        "{}",
+        String::from_utf8_lossy(&output.stderr)
+    );
+    let value: serde_json::Value = serde_json::from_slice(&output.stdout).expect("json");
+    let entries = value.as_array().expect("array");
+    assert!(entries.iter().any(|entry| entry["path"] == "Demo#shimmed"));
+    assert!(
+        entries
+            .iter()
+            .any(|entry| entry["path"] == "ExtraRbi#visible")
+    );
+    assert!(
+        entries
+            .iter()
+            .any(|entry| entry["path"] == "AnnotatedGem#typed")
+    );
+    assert!(
+        !entries
+            .iter()
+            .any(|entry| entry["path"] == "ExternalGem#hidden"),
+        "third-party gem RBIs should not be discovered by default"
+    );
+}
+
+#[test]
 fn lists_and_filters_objects() {
     let directory = project();
     let output = run(

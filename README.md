@@ -28,10 +28,12 @@ From the root of a Ruby project:
 meadow doc
 ```
 
-By default this reads Ruby/RBS files from `lib/`, `app/`, and `ext/`, reads RBS
-signatures from `lib/`, `app/`, and `sig/`, writes the site to `doc/`, and uses
-`README.md` as the landing page when present. Open `doc/index.html` to view the
-result.
+By default this reads Ruby files from `lib/`, `app/`, and `ext/`, reads RBS
+signatures from `lib/`, `app/`, and `sig/`, reads Sorbet RBI files from
+`lib/`, `app/`, `ext/`, `sorbet/rbi/annotations/`, `sorbet/rbi/shims/`,
+`sorbet/rbi/dsl/`, `sorbet/rbi_generated/`, and `rbi/`, writes the site to
+`doc/`, and uses `README.md` as the landing page when present. Open
+`doc/index.html` to view the result.
 
 Pass files, directories, or globs explicitly if your sources live elsewhere:
 
@@ -91,8 +93,8 @@ to your `.gitignore`.
 
 Two plugins are built in:
 
-- `sorbet` — reads Sorbet `sig` blocks, `T::Struct`/`T::Props` definitions, and
-  `T.let` annotations.
+- `sorbet` — reads Sorbet `sig` blocks, `T::Struct`/`T::Props` definitions,
+  `T.let` annotations, and `.rbi` signature files.
 - `activerecord` — infers model columns, associations, scopes, and enums from
   `db/schema.rb` and ActiveRecord superclasses.
 

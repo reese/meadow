@@ -106,6 +106,7 @@ pub struct Handler {
     plugins: Vec<Box<dyn Plugin>>,
     file: SourceText,
     rbs: bool,
+    rbi: bool,
 }
 
 impl Default for Handler {
@@ -130,6 +131,7 @@ impl Handler {
             plugins: Vec::new(),
             file: SourceText::default(),
             rbs: false,
+            rbi: false,
         }
     }
 
@@ -148,6 +150,7 @@ impl Handler {
             plugins,
             file: SourceText::default(),
             rbs: false,
+            rbi: false,
         }
     }
 
@@ -164,6 +167,7 @@ impl Handler {
     pub fn handle_file(&mut self, facts: &FileFacts) {
         self.file = SourceText::from_bytes(facts.path.to_string_lossy().as_bytes());
         self.rbs = facts.path.extension().and_then(std::ffi::OsStr::to_str) == Some("rbs");
+        self.rbi = facts.path.extension().and_then(std::ffi::OsStr::to_str) == Some("rbi");
         let base_depth = self.frames.len();
 
         for event in &facts.events {
@@ -237,14 +241,26 @@ impl Handler {
             return;
         }
 
+        let namespace = match event {
+            Event::MethodDef(event) => self.method_namespace(event),
+            _ => self.current_namespace(),
+        };
+        let namespace_path = &self.registry.get(namespace).path;
         let context = PluginContext {
             file: &self.file,
-            namespace: self.current_namespace(),
+            namespace,
+            namespace_path,
+            singleton: self.current_frame().singleton,
         };
         for plugin in &self.plugins {
             if plugin.on_event(event, &context) == Handled::Yes {
                 return;
             }
+        }
+
+        if self.rbi {
+            self.handle_rbi_event(event);
+            return;
         }
 
         match event {
@@ -282,6 +298,26 @@ impl Handler {
             Event::ClassVariableWrite(event) => self.rbs_class_variable_write(event),
             Event::Alias(event) => self.rbs_alias(event),
             Event::Call(event) => self.rbs_call(event),
+        }
+    }
+
+    fn handle_rbi_event(&mut self, event: &Event) {
+        match event {
+            Event::ClassOpen(event) => self.class_open(event),
+            Event::ClassClose(_) | Event::ModuleClose(_) | Event::SingletonClassClose(_) => {
+                if self.frames.len() > 1 {
+                    self.frames.pop();
+                }
+            }
+            Event::ModuleOpen(event) => self.module_open(event),
+            Event::SingletonClassOpen(event) => self.singleton_class_open(event),
+            Event::MethodDef(event) => self.rbi_method_def(event),
+            Event::ConstantWrite(event) => self.rbs_constant_write(event),
+            Event::InstanceVariableWrite(event) => self.rbs_instance_variable_write(event),
+            Event::ClassVariableWrite(event) => self.rbs_class_variable_write(event),
+            Event::Alias(event) => self.rbs_alias(event),
+            Event::Call(event) => self.call(event),
+            Event::Comment(event) => self.free_comment(event),
         }
     }
 
@@ -341,6 +377,44 @@ impl Handler {
             attr: None,
             alias_of: None,
             dynamic: true,
+            location: event.location,
+        });
+    }
+
+    fn rbi_method_def(&mut self, event: &MethodDefEvent) {
+        let namespace = self.method_namespace(event);
+        let scope = if self.current_frame().singleton {
+            Scope::Class
+        } else {
+            match event.scope {
+                MethodScope::Instance => Scope::Instance,
+                MethodScope::Class => Scope::Class,
+            }
+        };
+        let docstring = self.docstring(event.docstring.as_ref(), None);
+        let namespace_path = self.registry.get(namespace).path.clone();
+        let path = join_path(&namespace_path, scope.separator(), &event.name);
+
+        if let Some(existing) = self.registry.id_for_path_bytes(path.as_bytes()) {
+            merge_docstring(&mut self.registry.get_mut(existing).docstring, &docstring);
+            self.registry.add_source(existing, event.location);
+            self.registry.register_file(&self.file, existing);
+            return;
+        }
+
+        self.insert_method(MethodInput {
+            namespace,
+            name: event.name.clone(),
+            scope,
+            params: convert_params(&event.parameters),
+            source: event.source.clone(),
+            signature: event.signature.clone(),
+            docstring,
+            visibility: self.current_frame().visibility,
+            explicit: true,
+            attr: None,
+            alias_of: None,
+            dynamic: false,
             location: event.location,
         });
     }
@@ -1487,13 +1561,17 @@ impl Handler {
             return Docstring::default();
         };
         let options = DocstringOptions {
-            warn_unknown_tags: true,
+            warn_unknown_tags: !self.rbi,
             validate_params: parameter_names.is_some(),
             parameter_names: parameter_names.map_or_else(Vec::new, <[SourceText]>::to_vec),
         };
         let parsed = parse_docstring(&docstring.text, docstring.location, &options);
         self.warnings.extend(parsed.warnings);
-        parsed.docstring
+        if self.rbi {
+            meadow_plugins::sanitize_generated_docstring(parsed.docstring)
+        } else {
+            parsed.docstring
+        }
     }
 
     fn free_comment(&mut self, event: &CommentEvent) {
@@ -2466,17 +2544,19 @@ fn write_macro_args(arguments: &[SourceText], output: &mut Vec<u8>) {
 fn ordered_facts(files: &[FileFacts]) -> Vec<&FileFacts> {
     let mut sorted: Vec<&FileFacts> = files.iter().collect();
     sorted.sort_by(|left, right| {
-        let left_rbs = is_rbs_path(&left.path);
-        let right_rbs = is_rbs_path(&right.path);
-        left_rbs
-            .cmp(&right_rbs)
+        file_rank(&left.path)
+            .cmp(&file_rank(&right.path))
             .then_with(|| left.path.cmp(&right.path))
     });
     sorted
 }
 
-fn is_rbs_path(path: &Path) -> bool {
-    path.extension().and_then(std::ffi::OsStr::to_str) == Some("rbs")
+fn file_rank(path: &Path) -> u8 {
+    match path.extension().and_then(std::ffi::OsStr::to_str) {
+        Some("rbi") => 1,
+        Some("rbs") => 2,
+        _ => 0,
+    }
 }
 
 fn merge_docstring(into: &mut Docstring, from: &Docstring) {

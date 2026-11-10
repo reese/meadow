@@ -13,10 +13,19 @@ pub fn discover(options: &RunOptions) -> Vec<PathBuf> {
         vec![
             "lib/**/*.rb".to_string(),
             "lib/**/*.rbs".to_string(),
+            "lib/**/*.rbi".to_string(),
             "app/**/*.rb".to_string(),
             "app/**/*.rbs".to_string(),
+            "app/**/*.rbi".to_string(),
             "sig/**/*.rbs".to_string(),
             "ext/**/*.rb".to_string(),
+            "ext/**/*.rbi".to_string(),
+            "sorbet/rbi/*.rbi".to_string(),
+            "sorbet/rbi/annotations/**/*.rbi".to_string(),
+            "sorbet/rbi/shims/**/*.rbi".to_string(),
+            "sorbet/rbi/dsl/**/*.rbi".to_string(),
+            "sorbet/rbi_generated/**/*.rbi".to_string(),
+            "rbi/**/*.rbi".to_string(),
         ]
     } else {
         options.inputs.clone()
@@ -43,7 +52,7 @@ pub fn discover(options: &RunOptions) -> Vec<PathBuf> {
             if path.is_file() {
                 files.push(path.to_path_buf());
             } else if path.is_dir() {
-                for extension in ["rb", "rbs"] {
+                for extension in ["rb", "rbi", "rbs"] {
                     let nested = format!("{}/**/*.{extension}", path.display());
                     if let Ok(entries) = glob(&nested) {
                         for entry in entries.flatten() {

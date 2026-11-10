@@ -13,9 +13,19 @@ fn workspace_root() -> PathBuf {
 }
 
 fn registry(name: &str, plugins: &[&str]) -> Registry {
-    let relative = format!("tests/fixtures/{name}");
-    let source = fs::read_to_string(workspace_root().join(&relative)).expect("read fixture");
-    let facts = parse_source(relative, &source);
+    registry_files(&[name], plugins)
+}
+
+fn registry_files(names: &[&str], plugins: &[&str]) -> Registry {
+    let facts = names
+        .iter()
+        .map(|name| {
+            let relative = format!("tests/fixtures/{name}");
+            let source =
+                fs::read_to_string(workspace_root().join(&relative)).expect("read fixture");
+            parse_source(relative, &source)
+        })
+        .collect::<Vec<_>>();
     let plugins = builtin_plugins(
         &plugins
             .iter()
@@ -23,7 +33,7 @@ fn registry(name: &str, plugins: &[&str]) -> Registry {
             .collect::<Vec<_>>(),
         &workspace_root().join("tests/fixtures"),
     );
-    build_registry_with_plugins(&[facts], plugins)
+    build_registry_with_plugins(&facts, plugins)
 }
 
 fn tag_types(registry: &Registry, path: &str, tag: &str, name: Option<&str>) -> Vec<String> {
@@ -141,6 +151,61 @@ fn sorbet_synthesizes_tags_and_types() {
     assert_eq!(
         tag_types(&registry, "SorbetExample#@value", "return", None),
         vec!["Integer"]
+    );
+}
+
+#[test]
+fn sorbet_rbi_files_augment_source_types() {
+    let registry = registry_files(&["sorbet_rbi.rb", "sorbet_rbi.rbi"], &["sorbet"]);
+
+    let greet = registry.find("RbiExample#greet").expect("greet");
+    assert_eq!(greet.docstring.text, "Original source docs.");
+    assert_eq!(
+        tag_types(&registry, "RbiExample#greet", "param", Some("name")),
+        vec!["Symbol"]
+    );
+    assert_eq!(
+        tag_types(&registry, "RbiExample#greet", "return", None),
+        vec!["Symbol"]
+    );
+    assert!(
+        greet.docstring.tags.iter().any(|tag| tag.tag == "version"),
+        "{:?}",
+        greet.docstring.tags
+    );
+
+    assert_eq!(
+        tag_types(&registry, "RbiExample#undocumented", "param", Some("value")),
+        vec!["Integer"]
+    );
+    assert_eq!(
+        tag_types(&registry, "RbiExample#undocumented", "return", None),
+        vec!["Integer"]
+    );
+
+    assert_eq!(
+        tag_types(&registry, "RbiExample.toggle", "param", Some("flag")),
+        vec!["true, false"]
+    );
+    assert_eq!(
+        tag_types(&registry, "RbiExample.toggle", "return", None),
+        vec!["true, false"]
+    );
+
+    assert_eq!(
+        tag_types(&registry, "RbiExample::RBI_CONST", "return", None),
+        vec!["Integer"]
+    );
+
+    let shimmed = registry.find("RbiOnly#shimmed").expect("shimmed");
+    assert_eq!(
+        tag_types(&registry, "RbiOnly#shimmed", "return", None),
+        vec!["String"]
+    );
+    assert!(
+        !shimmed.docstring.text.contains("pkg:gem/"),
+        "{}",
+        shimmed.docstring.text
     );
 }
 
