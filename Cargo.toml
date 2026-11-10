@@ -1,6 +1,7 @@
 [workspace]
 resolver = "3"
 members = [
+    "crates/meadow",
     "crates/meadow-cli",
     "crates/meadow-docstring",
     "crates/meadow-handlers",
@@ -42,14 +43,15 @@ minijinja = "3.1"
 proptest = { version = "1.12", default-features = false, features = ["std"] }
 toml = { version = "1.2", default-features = false, features = ["parse", "serde", "std"] }
 
-meadow-docstring = { path = "crates/meadow-docstring" }
-meadow-handlers = { path = "crates/meadow-handlers" }
-meadow-html = { path = "crates/meadow-html" }
-meadow-markup = { path = "crates/meadow-markup" }
-meadow-model = { path = "crates/meadow-model" }
-meadow-parser = { path = "crates/meadow-parser" }
-meadow-plugins = { path = "crates/meadow-plugins" }
-meadow-resolve = { path = "crates/meadow-resolve" }
+meadow = { path = "crates/meadow", version = "0.1.0" }
+meadow-docstring = { path = "crates/meadow-docstring", version = "0.1.0" }
+meadow-handlers = { path = "crates/meadow-handlers", version = "0.1.0" }
+meadow-html = { path = "crates/meadow-html", version = "0.1.0" }
+meadow-markup = { path = "crates/meadow-markup", version = "0.1.0" }
+meadow-model = { path = "crates/meadow-model", version = "0.1.0" }
+meadow-parser = { path = "crates/meadow-parser", version = "0.1.0" }
+meadow-plugins = { path = "crates/meadow-plugins", version = "0.1.0" }
+meadow-resolve = { path = "crates/meadow-resolve", version = "0.1.0" }
 
 [workspace.lints.rust]
 unsafe_code = "forbid"

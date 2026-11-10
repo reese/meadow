@@ -488,7 +488,7 @@ impl Handler {
         for member in struct_members {
             self.add_struct_member(id, &member, &docstring, event.location);
         }
-        self.apply_directives(id, &docstring, event.location);
+        self.apply_directives(id, Some(id), &docstring, event.location);
         self.frames.push(Frame::new(id, false));
     }
 
@@ -496,7 +496,7 @@ impl Handler {
         let path = self.qualify_path(&event.name);
         let docstring = self.docstring(event.docstring.as_ref(), None);
         let id = self.ensure_namespace(ObjectKind::Module, &path, None, &docstring, event.location);
-        self.apply_directives(id, &docstring, event.location);
+        self.apply_directives(id, Some(id), &docstring, event.location);
         self.frames.push(Frame::new(id, false));
     }
 
@@ -567,7 +567,7 @@ impl Handler {
             });
         }
 
-        self.apply_directives(namespace, &docstring, event.location);
+        self.apply_directives(namespace, Some(id), &docstring, event.location);
         self.method_ranges.push(event.location.end);
     }
 
@@ -601,7 +601,7 @@ impl Handler {
                         self.add_struct_member(id, &name, &docstring, event.location);
                     }
                 }
-                self.apply_directives(id, &docstring, event.location);
+                self.apply_directives(id, Some(id), &docstring, event.location);
                 return;
             }
             if call
@@ -621,7 +621,7 @@ impl Handler {
                     &docstring,
                     event.location,
                 );
-                self.apply_directives(id, &docstring, event.location);
+                self.apply_directives(id, Some(id), &docstring, event.location);
                 return;
             }
         }
@@ -642,7 +642,7 @@ impl Handler {
             docstring: docstring.clone(),
             location: event.location,
         });
-        self.apply_directives(namespace, &docstring, event.location);
+        self.apply_directives(namespace, Some(id), &docstring, event.location);
         let _ = id;
     }
 
@@ -680,6 +680,11 @@ impl Handler {
         location: SourceLocation,
     ) {
         let visibility = self.current_frame().visibility;
+        let mut docstring = docstring.clone();
+        self.expand_nested_macros(namespace, &mut docstring, location, 0);
+        docstring
+            .tags
+            .retain(|tag| !tag.tag.as_bytes().starts_with(b"!"));
         self.insert_method(MethodInput {
             namespace,
             name: name.clone(),
@@ -734,7 +739,7 @@ impl Handler {
             value_source: event.value_source.clone(),
         };
         let docstring = self.docstring(event.docstring.as_ref(), None);
-        self.insert_named(NamedInput {
+        let id = self.insert_named(NamedInput {
             namespace,
             kind: ObjectKind::ClassVariable,
             name: event.name.clone(),
@@ -743,7 +748,7 @@ impl Handler {
             docstring: docstring.clone(),
             location: event.location,
         });
-        self.apply_directives(namespace, &docstring, event.location);
+        self.apply_directives(namespace, Some(id), &docstring, event.location);
     }
 
     fn alias_method(&mut self, event: &AliasEvent) {
@@ -863,7 +868,11 @@ impl Handler {
         );
         let parameter_names: Vec<SourceText> =
             params.iter().map(|param| param.name.clone()).collect();
-        let docstring = self.docstring(event.docstring.as_ref(), Some(&parameter_names));
+        let mut docstring = self.docstring(event.docstring.as_ref(), Some(&parameter_names));
+        self.expand_nested_macros(namespace, &mut docstring, event.location, 0);
+        docstring
+            .tags
+            .retain(|tag| !tag.tag.as_bytes().starts_with(b"!"));
         let signature = signature_for(&name, &params);
         self.insert_method(MethodInput {
             namespace,
@@ -902,7 +911,7 @@ impl Handler {
 
         if let Some(raw_docstring) = event.docstring.as_ref() {
             let docstring = self.docstring(Some(raw_docstring), None);
-            self.apply_directives(namespace, &docstring, event.location);
+            self.apply_directives(namespace, None, &docstring, event.location);
         }
 
         let created = (before..self.registry.objects().len())
@@ -1060,7 +1069,11 @@ impl Handler {
         let namespace = self.current_namespace();
         let scope = self.default_scope();
         let visibility = self.current_frame().visibility;
-        let docstring = self.docstring(event.docstring.as_ref(), None);
+        let mut docstring = self.docstring(event.docstring.as_ref(), None);
+        self.expand_nested_macros(namespace, &mut docstring, event.location, 0);
+        docstring
+            .tags
+            .retain(|tag| !tag.tag.as_bytes().starts_with(b"!"));
         let kind = event.name.as_bytes();
         let is_attr = kind == b"attr";
 
@@ -1487,12 +1500,13 @@ impl Handler {
         let parsed = parse_docstring(&event.text, event.location, &options);
         self.warnings.extend(parsed.warnings);
         let namespace = self.current_namespace();
-        self.apply_directives(namespace, &parsed.docstring, event.location);
+        self.apply_directives(namespace, None, &parsed.docstring, event.location);
     }
 
     fn apply_directives(
         &mut self,
         namespace: ObjectId,
+        target: Option<ObjectId>,
         docstring: &Docstring,
         location: SourceLocation,
     ) {
@@ -1529,7 +1543,7 @@ impl Handler {
                     index += 1;
                 }
                 b"!macro" => {
-                    self.define_macro(namespace, &tag);
+                    self.define_macro_directive(namespace, target, &tag, location);
                     index += 1;
                 }
                 b"!parse" => {
@@ -1567,36 +1581,172 @@ impl Handler {
                 _ => index += 1,
             }
         }
+
+        if let Some(target) = target {
+            let mut docstring = self.registry.get(target).docstring.clone();
+            self.expand_nested_tag_docstrings(namespace, &mut docstring, location, 0);
+            docstring
+                .tags
+                .retain(|tag| !tag.tag.as_bytes().starts_with(b"!"));
+            self.registry.get_mut(target).docstring = docstring;
+        }
     }
 
-    fn define_macro(&mut self, namespace: ObjectId, tag: &meadow_model::Tag) {
-        let mut rest = trim_bytes(tag.text.as_bytes());
-        let mut attach = false;
-        if rest.starts_with(b"[")
-            && let Some(end) = rest.iter().position(|byte| *byte == b']')
-        {
-            attach = &rest[1..end] == b"attach";
-            rest = trim_bytes(&rest[end + 1..]);
-        }
-
-        let name_end = rest
-            .iter()
-            .position(u8::is_ascii_whitespace)
-            .unwrap_or(rest.len());
-        let name = SourceText::from_bytes(&rest[..name_end]);
-        let body = dedent_bytes(&rest[name_end..]);
-        if name.is_empty() {
+    fn expand_nested_tag_docstrings(
+        &mut self,
+        namespace: ObjectId,
+        docstring: &mut Docstring,
+        location: SourceLocation,
+        depth: usize,
+    ) {
+        if depth >= 32 {
             return;
         }
+        for tag in &mut docstring.tags {
+            if tag.tag.as_bytes().starts_with(b"!") {
+                continue;
+            }
+            if let Some(nested) = &mut tag.docstring {
+                self.expand_nested_macros(namespace, nested, location, depth + 1);
+                nested
+                    .tags
+                    .retain(|nested_tag| !nested_tag.tag.as_bytes().starts_with(b"!"));
+            }
+        }
+    }
 
-        self.macros.push(MacroDef {
-            namespace,
-            name: name.clone(),
-            body: SourceText::from_vec(body),
-            attached_to: None,
-        });
-        if attach {
-            self.pending_attach = Some(name);
+    fn define_macro_directive(
+        &mut self,
+        namespace: ObjectId,
+        target: Option<ObjectId>,
+        tag: &meadow_model::Tag,
+        location: SourceLocation,
+    ) {
+        let (name, body, attach) = macro_parts(tag);
+        if !body.is_empty() && !name.is_empty() {
+            self.macros.push(MacroDef {
+                namespace,
+                name: name.clone(),
+                body: body.clone(),
+                attached_to: None,
+            });
+            if attach {
+                self.pending_attach = Some(name.clone());
+            }
+        }
+        if let Some(target) = target
+            && !attach
+        {
+            if body.is_empty() {
+                if let Some(definition) = self.find_macro(namespace, &name) {
+                    self.apply_macro_body(namespace, target, &definition.body, location);
+                }
+            } else {
+                self.apply_macro_body(namespace, target, &body, location);
+            }
+        }
+    }
+
+    fn apply_macro_body(
+        &mut self,
+        namespace: ObjectId,
+        target: ObjectId,
+        body: &SourceText,
+        location: SourceLocation,
+    ) {
+        let mut docstring = self.expand_macro_text(namespace, body, location, 0);
+        // Directives embedded in a macro body (visibility, groups, generated
+        // methods, and so on) apply to the object receiving the macro.
+        self.apply_directives(namespace, Some(target), &docstring, location);
+        docstring
+            .tags
+            .retain(|tag| !tag.tag.as_bytes().starts_with(b"!"));
+        append_docstring(&mut self.registry.get_mut(target).docstring, &docstring);
+    }
+
+    fn expand_macro_text(
+        &mut self,
+        namespace: ObjectId,
+        body: &SourceText,
+        location: SourceLocation,
+        depth: usize,
+    ) -> Docstring {
+        let options = DocstringOptions {
+            warn_unknown_tags: true,
+            ..DocstringOptions::default()
+        };
+        let parsed = parse_docstring(body, location, &options);
+        self.warnings.extend(parsed.warnings);
+        let mut docstring = parsed.docstring;
+        if depth < 32 {
+            self.expand_nested_macros(namespace, &mut docstring, location, depth);
+        }
+        docstring
+    }
+
+    fn expand_nested_macros(
+        &mut self,
+        namespace: ObjectId,
+        docstring: &mut Docstring,
+        location: SourceLocation,
+        depth: usize,
+    ) {
+        let tags = std::mem::take(&mut docstring.tags);
+        let mut expanded_tags = Vec::with_capacity(tags.len());
+        let mut expanded_text = Vec::new();
+
+        for mut tag in tags {
+            if tag.tag.as_bytes() != b"!macro" {
+                if let Some(nested) = &mut tag.docstring {
+                    self.expand_nested_macros(namespace, nested, location, depth + 1);
+                    nested
+                        .tags
+                        .retain(|nested_tag| !nested_tag.tag.as_bytes().starts_with(b"!"));
+                }
+                expanded_tags.push(tag);
+                continue;
+            }
+
+            let (name, body, attach) = macro_parts(&tag);
+            if !body.is_empty() && !name.is_empty() {
+                self.macros.push(MacroDef {
+                    namespace,
+                    name: name.clone(),
+                    body: body.clone(),
+                    attached_to: None,
+                });
+                if !attach {
+                    let nested = self.expand_macro_text(namespace, &body, location, depth + 1);
+                    if !nested.text.is_empty() {
+                        expanded_text.push(nested.text);
+                    }
+                    expanded_tags.extend(nested.tags);
+                }
+            } else if !name.is_empty()
+                && let Some(definition) = self.find_macro(namespace, &name)
+            {
+                let nested =
+                    self.expand_macro_text(namespace, &definition.body, location, depth + 1);
+                if !nested.text.is_empty() {
+                    expanded_text.push(nested.text);
+                }
+                expanded_tags.extend(nested.tags);
+            }
+        }
+
+        docstring.tags = expanded_tags;
+        for text in expanded_text {
+            if docstring.text.is_empty() {
+                docstring.text = text;
+            } else {
+                let mut combined = docstring.text.as_bytes().to_vec();
+                combined.extend_from_slice(b"\n\n");
+                combined.extend_from_slice(text.as_bytes());
+                docstring.text = SourceText::from_vec(combined);
+            }
+            if docstring.summary.is_empty() {
+                docstring.summary = docstring.text.clone();
+            }
         }
     }
 
@@ -1643,6 +1793,10 @@ impl Handler {
 
         let mut docstring = self.parse_directive_text(&dedent_bytes(body), location);
         docstring.tags.extend_from_slice(sub_tags);
+        self.expand_nested_macros(namespace, &mut docstring, location, 0);
+        docstring
+            .tags
+            .retain(|tag| !tag.tag.as_bytes().starts_with(b"!"));
         let method_scope = scope.unwrap_or(match method.scope {
             MethodScope::Instance => Scope::Instance,
             MethodScope::Class => Scope::Class,
@@ -1700,6 +1854,10 @@ impl Handler {
 
         let mut docstring = self.parse_directive_text(&dedent_bytes(body), location);
         docstring.tags.extend_from_slice(sub_tags);
+        self.expand_nested_macros(namespace, &mut docstring, location, 0);
+        docstring
+            .tags
+            .retain(|tag| !tag.tag.as_bytes().starts_with(b"!"));
         let scope = scope.unwrap_or(Scope::Instance);
         let visibility = visibility.unwrap_or_else(|| self.current_frame().visibility);
 
@@ -1777,20 +1935,15 @@ impl Handler {
                 continue;
             };
             let expanded = expand_macro_body(&definition.body, &call);
-            let options = DocstringOptions {
-                warn_unknown_tags: true,
-                ..DocstringOptions::default()
-            };
-            let parsed = parse_docstring(&expanded, call.location, &options);
-            self.warnings.extend(parsed.warnings);
+            let docstring = self.expand_macro_text(call.namespace, &expanded, call.location, 0);
 
             if call.created.is_empty() {
-                self.apply_directives(call.namespace, &parsed.docstring, call.location);
+                self.apply_directives(call.namespace, None, &docstring, call.location);
             } else {
                 for id in call.created {
-                    let mut docstring = self.registry.get(id).docstring.clone();
-                    merge_docstring(&mut docstring, &parsed.docstring);
-                    self.registry.get_mut(id).docstring = docstring;
+                    let mut existing = self.registry.get(id).docstring.clone();
+                    merge_docstring(&mut existing, &docstring);
+                    self.registry.get_mut(id).docstring = existing;
                 }
             }
         }
@@ -2154,6 +2307,51 @@ fn dedent_bytes(raw: &[u8]) -> Vec<u8> {
     result
 }
 
+fn macro_parts(tag: &meadow_model::Tag) -> (SourceText, SourceText, bool) {
+    let mut name = trim_bytes(tag.name.as_ref().map_or(&[][..], |name| name.as_bytes()));
+    let mut attach = false;
+    if name.starts_with(b"[")
+        && let Some(end) = name.iter().position(|byte| *byte == b']')
+    {
+        attach = &name[1..end] == b"attach";
+        name = trim_bytes(&name[end + 1..]);
+    }
+    (
+        SourceText::from_bytes(name),
+        SourceText::from_vec(dedent_bytes(tag.text.as_bytes())),
+        attach,
+    )
+}
+
+fn append_docstring(into: &mut Docstring, from: &Docstring) {
+    if !from.text.is_empty() {
+        if into.text.is_empty() {
+            into.text = from.text.clone();
+        } else {
+            let mut text = into.text.as_bytes().to_vec();
+            text.extend_from_slice(b"\n\n");
+            text.extend_from_slice(from.text.as_bytes());
+            into.text = SourceText::from_vec(text);
+        }
+    }
+    if into.summary.is_empty() {
+        into.summary = from.summary.clone();
+    }
+    for tag in &from.tags {
+        if tag.tag.as_bytes().starts_with(b"!") {
+            continue;
+        }
+        let duplicate = into.tags.iter().any(|existing| {
+            existing.tag == tag.tag
+                && existing.name == tag.name
+                && (tag.tag.as_bytes() != b"overload" || existing.text == tag.text)
+        });
+        if !duplicate {
+            into.tags.push(tag.clone());
+        }
+    }
+}
+
 fn expand_macro_body(body: &SourceText, call: &RecordedCall) -> SourceText {
     let input = body.as_bytes();
     let mut output = Vec::with_capacity(input.len());
@@ -2316,8 +2514,9 @@ fn constant_reference(value: &SourceText) -> bool {
 
 #[cfg(test)]
 mod tests {
-    use super::{RecordedCall, expand_macro_body};
+    use super::{RecordedCall, build_registry, expand_macro_body};
     use meadow_model::{ObjectId, SourceLocation, SourceText};
+    use meadow_parser::parse_source;
 
     use proptest::prelude::*;
 
@@ -2335,6 +2534,161 @@ mod tests {
                 end_line: 1,
             },
         }
+    }
+
+    #[test]
+    fn expands_macros_defined_on_objects() {
+        let source = r"
+class Example
+  # @!macro greeting
+  #
+  #   Says hello.
+  #
+  #   @param [String] name the person
+  #   @return [String] a greeting
+  def hello(name); end
+
+  # @!macro greeting
+  def also_hello(name); end
+
+  # @!macro
+  #   An anonymous macro body.
+  def anonymous; end
+end
+";
+        let registry = build_registry(&[parse_source("example.rb", source)]);
+        let hello = registry.find("Example#hello").expect("hello method");
+        assert!(
+            hello
+                .docstring
+                .text
+                .to_string_lossy()
+                .contains("Says hello.")
+        );
+        assert_eq!(hello.docstring.tags.len(), 2);
+        assert_eq!(hello.docstring.tags[0].tag, "param");
+        assert_eq!(hello.docstring.tags[1].tag, "return");
+        assert!(
+            hello
+                .docstring
+                .tags
+                .iter()
+                .all(|tag| !tag.tag.as_bytes().starts_with(b"!"))
+        );
+
+        let also = registry
+            .find("Example#also_hello")
+            .expect("also_hello method");
+        assert!(
+            also.docstring
+                .text
+                .to_string_lossy()
+                .contains("Says hello.")
+        );
+        assert_eq!(also.docstring.tags.len(), 2);
+
+        let anonymous = registry
+            .find("Example#anonymous")
+            .expect("anonymous method");
+        assert!(
+            anonymous
+                .docstring
+                .text
+                .to_string_lossy()
+                .contains("An anonymous macro body.")
+        );
+    }
+
+    #[test]
+    fn expands_nested_macro_references() {
+        let source = r"
+# @!macro shared
+#   Shared prose.
+#
+class Nested
+  # @!macro bundle
+  #
+  #   Bundle prose.
+  #
+  #   @!macro shared
+  #   @return [Object] result
+  def value; end
+end
+";
+        let registry = build_registry(&[parse_source("nested.rb", source)]);
+        let value = registry.find("Nested#value").expect("value method");
+        let text = value.docstring.text.to_string_lossy();
+        assert!(text.contains("Bundle prose."), "{text}");
+        assert!(text.contains("Shared prose."), "{text}");
+        assert_eq!(value.docstring.tags.len(), 1);
+        assert_eq!(value.docstring.tags[0].tag, "return");
+    }
+
+    #[test]
+    fn expands_macros_in_method_directives() {
+        let source = r"
+# @!macro shared
+#   Shared prose.
+#
+class DirectiveMacros
+  # @!method generated
+  #   @!macro shared
+  #   @return [String] result
+end
+";
+        let registry = build_registry(&[parse_source("directive_macros.rb", source)]);
+        let generated = registry
+            .find("DirectiveMacros#generated")
+            .expect("generated method");
+        assert!(
+            generated
+                .docstring
+                .text
+                .to_string_lossy()
+                .contains("Shared prose.")
+        );
+        assert_eq!(generated.docstring.tags.len(), 1);
+        assert_eq!(generated.docstring.tags[0].tag, "return");
+        assert!(
+            generated
+                .docstring
+                .tags
+                .iter()
+                .all(|tag| !tag.tag.as_bytes().starts_with(b"!"))
+        );
+    }
+
+    #[test]
+    fn expands_macros_in_overload_subdocstrings() {
+        let source = r"
+# @!macro shared
+#   Shared prose.
+#
+class Overloaded
+  # @overload run(value)
+  #   @!macro shared
+  #   @param [Object] value the value
+  def run(value); end
+end
+";
+        let registry = build_registry(&[parse_source("overloaded.rb", source)]);
+        let run = registry.find("Overloaded#run").expect("run method");
+        let overload = run
+            .docstring
+            .tags
+            .iter()
+            .find(|tag| tag.tag == "overload")
+            .expect("overload tag");
+        let nested = overload.docstring.as_ref().expect("overload docstring");
+        assert!(nested.text.to_string_lossy().contains("Shared prose."));
+        assert_eq!(nested.tags.len(), 1);
+        assert_eq!(nested.tags[0].tag, "param");
+        assert!(
+            nested
+                .tags
+                .iter()
+                .all(|tag| !tag.tag.as_bytes().starts_with(b"!"))
+        );
     }
 
     proptest! {

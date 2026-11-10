@@ -121,6 +121,42 @@ fn parses_docstring_body_summary_and_tags() {
 }
 
 #[test]
+fn example_preserves_code_indentation_without_a_title() {
+    let source = text(
+        "@example\n\n  exchanger = Concurrent::Exchanger.new\n\n  result = exchanger.exchange(:foo)",
+    );
+    let parsed = parse_docstring(&source, location(), &DocstringOptions::default());
+    let example = &parsed.docstring.tags[0];
+    assert_eq!(
+        example.text,
+        "\n\n  exchanger = Concurrent::Exchanger.new\n\n  result = exchanger.exchange(:foo)"
+    );
+}
+
+#[test]
+fn example_keeps_an_inline_title() {
+    let source = text("@example Basic usage\n  Tagged.new.parse(\"x\")");
+    let parsed = parse_docstring(&source, location(), &DocstringOptions::default());
+    assert_eq!(
+        parsed.docstring.tags[0].text,
+        "Basic usage\n  Tagged.new.parse(\"x\")"
+    );
+}
+
+#[test]
+fn same_indent_prose_after_a_tag_returns_to_the_body() {
+    let source = text("@!macro shared\n\nProse after the reference.\n\n@return [String] result");
+    let parsed = parse_docstring(&source, location(), &DocstringOptions::default());
+
+    let macro_tag = &parsed.docstring.tags[0];
+    assert_eq!(macro_tag.tag, "!macro");
+    assert_eq!(macro_tag.name.as_ref().unwrap(), "shared");
+    assert!(macro_tag.text.is_empty());
+    assert_eq!(parsed.docstring.text, "Prose after the reference.");
+    assert_eq!(parsed.docstring.tags[1].tag, "return");
+}
+
+#[test]
 fn warns_for_unknown_tags_and_params() {
     let source = text("@param [String] other nope\n@unknown mystery");
     let options = DocstringOptions {

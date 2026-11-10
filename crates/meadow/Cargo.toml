@@ -1,0 +1,24 @@
+[package]
+name = "meadow"
+description = "High-level build facade for embedding meadow"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+
+[dependencies]
+meadow-docstring.workspace = true
+meadow-handlers.workspace = true
+meadow-model.workspace = true
+meadow-parser.workspace = true
+meadow-plugins.workspace = true
+meadow-resolve.workspace = true
+rayon.workspace = true
+
+[dev-dependencies]
+tempfile = "3"
+
+[lints]
+workspace = true

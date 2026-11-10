@@ -89,12 +89,23 @@ fn parse_into(
         };
     let mut body_lines: Vec<&[u8]> = Vec::new();
     let mut tag_groups: Vec<Vec<&[u8]>> = Vec::new();
+    let mut tag_indent: Option<usize> = None;
 
     for line in lines {
         if line.starts_with(b"@") {
             tag_groups.push(vec![line]);
+            tag_indent = Some(0);
         } else if let Some(group) = tag_groups.last_mut() {
-            group.push(line);
+            let base = tag_indent.unwrap_or(0);
+            if line.trim_ascii().is_empty() || indent(line) > base {
+                group.push(line);
+            } else {
+                // A non-empty line at the tag's indentation resumes the
+                // docstring body. This matters for `@!macro` references that
+                // are followed by more prose at the same level.
+                body_lines.push(line);
+                tag_indent = None;
+            }
         } else {
             body_lines.push(line);
         }
@@ -136,6 +147,10 @@ fn parse_tag(
     let rest = join_rest(first_rest, &lines[1..]);
     let tag = SourceText::from_bytes(tag_name);
 
+    if tag_name == b"!macro" {
+        return parse_macro_tag(&tag, first_rest, &lines[1..]);
+    }
+
     match tag_name {
         b"overload" => parse_overload(&rest, location, options, warnings, tag),
         b"option" => parse_option(&rest, location, options, warnings, tag),
@@ -145,8 +160,21 @@ fn parse_tag(
         b"return" | b"raise" | b"yield" | b"yieldreturn" => {
             parse_typed(&rest, location, warnings, tag)
         }
-        b"abstract" | b"api" | b"author" | b"deprecated" | b"example" | b"note" | b"private"
-        | b"see" | b"since" | b"todo" | b"version" => Tag {
+        b"example" => Tag {
+            tag,
+            name: None,
+            types: None,
+            types_source: None,
+            // Keep the newline that starts a code-only example. Trimming all
+            // whitespace would remove the first code line's indentation while
+            // leaving the rest, producing a misaligned code block.
+            text: SourceText::from_bytes(trim_horizontal_start(&rest)),
+            docstring: None,
+            key: None,
+            default: None,
+        },
+        b"abstract" | b"api" | b"author" | b"deprecated" | b"note" | b"private" | b"see"
+        | b"since" | b"todo" | b"version" => Tag {
             tag,
             name: None,
             types: None,
@@ -177,6 +205,38 @@ fn parse_tag(
                 default: None,
             }
         }
+    }
+}
+
+fn parse_macro_tag(tag: &SourceText, first_rest: &[u8], continuation: &[&[u8]]) -> Tag {
+    let mut first = trim_start(first_rest);
+    // A macro declaration may carry modifiers before its name, such as
+    // `[attach]` or `[new]`. They are not part of the macro name.
+    while first.starts_with(b"[") {
+        let Some(end) = first.iter().position(|byte| *byte == b']') else {
+            break;
+        };
+        first = trim_start(&first[end + 1..]);
+    }
+    let (name, first_body) = if first.is_empty() {
+        (None, &[][..])
+    } else {
+        let name_end = first
+            .iter()
+            .position(u8::is_ascii_whitespace)
+            .unwrap_or(first.len());
+        (Some(&first[..name_end]), &first[name_end..])
+    };
+    let body = join_rest(trim_start(first_body), continuation);
+    Tag {
+        tag: tag.clone(),
+        name: name.map(SourceText::from_bytes),
+        types: None,
+        types_source: None,
+        text: SourceText::from_bytes(trim_end(&body)),
+        docstring: None,
+        key: None,
+        default: None,
     }
 }
 
@@ -528,6 +588,24 @@ fn first_line(bytes: &[u8]) -> &[u8] {
 
 fn trim_bytes(bytes: &[u8]) -> &[u8] {
     trim_end(trim_start(bytes))
+}
+
+fn indent(bytes: &[u8]) -> usize {
+    bytes
+        .iter()
+        .take_while(|byte| matches!(byte, b' ' | b'\t'))
+        .count()
+}
+
+fn trim_horizontal_start(mut bytes: &[u8]) -> &[u8] {
+    while let Some((first, rest)) = bytes.split_first() {
+        if matches!(first, b' ' | b'\t') {
+            bytes = rest;
+        } else {
+            break;
+        }
+    }
+    bytes
 }
 
 fn trim_start(mut bytes: &[u8]) -> &[u8] {
